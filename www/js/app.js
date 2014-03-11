@@ -1,17 +1,35 @@
-$(function() {
-    // No box ad when we have adhesion, so #main-content gets 12 columns
-    if (window.innerWidth <= 1024){
-        $('#main-content').removeClass('col-md-8').addClass('col-md-12');
-    }
+var $w;
+var $h;
+var $slides;
 
-    // Templating example
-    var context = $.extend(APP_CONFIG, {
-        'template_path': 'jst/example.html',
-        'config': JSON.stringify(APP_CONFIG, null, 4),
-        'copy': JSON.stringify(COPY, null, 4)
-    });
+var setUpPanelSnap = function() {
+    var options = {
+        $menu: $('header .menu'),
+        directionThreshold: 1,
+        slideSpeed: 200,
+        panelSelector: 'section',
+        onSnapStart: function(){
+            console.log('motherfucker');
+        },
+        onActivate: function() {
+            console.log('you shit');
+        }
+    };
 
-    var html = JST.example(context);
+    $('#content').panelSnap(options);
+};
 
-    $('#template-example').html(html);
+var setSlideHeight = function() {
+    $w = $(window).width();
+    $h = $(window).height();
+    $slides.css('height', $h - $('.menu').height());
+    $slides.css('width', $w);
+};
+
+$(document).ready(function() {
+    $slides = $('.slide');
+    setSlideHeight();
+    setUpPanelSnap();
+
+    $(window).resize(setSlideHeight);
 });

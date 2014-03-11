@@ -61,79 +61,17 @@
     {% endblock extra_head %}
 </head>
 <body>
-    <a class="sr-only" href="#content">Skip To Content</a>
-
     {% block outer_content %}
-    <nav role="navigation">
-        <ul class="site-links">
-            <li class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></li>
-            <li class="news"><a href="http://www.npr.org/sections/news/">News</a></li>
-            <li class="arts"><a href="http://www.npr.org/sections/arts/">Arts &amp; Life</a></li>
-            <li class="music"><a href="http://www.npr.org/music/">Music</a></li>
-            <li class="listen"><a href="http://www.npr.org/listen/">Listen</a></li>
-        </ul>
-        <ul class="social-links">
-            <li class="twitter"><a rel="external" href="http://twitter.com/share?text={{ COPY.sharing.twitter_text|urlencode }}&amp;url={{ SHARE_URL|urlencode }}" alt="Share on Twitter" target="_blank" onclick="_gaq.push(['_trackEvent', 'Social', 'Click Twitter In Navbar', '{{ PROJECT_NAME }}']);">Share This Page On Twitter</a></li>
-            <li class="facebook"><a rel="external" href="https://www.facebook.com/dialog/feed?app_id={{ FACEBOOK_APP_ID }}&amp;link={{ SHARE_URL|urlencode }}&amp;name={{ COPY.sharing.facebook_title|urlencode }}&amp;picture={{ FACEBOOK_IMAGE_URL|urlencode }}&amp;redirect_uri={{ SHARE_URL|urlencode }}" alt="Share on Facebook" target="_blank" onclick="_gaq.push(['_trackEvent', 'Social', 'Click Facebook In Navbar', '{{ PROJECT_NAME }}']);">Like This Page On Facebook</a></li>
-        </ul>
-        <ul class="site-links-2">
-            <li class="stations"><a href="http://www.npr.org/templates/stations/stations/">Stations</a></li>
-            <li class="donate"><a href="http://www.npr.org/stations/donate/index.php">Donate</a></li>
-            <li class="shop"><a href="http://shop.npr.org">Shop</a></li>
-        </ul>
-    </nav>
 
     {% block header_content %}
     {% endblock header_content %}
 
-    <section id="content">
-        <div class="container">
-            <div class="row">
-                <div id="main-content" class="col-md-8">
-                    {% block content %}
-                    <h1>{{ project_name }}</h1>
-                    App content goes here.
+    {% block content %}
 
-                    <i class="icon icon-play"></i>
-                    {% endblock content %}
-                </div>
-                <div id="bigbox" class="col-md-4">
-                    {# 300x250 ad #}
-                    <div class="adwrapper">
-                        <div id="ad-desktop" class="sponsor300">
-                        </div>
-                        <p class="left">NPR thanks our sponsors</p>
-                        <p class="right"><a href="http://www.npr.org/about/place/corpsupport/">Become an NPR sponsor</a></p>
-                    </div>
-                </div>
-            </div>
-            {% block wide_content %}
-            {% endblock wide_content %}
-        </div>
-    </section>
+    {% endblock content %}
 
-    <footer>
-        <div class="primary">
-            <ul>
-                <li><a href="http://www.npr.org" data-action="Click Logo"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR Logo"></a></li>
-                <li class="news"><a href="http://www.npr.org/sections/news/">News</a></li>
-                <li class="artslife"><a href="http://www.npr.org/sections/arts/">Arts &amp; Life</a></li>
-                <li class="music"><a href="http://www.npr.org/music/">Music</a></li>
-                <li class="programs"><a href="http://www.npr.org/programs/">Programs</a></li>
-                <li class="listen"><a href="http://www.npr.org/listen/">Listen</a></li>
-                <li class="about"><a href="http://www.npr.org/about/">About</a></li>
-            </ul>
-        </div>
-        <div class="secondary">
-            <p>&copy;2014 NPR</p>
-            <ul>
-                <li id="footerContact"><a href="http://help.npr.org/npr/includes/customer/npr/custforms/contactus.aspx">Contact</a></li>
-                <li><a href="http://www.npr.org/about/termsofuse.html">Terms of Use</a></li>
-                <li><a href="http://www.npr.org/about/privacypolicy.html">Privacy</a></li>
-                <li><a href="http://thin.npr.org/">Text-Only</a></li>
-            </ul>
-        </div>
-    </footer>
+    {% block wide_content %}
+    {% endblock wide_content %}
 
     {% endblock outer_content %}
 
@@ -141,6 +79,7 @@
     {% endblock extra_foot %}
 
     {{ JS.push('js/lib/jquery.js') }}
+    {{ JS.push('js/lib/jquery.panelsnap.js') }}
     {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/bootstrap.js') }}
     {{ JS.push('js/lib/moment.js') }}
@@ -183,13 +122,13 @@
         _gaq.push(['_setCustomVar', 5, 'Page Types', '1', 3]);
 
         var orientation = 'portrait';
-        
+
         if (window.orientation == 90 || window.orientation == -90) {
             orientation = 'landscape';
         }
-        
+
         _gaq.push(['_setCustomVar', 6, 'Orientation', orientation, 3]);
-        
+
         var viewportSize = $(window).width();
         var viewportGrouping = '1760 and higher';
 
@@ -204,7 +143,7 @@
         } else if (viewportSize < 1760) {
             viewportGrouping = '1201 - 1759';
         }
-        
+
         _gaq.push(['_setCustomVar', 7, 'Viewport Size', viewportGrouping, 3]);
 
         if (typeof window.devicePixelRatio !== 'undefined' && window.devicePixelRatio >= 1.5) {
@@ -212,13 +151,13 @@
         } else {
             _gaq.push(['_setCustomVar', 10, 'High Density Displays', 'Low', 2]);
         }
-        
+
         if ('ontouchstart' in document.documentElement) {
             _gaq.push(['_setCustomVar', 11, 'Touch screens', 'Touch', 2]);
         } else {
             _gaq.push(['_setCustomVar', 11, 'Touch screens', 'Traditional', 2]);
         }
-        
+
         _gaq.push(['_trackPageview']);
 
         (function() {
@@ -245,7 +184,7 @@
             var d = new Image(1, 1);
             d.onerror = d.onload = function () { d.onerror = d.onload = null; };
             d.src = ["//secure-us.imrworldwide.com/cgi-bin/m?ci=us-803244h&cg=0&cc=1&si=", escape(window.location.href), "&rp=", escape(document.referrer), "&ts=compact&rnd=", (new Date()).getTime()].join('');
-        })();   
+        })();
     </script>
 
     <!-- CHARTBEAT -->
