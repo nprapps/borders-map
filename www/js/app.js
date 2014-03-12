@@ -9,10 +9,8 @@ var setUpPanelSnap = function() {
         slideSpeed: 200,
         panelSelector: 'section',
         onSnapStart: function(){
-            console.log('motherfucker');
         },
         onActivate: function() {
-            console.log('you shit');
         }
     };
 
