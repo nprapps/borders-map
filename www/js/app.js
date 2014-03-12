@@ -3,6 +3,9 @@ var $h;
 var $slides;
 var $currentChapter;
 var $currentSlideshow;
+var $rails;
+var $previous;
+var $next;
 var index = -1;
 var currentSlide;
 
@@ -21,14 +24,7 @@ var setUpPanelSnap = function() {
         panelSelector: 'section',
         onSnapStart: function(){
         },
-        onSnapFinish: function(){
-            index = -1;
-            $currentChapter = $('.chapter.active');
-            $currentSlideshow = $currentChapter.find('.slide');
-            currentSlide = $currentSlideshow[index];
-
-            console.log(currentSlide);
-        },
+        onSnapFinish: setSlideshow,
         onActivate: function() {
         }
     };
@@ -36,21 +32,38 @@ var setUpPanelSnap = function() {
     $('#content').panelSnap(options);
 };
 
+var setSlideshow = function() {
+    index = -1;
+    $currentChapter = $('.chapter.active');
+    $currentSlideshow = $currentChapter.find('.slide');
+    currentSlide = $currentSlideshow[index];
+
+    if ($currentSlideshow.length > 0) {
+        $rails.css('display', 'table');
+    }
+};
+
+var previousSlide = function() {
+    index--;
+    $(currentSlide).removeClass('present');
+    currentSlide = $currentSlideshow[index];
+    $(currentSlide).addClass('present');
+};
+
+var nextSlide = function() {
+    index++;
+    $(currentSlide).removeClass('present');
+    currentSlide = $currentSlideshow[index];
+    $(currentSlide).addClass('present');
+};
+
 var handleKeyPress = function(e) {
     if (e.keyCode === 37 && index >= 0) {
-        index--;
-        $(currentSlide).removeClass('present');
-        currentSlide = $currentSlideshow[index];
-        $(currentSlide).addClass('present');
-
-        console.log(currentSlide);
+        previousSlide();
     }
 
     if (e.keyCode === 39 && index < $currentSlideshow.length - 1) {
-        index++;
-        $(currentSlide).removeClass('present');
-        currentSlide = $currentSlideshow[index];
-        $(currentSlide).addClass('present');
+        nextSlide();
     }
 };
 
@@ -58,13 +71,18 @@ $(document).ready(function() {
     $slides = $('.slide');
     $currentChapter = $('.chapter.active');
     $currentSlideshow = $currentChapter.find('.slide');
+    $rails = $('.rail');
+    $previous = $('.previous-slide');
+    $next = $('.next-slide');
     currentSlide = $currentSlideshow[index];
 
     setSlideHeight();
     setUpPanelSnap();
 
-    console.log($currentSlideshow);
 
     $(document).keydown(handleKeyPress);
+    $previous.on('click', previousSlide);
+    $next.on('click', nextSlide);
+
     $(window).resize(setSlideHeight);
 });
