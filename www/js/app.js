@@ -20,10 +20,16 @@ var setSlideHeight = function() {
 var setUpPanelSnap = function() {
     var options = {
         $menu: $('header .menu'),
-        directionThreshold: 1,
+        directionThreshold: 50,
         slideSpeed: 200,
         panelSelector: 'section',
         onSnapFinish: setSlideshow,
+        keyboardNavigation: {
+            enabled: true,
+            nextPanelKey: 40,
+            previousPanelKey: 38,
+            wrapAround: false
+        }
     };
 
     $('#content').panelSnap(options);
