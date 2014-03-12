@@ -1,7 +1,10 @@
 <section class="slide" {% if row.data_panel %} data-panel="{{ data_panel }}" {% endif %}>
 
     <img src="assets/img/{{row.image}}" alt="" class="img-responsive waypoint">
-    <div class="text {% if row.text_background == 'yes' %} text-bg {% endif %}">
-        {{ row.text }}
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="text {% if row.text_background == 'yes' %} text-bg {% endif %}">
+                {{ row.text }}
+            </div>
+        </div>
 </section>
