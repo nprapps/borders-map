@@ -3,7 +3,7 @@ var $h;
 var $slides;
 var $currentChapter;
 var $currentSlideshow;
-var index = 0;
+var index = -1;
 var currentSlide;
 
 var setSlideHeight = function() {
@@ -22,7 +22,7 @@ var setUpPanelSnap = function() {
         onSnapStart: function(){
         },
         onSnapFinish: function(){
-            index = 0;
+            index = -1;
             $currentChapter = $('.chapter.active');
             $currentSlideshow = $currentChapter.find('.slide');
             currentSlide = $currentSlideshow[index];
