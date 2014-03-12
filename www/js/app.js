@@ -69,8 +69,8 @@ var handleKeyPress = function(e) {
 var setUpVideo = function() {
     $('.video').fitVids();
     var text = $(this).parents('.text');
-    console.log($(this));
     $(text).hide();
+    $(text).parent().css('background-image', '');
     $(text).next().css('display', 'table-cell');
 };
 
