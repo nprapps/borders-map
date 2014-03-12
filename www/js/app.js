@@ -6,6 +6,7 @@ var $currentSlideshow;
 var $rails;
 var $previous;
 var $next;
+var $play;
 var index = -1;
 var currentSlide;
 
@@ -22,11 +23,7 @@ var setUpPanelSnap = function() {
         directionThreshold: 1,
         slideSpeed: 200,
         panelSelector: 'section',
-        onSnapStart: function(){
-        },
         onSnapFinish: setSlideshow,
-        onActivate: function() {
-        }
     };
 
     $('#content').panelSnap(options);
@@ -36,10 +33,13 @@ var setSlideshow = function() {
     index = -1;
     $currentChapter = $('.chapter.active');
     $currentSlideshow = $currentChapter.find('.slide');
-    currentSlide = $currentSlideshow[index];
+    currentSlide = $currentSlideshow[0];
 
     if ($currentSlideshow.length > 0) {
         $rails.css('display', 'table');
+    }
+    else {
+        $rails.css('display', 'none');
     }
 };
 
@@ -61,10 +61,17 @@ var handleKeyPress = function(e) {
     if (e.keyCode === 37 && index >= 0) {
         previousSlide();
     }
-
-    if (e.keyCode === 39 && index < $currentSlideshow.length - 1) {
+    else if (e.keyCode === 39 && index < $currentSlideshow.length - 1) {
         nextSlide();
     }
+};
+
+var setUpVideo = function() {
+    $('.video').fitVids();
+    var text = $(this).parents('.text');
+    console.log($(this));
+    $(text).hide();
+    $(text).next().css('display', 'table-cell');
 };
 
 $(document).ready(function() {
@@ -74,15 +81,17 @@ $(document).ready(function() {
     $rails = $('.rail');
     $previous = $('.previous-slide');
     $next = $('.next-slide');
+    $play = $('.btn-play');
     currentSlide = $currentSlideshow[index];
 
     setSlideHeight();
     setUpPanelSnap();
-
+    setUpVideo();
 
     $(document).keydown(handleKeyPress);
     $previous.on('click', previousSlide);
     $next.on('click', nextSlide);
+    $play.on('click', setUpVideo);
 
     $(window).resize(setSlideHeight);
 });
