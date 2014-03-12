@@ -41,7 +41,8 @@ var setSlideshow = function() {
     $currentChapter = $('.chapter.active');
     $currentSlideshow = $currentChapter.find('.slide');
     currentSlide = $currentSlideshow[0];
-
+    $currentChapter.find('.slide.present').removeClass('present');
+    $currentChapter.addClass('present');
 
     if ($currentSlideshow.length > 0) {
         $rails.css('display', 'table');
