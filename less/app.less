@@ -46,6 +46,7 @@ body {
     position: relative;
     display: none;
     background-size: cover;
+    background-position: center center;
 
     &.present {
         display: table;
@@ -57,8 +58,13 @@ body {
 
     .text {
         width: 100%;
-        height: 50%;
-        padding-top: 100px;
+        height: 80%;
+
+        @media @screen-small-above {
+            height: 50%;
+            padding-top: 100px;
+        }
+
         max-width: 900px;
         position: absolute;
         margin: auto;
@@ -79,19 +85,37 @@ body {
         }
 
         h1 {
-            font-size: 100px;
-            text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaaaaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15)
+            font-size: 40px;
          }
-        h2 { font-size: 80px; }
-        h3 { font-size: 60px; }
-        h4 { font-size: 48px; }
-        h5 { font-size: 40px; }
-        h6 { font-size: 32px; }
-        p {
-            font-size: 28px;
-            line-height: 48px;
-            text-align: left;
+
+         h2 { font-size: 36px; }
+         h3 { font-size: 32px; }
+         h4 { font-size: 28px; }
+         h5 { font-size: 24px; }
+         h6 { font-size: 20px; }
+
+         p {
+             font-size: 24px;
+             line-height: 36px;
+             text-align: left;
+             padding: 0 10px;
+         }
+
+        @media @screen-small-above {
+            h1 { font-size: 100px; }
+            h2 { font-size: 80px; }
+            h3 { font-size: 60px; }
+            h4 { font-size: 48px; }
+            h5 { font-size: 40px; }
+            h6 { font-size: 32px; }
+
+            p {
+                font-size: 28px;
+                line-height: 48px;
+                text-align: left;
+            }
         }
+
         &.text-bg {
             background-color: #000;
             opacity: .7;
@@ -108,10 +132,6 @@ body {
     img {
         max-height: 100%;
         width: 100%;
-    }
-
-    .menu {
-        position: fixed;
     }
 }
 
@@ -145,4 +165,14 @@ body {
 
 .right-rail {
     right: 20px;
+}
+
+footer {
+    position: fixed;
+    z-index: 1;
+    background-color: black;
+    width: 100%;
+    position: absolute;
+    height: 5%;
+    bottom: 0;
 }

@@ -20,7 +20,7 @@ var setSlideHeight = function() {
 
 var setUpPanelSnap = function() {
     var options = {
-        $menu: $('header .menu'),
+        $menu: $('footer .menu'),
         directionThreshold: 50,
         slideSpeed: 200,
         panelSelector: 'section',
@@ -59,15 +59,13 @@ var setChapterHash = function() {
 };
 
 var setSlideHash = function() {
-    console.log(index.toString());
     if (index >= 0) {
         hasher.setHash(currentPanel + '/' + index);
     }
     else {
         hasher.setHash(currentPanel);
     }
-
-}
+};
 
 var previousSlide = function() {
     index--;
@@ -104,7 +102,7 @@ var setUpVideo = function() {
 
 //handle hash changes
 var handleChanges = function(newHash, oldHash){
-  console.log(newHash);
+    // $.smoothScroll({ speed: 800, scrollTarget: '#' + newHash });
 };
 
 $(document).ready(function() {
@@ -126,7 +124,6 @@ $(document).ready(function() {
     hasher.initialized.add(handleChanges); //add initialized listener (to grab initial value in case it is already set)
     hasher.init(); //initialize hasher (start listening for history changes)
 
-    hasher.setHash('home');
     $(document).keydown(handleKeyPress);
     $previous.on('click', previousSlide);
     $next.on('click', nextSlide);
