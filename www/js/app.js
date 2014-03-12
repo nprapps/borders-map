@@ -9,6 +9,7 @@ var $next;
 var $play;
 var index = -1;
 var currentSlide;
+var currentPanel;
 
 var setSlideHeight = function() {
     $w = $(window).width();
@@ -41,19 +42,39 @@ var setSlideshow = function() {
     $currentSlideshow = $currentChapter.find('.slide');
     currentSlide = $currentSlideshow[0];
 
+
     if ($currentSlideshow.length > 0) {
         $rails.css('display', 'table');
     }
     else {
         $rails.css('display', 'none');
     }
+
+    setChapterHash();
 };
+
+var setChapterHash = function() {
+    currentPanel = $currentChapter.data('panel');
+    hasher.setHash(currentPanel);
+};
+
+var setSlideHash = function() {
+    console.log(index.toString());
+    if (index >= 0) {
+        hasher.setHash(currentPanel + '/' + index);
+    }
+    else {
+        hasher.setHash(currentPanel);
+    }
+
+}
 
 var previousSlide = function() {
     index--;
     $(currentSlide).removeClass('present');
     currentSlide = $currentSlideshow[index];
     $(currentSlide).addClass('present');
+    setSlideHash();
 };
 
 var nextSlide = function() {
@@ -61,6 +82,7 @@ var nextSlide = function() {
     $(currentSlide).removeClass('present');
     currentSlide = $currentSlideshow[index];
     $(currentSlide).addClass('present');
+    setSlideHash();
 };
 
 var handleKeyPress = function(e) {
@@ -80,6 +102,11 @@ var setUpVideo = function() {
     $(text).next().css('display', 'table-cell');
 };
 
+//handle hash changes
+var handleChanges = function(newHash, oldHash){
+  console.log(newHash);
+};
+
 $(document).ready(function() {
     $slides = $('.slide');
     $currentChapter = $('.chapter.active');
@@ -89,11 +116,17 @@ $(document).ready(function() {
     $next = $('.next-slide');
     $play = $('.btn-play');
     currentSlide = $currentSlideshow[index];
+    currentPanel = $currentChapter.data('panel');
 
     setSlideHeight();
     setUpPanelSnap();
     setUpVideo();
 
+    hasher.changed.add(handleChanges); //add hash change listener
+    hasher.initialized.add(handleChanges); //add initialized listener (to grab initial value in case it is already set)
+    hasher.init(); //initialize hasher (start listening for history changes)
+
+    hasher.setHash('home');
     $(document).keydown(handleKeyPress);
     $previous.on('click', previousSlide);
     $next.on('click', nextSlide);
