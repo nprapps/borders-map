@@ -60,6 +60,10 @@ var setSlideshow = function() {
         $next.on('click', nextSlide);
     }
     setChapterHash();
+
+    if (jwplayer('player').getState() == 'PLAYING') {
+        jwplayer('player').stop();
+    }
 };
 
 var setChapterHash = function() {
