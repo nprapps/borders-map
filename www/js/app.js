@@ -55,6 +55,9 @@ var setSlideshow = function() {
         $previous = $('.previous-slide');
         $next = $('.next-slide');
         $previous.css('display', 'none');
+
+        $previous.on('click', previousSlide);
+        $next.on('click', nextSlide);
     }
     setChapterHash();
 };
@@ -184,8 +187,6 @@ $(document).ready(function() {
     hasher.init(); //initialize hasher (start listening for history changes)
 
     $(document).keydown(handleKeyPress);
-    $previous.on('click', previousSlide);
-    $next.on('click', nextSlide);
     $play.on('click', setUpVideo);
 
     $(window).resize(setSlideHeight);
