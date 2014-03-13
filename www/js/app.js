@@ -45,7 +45,7 @@ var setSlideshow = function() {
     $currentChapter.addClass('present');
 
     if ($currentSlideshow.length > 0) {
-        $rails.css('display', 'table');
+        $rails.css('display', 'block');
     }
     else {
         $rails.css('display', 'none');
