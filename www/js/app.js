@@ -50,13 +50,12 @@ var setSlideshow = function() {
     $currentChapter.addClass('present');
 
     if ($currentSlideshow.length > 0) {
-        $rails.css('display', 'block');
+        $currentChapter.append(JST.slide_nav());
+        $rails = $('.rail');
+        $previous = $('.previous-slide');
+        $next = $('.next-slide');
         $previous.css('display', 'none');
     }
-    else {
-        $rails.css('display', 'none');
-    }
-
     setChapterHash();
 };
 
@@ -172,9 +171,6 @@ $(document).ready(function() {
     $slides = $('.slide');
     $currentChapter = $('.chapter.active');
     $currentSlideshow = $currentChapter.find('.slide');
-    $rails = $('.rail');
-    $previous = $('.previous-slide');
-    $next = $('.next-slide');
     $play = $('.btn-play');
     $video = $('.video');
     currentSlide = $currentSlideshow[index];
