@@ -51,6 +51,7 @@ var setSlideshow = function() {
 
     if ($currentSlideshow.length > 0) {
         $rails.css('display', 'block');
+        $previous.css('display', 'none');
     }
     else {
         $rails.css('display', 'none');
@@ -79,6 +80,7 @@ var previousSlide = function() {
     currentSlide = $currentSlideshow[index];
     $(currentSlide).addClass('present');
     setSlideHash();
+    checkArrows();
 };
 
 var nextSlide = function() {
@@ -87,6 +89,20 @@ var nextSlide = function() {
     currentSlide = $currentSlideshow[index];
     $(currentSlide).addClass('present');
     setSlideHash();
+    checkArrows();
+};
+
+var checkArrows = function() {
+    if (index < 0) {
+        $previous.css('display', 'none');
+    }
+    else if (index === $currentSlideshow.length - 1) {
+        $next.css('display', 'none');
+    }
+    else {
+        $previous.css('display', 'block');
+        $next.css('display', 'block');
+    }
 };
 
 var handleKeyPress = function(e) {
