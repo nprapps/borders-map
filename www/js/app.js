@@ -75,21 +75,25 @@ var setSlideHash = function() {
 };
 
 var previousSlide = function() {
-    index--;
-    $(currentSlide).removeClass('present');
-    currentSlide = $currentSlideshow[index];
-    $(currentSlide).addClass('present');
-    setSlideHash();
-    checkArrows();
+    if (index >= 0) {
+        index--;
+        $(currentSlide).removeClass('present');
+        currentSlide = $currentSlideshow[index];
+        $(currentSlide).addClass('present');
+        setSlideHash();
+        checkArrows();
+    }
 };
 
 var nextSlide = function() {
-    index++;
-    $(currentSlide).removeClass('present');
-    currentSlide = $currentSlideshow[index];
-    $(currentSlide).addClass('present');
-    setSlideHash();
-    checkArrows();
+    if (index < $currentSlideshow.length) {
+        index++;
+        $(currentSlide).removeClass('present');
+        currentSlide = $currentSlideshow[index];
+        $(currentSlide).addClass('present');
+        setSlideHash();
+        checkArrows();
+    }
 };
 
 var checkArrows = function() {
