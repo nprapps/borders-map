@@ -14,7 +14,7 @@ var currentPanel;
 var setSlideHeight = function() {
     $w = $(window).width();
     $h = $(window).height();
-    $slides.css('height', $h - 40);
+    $slides.css('height', $h);
     $slides.css('width', $w);
 };
 
