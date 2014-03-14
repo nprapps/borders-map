@@ -5,6 +5,7 @@
 var $w;
 var $h;
 var $slides;
+var $chapters;
 var $currentChapter;
 var $currentSlideshow;
 var $rails;
@@ -33,27 +34,52 @@ var setSlideHeight = function() {
     jwplayer('player').resize($w, $h);
 };
 
-var setUpPanelSnap = function() {
+// var setUpPanelSnap = function() {
 
-    /*
-    * See jquery.panelsnap.js for the code this is using. Listens for section tags.
-    */
+//     /*
+//     * See jquery.panelsnap.js for the code this is using. Listens for section tags.
+//     */
 
-    var options = {
-        $menu: $('footer .menu'),
-        directionThreshold: 50,
-        slideSpeed: 200,
-        panelSelector: 'section',
-        onSnapFinish: setSlideshow,
-        keyboardNavigation: {
-            enabled: true,
-            nextPanelKey: 40,
-            previousPanelKey: 38,
-            wrapAround: false
+//     var options = {
+//         $menu: $('footer .menu'),
+//         directionThreshold: 50,
+//         slideSpeed: 200,
+//         panelSelector: 'section',
+//         onSnapFinish: setSlideshow,
+//         keyboardNavigation: {
+//             enabled: true,
+//             nextPanelKey: 40,
+//             previousPanelKey: 38,
+//             wrapAround: false
+//         }
+//     };
+
+//     $('#content').panelSnap(options);
+// };
+
+var setUpWaypoints = function() {
+    $('.waypoint').waypoint(function(direction) {
+        if (direction === 'down') {
+            scrollDown(this);
         }
-    };
+        if (direction === 'up') {
+            scrollUp(this);
+        }
+    }, { offset: $h/1.05, continuous: false });
+};
 
-    $('#content').panelSnap(options);
+var scrollDown = function(element) {
+    var target = $(element);
+    $.smoothScroll({ speed: 200, scrollTarget: target });
+    $currentChapter = $(element);
+    setSlideshow();
+};
+
+var scrollUp = function(element) {
+    var target = $(element).prev();
+    $.smoothScroll({ speed: 200, scrollTarget: target });
+    $currentChapter = $(element);
+    setSlideshow();
 };
 
 var setSlideshow = function() {
@@ -63,9 +89,6 @@ var setSlideshow = function() {
 
     // set up slideshow
 
-    index = -1; // -1 because of the titlecard. This is awful.
-
-    $currentChapter = $('.chapter.active');
     $currentSlideshow = $currentChapter.find('.slide'); // find all slides within the section
 
     // reset slideshow if returning to chapter
@@ -77,6 +100,7 @@ var setSlideshow = function() {
     // append slide controls and load slides, but only if necessary
 
     if ($currentSlideshow.length > 0) {
+        index = -1; // -1 because of the titlecard. This is awful.
         $currentChapter.append(JST.slide_nav());
         loadSlides($currentSlideshow);
         $rails = $('.rail');
@@ -266,7 +290,8 @@ $(document).ready(function() {
     */
 
     $slides = $('.slide');
-    $currentChapter = $('.chapter.active');
+    $chapters = $('.chapter');
+    $currentChapter = $($chapters[0]);
     $currentSlideshow = $currentChapter.find('.slide');
     $play = $('.btn-play');
     $video = $('.video');
@@ -276,7 +301,7 @@ $(document).ready(function() {
     // init chapters
 
     setSlideHeight();
-    setUpPanelSnap();
+    setUpWaypoints();
 
     // hasher setup
 
@@ -288,10 +313,6 @@ $(document).ready(function() {
 
     $(document).keydown(handleKeyPress);
     $play.on('click', revealVideo);
-
-    $slides.lazyload({
-        threshold : 50,
-    });
 
     // Redraw slides if the window resizes
 
