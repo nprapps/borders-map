@@ -77,9 +77,10 @@ var setSlideshow = function() {
 
 var loadSlides = function(slideshow) {
     _.each(slideshow, function(slide) {
-        console.log($(slide));
-        var backgroundImage = 'assets/img/' + $(slide).data('bgimage');
-        $(slide).css('background-image', 'url(' + backgroundImage + ')');
+        if ($(slide).data('bgimage')) {
+            var backgroundImage = 'assets/img/' + $(slide).data('bgimage');
+            $(slide).css('background-image', 'url(' + backgroundImage + ')');
+        }
     });
 };
 
