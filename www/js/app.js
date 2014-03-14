@@ -8,6 +8,7 @@ var $previous;
 var $next;
 var $play;
 var $video;
+var $waypoints;
 var index = -1;
 var currentSlide;
 var currentPanel;
@@ -42,13 +43,20 @@ var setUpPanelSnap = function() {
 };
 
 var setSlideshow = function() {
+    // set up slideshow
+
     index = -1;
     $currentChapter = $('.chapter.active');
+    lazyLoadBackground($currentChapter.next());
     $currentSlideshow = $currentChapter.find('.slide');
+
+    // reset slideshow if returning to chapter
+
     currentSlide = $currentSlideshow[0];
     $currentChapter.find('.slide.present').removeClass('present');
     $currentChapter.addClass('present');
 
+    // append slide controls if necessary
     if ($currentSlideshow.length > 0) {
         $currentChapter.append(JST.slide_nav());
         $rails = $('.rail');
@@ -61,9 +69,19 @@ var setSlideshow = function() {
     }
     setChapterHash();
 
+    // check for playing video
     if (jwplayer('player').getState() == 'PLAYING') {
         jwplayer('player').stop();
     }
+};
+
+
+var lazyLoadBackground = function(next, threshold, effect) {
+    $(next).lazyload({
+        threshold: 50
+    });
+
+    console.log(next);
 };
 
 var setChapterHash = function() {
@@ -130,7 +148,6 @@ var setUpVideo = function() {
     $(text).parent().css('background-image', '');
     $(text).next().css('display', 'table-cell');
     var player = text.siblings('#player');
-    console.log(player);
     initPlayer(player);
 };
 
@@ -192,6 +209,10 @@ $(document).ready(function() {
 
     $(document).keydown(handleKeyPress);
     $play.on('click', setUpVideo);
+
+    $slides.lazyload({
+        threshold : 50,
+    });
 
     $(window).resize(setSlideHeight);
 });
