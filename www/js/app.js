@@ -1,3 +1,7 @@
+/*
+* Global vars
+*/
+
 var $w;
 var $h;
 var $slides;
@@ -14,6 +18,11 @@ var currentSlide;
 var currentPanel;
 
 var setSlideHeight = function() {
+
+    /*
+    * Set the window width and height, make all slides fill the screen.
+    */
+
     $w = $(window).width();
     $h = $(window).height();
     $slides.css('height', $h);
@@ -25,6 +34,11 @@ var setSlideHeight = function() {
 };
 
 var setUpPanelSnap = function() {
+
+    /*
+    * See jquery.panelsnap.js for the code this is using. Listens for section tags.
+    */
+
     var options = {
         $menu: $('footer .menu'),
         directionThreshold: 50,
@@ -43,11 +57,16 @@ var setUpPanelSnap = function() {
 };
 
 var setSlideshow = function() {
+    /*
+    * If chapters have slideshows, do some legwork to make them work properly
+    */
+
     // set up slideshow
 
-    index = -1;
+    index = -1; // -1 because of the titlecard. This is awful.
+
     $currentChapter = $('.chapter.active');
-    $currentSlideshow = $currentChapter.find('.slide');
+    $currentSlideshow = $currentChapter.find('.slide'); // find all slides within the section
 
     // reset slideshow if returning to chapter
 
@@ -55,7 +74,8 @@ var setSlideshow = function() {
     $currentChapter.find('.slide.present').removeClass('present');
     $currentChapter.addClass('present');
 
-    // append slide controls if necessary
+    // append slide controls and load slides, but only if necessary
+
     if ($currentSlideshow.length > 0) {
         $currentChapter.append(JST.slide_nav());
         loadSlides($currentSlideshow);
@@ -67,15 +87,22 @@ var setSlideshow = function() {
         $previous.on('click', previousSlide);
         $next.on('click', nextSlide);
     }
-    setChapterHash();
 
-    // check for playing video
+    // check for playing video, stop it if it is playing
+
     if (jwplayer('player').getState() == 'PLAYING') {
         jwplayer('player').stop();
     }
+
+    setChapterHash();
 };
 
 var loadSlides = function(slideshow) {
+
+    /*
+    * Lazy loading for slideshow background images
+    */
+
     _.each(slideshow, function(slide) {
         if ($(slide).data('bgimage')) {
             var backgroundImage = 'assets/img/' + $(slide).data('bgimage');
@@ -85,11 +112,21 @@ var loadSlides = function(slideshow) {
 };
 
 var setChapterHash = function() {
+
+    /*
+    * Set hash for chapter panels
+    */
+
     currentPanel = $currentChapter.data('panel');
     hasher.setHash(currentPanel);
 };
 
 var setSlideHash = function() {
+
+    /*
+    * Set hash for slides
+    */
+
     if (index >= 0) {
         hasher.setHash(currentPanel + '/' + index);
     }
@@ -99,6 +136,11 @@ var setSlideHash = function() {
 };
 
 var previousSlide = function() {
+
+    /*
+    * Handler for moving backwards in slideshows
+    */
+
     if (index >= 0) {
         index--;
         $(currentSlide).removeClass('present');
@@ -110,6 +152,11 @@ var previousSlide = function() {
 };
 
 var nextSlide = function() {
+
+    /*
+    * Handler for moving forwards in slideshows
+    */
+
     if (index < $currentSlideshow.length) {
         index++;
         $(currentSlide).removeClass('present');
@@ -121,6 +168,11 @@ var nextSlide = function() {
 };
 
 var checkArrows = function() {
+
+    /*
+    * Based on where you are in a slideshow, hide and show the appropriate arrow controls
+    */
+
     if (index < 0) {
         $previous.css('display', 'none');
     }
@@ -134,6 +186,11 @@ var checkArrows = function() {
 };
 
 var handleKeyPress = function(e) {
+
+    /*
+    * Enable keyboard navigation in slideshows
+    */
+
     if (e.keyCode === 37 && index >= 0) {
         previousSlide();
     }
@@ -142,7 +199,12 @@ var handleKeyPress = function(e) {
     }
 };
 
-var setUpVideo = function() {
+var revealVideo = function() {
+
+    /*
+    * Show the video.
+    */
+
     var text = $(this).parents('.text');
     $(text).hide();
     $(text).parent().css('background-image', '');
@@ -152,6 +214,11 @@ var setUpVideo = function() {
 };
 
 var initPlayer = function(player) {
+
+    /*
+    * Setup JWPlayer.
+    */
+
     jwplayer('player').setup({
         modes: [{
             type: 'flash',
@@ -184,12 +251,20 @@ var initPlayer = function(player) {
 
 };
 
-//handle hash changes
 var handleChanges = function(newHash, oldHash){
-    // $.smoothScroll({ speed: 800, scrollTarget: '#' + newHash });
+
+    /*
+    * Do something when the hash changes. What are we doing here?
+    */
+
 };
 
 $(document).ready(function() {
+
+    /*
+    * Define vars
+    */
+
     $slides = $('.slide');
     $currentChapter = $('.chapter.active');
     $currentSlideshow = $currentChapter.find('.slide');
@@ -198,19 +273,27 @@ $(document).ready(function() {
     currentSlide = $currentSlideshow[index];
     currentPanel = $currentChapter.data('panel');
 
+    // init chapters
+
     setSlideHeight();
     setUpPanelSnap();
 
-    hasher.changed.add(handleChanges); //add hash change listener
-    hasher.initialized.add(handleChanges); //add initialized listener (to grab initial value in case it is already set)
-    hasher.init(); //initialize hasher (start listening for history changes)
+    // hasher setup
+
+    hasher.changed.add(handleChanges);
+    hasher.initialized.add(handleChanges);
+    hasher.init();
+
+    // handlers
 
     $(document).keydown(handleKeyPress);
-    $play.on('click', setUpVideo);
+    $play.on('click', revealVideo);
 
     $slides.lazyload({
         threshold : 50,
     });
+
+    // Redraw slides if the window resizes
 
     $(window).resize(setSlideHeight);
 });
