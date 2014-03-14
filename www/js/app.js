@@ -59,6 +59,7 @@ var setSlideshow = function() {
     // append slide controls if necessary
     if ($currentSlideshow.length > 0) {
         $currentChapter.append(JST.slide_nav());
+        loadSlides($currentSlideshow);
         $rails = $('.rail');
         $previous = $('.previous-slide');
         $next = $('.next-slide');
@@ -75,6 +76,13 @@ var setSlideshow = function() {
     }
 };
 
+var loadSlides = function(slideshow) {
+    _.each(slideshow, function(slide) {
+        console.log($(slide));
+        var backgroundImage = 'assets/img/' + $(slide).data('bgimage');
+        $(slide).css('background-image', 'url(' + backgroundImage + ')');
+    });
+};
 
 var lazyLoadBackground = function(next, threshold, effect) {
     $(next).lazyload({
