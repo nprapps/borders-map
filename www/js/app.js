@@ -34,50 +34,34 @@ var setSlideHeight = function() {
     jwplayer('player').resize($w, $h);
 };
 
-// var setUpPanelSnap = function() {
-
-//     /*
-//     * See jquery.panelsnap.js for the code this is using. Listens for section tags.
-//     */
-
-//     var options = {
-//         $menu: $('footer .menu'),
-//         directionThreshold: 50,
-//         slideSpeed: 200,
-//         panelSelector: 'section',
-//         onSnapFinish: setSlideshow,
-//         keyboardNavigation: {
-//             enabled: true,
-//             nextPanelKey: 40,
-//             previousPanelKey: 38,
-//             wrapAround: false
-//         }
-//     };
-
-//     $('#content').panelSnap(options);
-// };
-
 var setUpWaypoints = function() {
     $('.waypoint').waypoint(function(direction) {
         if (direction === 'down') {
             scrollDown(this);
         }
+    }, {
+        offset: $h/1.1,
+        continuous: false
+    }).waypoint(function(direction) {
         if (direction === 'up') {
             scrollUp(this);
         }
-    }, { offset: $h/1.05, continuous: false });
+    }, {
+        offset: $h * 0.1,
+        continuous: false
+    });
 };
 
 var scrollDown = function(element) {
     var target = $(element);
-    $.smoothScroll({ speed: 200, scrollTarget: target });
+    $.smoothScroll({ speed: 500, scrollTarget: target });
     $currentChapter = $(element);
     setSlideshow();
 };
 
 var scrollUp = function(element) {
     var target = $(element).prev();
-    $.smoothScroll({ speed: 200, scrollTarget: target });
+    $.smoothScroll({ speed: 500, scrollTarget: target });
     $currentChapter = $(element);
     setSlideshow();
 };
