@@ -47,7 +47,6 @@ var setSlideshow = function() {
 
     index = -1;
     $currentChapter = $('.chapter.active');
-    lazyLoadBackground($currentChapter.next());
     $currentSlideshow = $currentChapter.find('.slide');
 
     // reset slideshow if returning to chapter
@@ -82,14 +81,6 @@ var loadSlides = function(slideshow) {
         var backgroundImage = 'assets/img/' + $(slide).data('bgimage');
         $(slide).css('background-image', 'url(' + backgroundImage + ')');
     });
-};
-
-var lazyLoadBackground = function(next, threshold, effect) {
-    $(next).lazyload({
-        threshold: 50
-    });
-
-    console.log(next);
 };
 
 var setChapterHash = function() {
@@ -160,8 +151,6 @@ var setUpVideo = function() {
 };
 
 var initPlayer = function(player) {
-    $video.fitVids();
-
     jwplayer('player').setup({
         modes: [{
             type: 'flash',

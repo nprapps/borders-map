@@ -1,0 +1,11 @@
+<div class="slide photo-quote-vertical {% if row.extra_class %} {{ row.extra_class }} {% endif %}" style="{% if row.color %} background-color: {{ row.color }}; {% endif %}" {% if row.data_panel %} data-panel="{{ data_panel }}" {% endif %}>
+    <div class="photo-quote">
+        <div class="text">
+            {{ row.text }}
+        </div>
+        <div class="image">
+            <img src="assets/img/{{ row.image }}">
+        </div>
+    </div>
+</div>
+
