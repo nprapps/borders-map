@@ -37,6 +37,8 @@
     {% block extra_css %}{% endblock extra_css %}
     {{ CSS.render('css/app.min.css') }}
 
+    <link rel="stylesheet" href="css/jquery.fullPage.css">
+
     <!-- JS -->
     {{ JS.push('js/lib/modernizr.js') }}
     {{ JS.render('js/app-header.min.js') }}
@@ -83,8 +85,7 @@
     {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/bootstrap.js') }}
     {{ JS.push('js/lib/moment.js') }}
-    {{ JS.push('js/lib/waypoints.js') }}
-    {{ JS.push('js/lib/jquery.smooth-scroll.js') }}
+    {{ JS.push('js/lib/jquery.fullPage.js') }}
     {{ JS.push('js/lib/signals.min.js') }}
     {{ JS.push('js/lib/hasher.min.js') }}
     {{ JS.push('js/app_config.js') }}

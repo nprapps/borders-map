@@ -7,20 +7,9 @@
 
 {% block content %}
 
-<div id="content">
-
-<section id="titlecard" class="chapter slide present" style="background-image: url('assets/img/walking.jpg');" data-panel="home">
-
-    <div class="text">
-        <h1>Borderlands</h1> </br>
-        <h4>Life at the Crossroads</h4>
-    </div>
-</section>
-
 {% for row in COPY.content %}
     {% include "%s.html"|format(row.template) ignore missing %}
 {% endfor %}
-</div>
 
 <!-- <footer>
     <nav class="menu">

@@ -29,33 +29,13 @@ body {
 
 // basic slide styles
 
-.slide {
-    width: 100%;
-    height: 768px;
-    position: relative;
-    display: none;
+.section, .slide {
     background-size: cover;
     background-position: center center;
-    &.present {
-        display: inline-block;
-    }
-
-    &.video {
-        background-color: #000;
-    }
 
     .text {
-        width: 80%;
-        @media @screen-small-above {
-            max-width: 900px;
-            width: 60%;
-        }
-        margin: auto;
-        position: absolute;
-        top: 50%; left: 50%;
-        -webkit-transform: translate(-50%,-50%);
-           -ms-transform: translate(-50%,-50%);
-               transform: translate(-50%,-50%);
+        margin: 0 auto;
+        max-width: 60%;
 
         h1, h2, h3, h4, h5, h6, p {
             color: #fff;
@@ -121,13 +101,8 @@ body {
 .slide.photo-quote-vertical {
 
     .photo-quote {
-        width: 100%;
-        margin: auto;
-        position: absolute;
-        top: 50%; left: 50%;
-        -webkit-transform: translate(-50%,-50%);
-           -ms-transform: translate(-50%,-50%);
-               transform: translate(-50%,-50%);
+        max-width: 90%;
+        margin: 0 auto;
     }
 
     .text {
@@ -154,38 +129,6 @@ body {
         vertical-align: middle;
     }
 
-}
-
-// controls
-
-.rail {
-    display: block;
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translate(0%,-50%);
-    -ms-transform: translate(0%,-50%);
-    transform: translate(0%,-50%);
-
-    i {
-        font-size: 40px;
-        @media screen-small-above { font-size: 60px; }
-        color: #fff;
-    }
-
-    .clickable {
-        cursor: pointer;
-    }
-}
-
-.left-rail {
-    left: 0;
-    @media @screen-small-above { left: 20px; }
-}
-
-.right-rail {
-    right: 0;
-    @media @screen-small-above { right: 20px; }
 }
 
 footer {

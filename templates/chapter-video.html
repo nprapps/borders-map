@@ -1,6 +1,4 @@
-</section> <!-- close previous chapter -->
-
-<section id="{{ row.data_panel }}" class="chapter slide present video waypoint" style="{% if row.image %} background-image: url('{{ row.image }}'); {% endif %} {% if row.color %} background-color: {{ row.color }}; {% endif %}" {% if row.data_panel %} data-panel="{{ row.data_panel }}" {% endif %}>
+<div id="{{ row.data_panel }}" class="section video" style="{% if row.image %} background-image: url('{{ row.image }}'); {% endif %} {% if row.color %} background-color: {{ row.color }}; {% endif %}">
 
     <div class="text">
         {{ row.text }}
@@ -8,3 +6,4 @@
 
     <div id="player">
     </div>
+</div>

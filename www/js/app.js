@@ -5,18 +5,9 @@
 var $w;
 var $h;
 var $slides;
-var $chapters;
-var $currentChapter;
-var $currentSlideshow;
-var $rails;
-var $previous;
-var $next;
 var $play;
 var $video;
-var $waypoints;
 var index = -1;
-var currentSlide;
-var currentPanel;
 
 var setSlideHeight = function() {
 
@@ -34,178 +25,16 @@ var setSlideHeight = function() {
     jwplayer('player').resize($w, $h);
 };
 
-var setUpWaypoints = function() {
-    $('.waypoint').waypoint(function(direction) {
-        if (direction === 'down') {
-            scrollDown(this);
-        }
-    }, {
-        offset: $h/1.1,
-        continuous: false
-    }).waypoint(function(direction) {
-        if (direction === 'up') {
-            scrollUp(this);
-        }
-    }, {
-        offset: $h * 0.1,
-        continuous: false
+var setUpFullPage = function() {
+    $.fn.fullpage({
+        verticalCentered: true,
+        resize: true,
+        css3: true,
+        scrollingSpeed: 400,
+        loopHorizontal: false,
+        easing: 'swing',
     });
-};
-
-var scrollDown = function(element) {
-    var target = $(element);
-    $.smoothScroll({ speed: 500, scrollTarget: target });
-    $currentChapter = $(element);
-    setSlideshow();
-};
-
-var scrollUp = function(element) {
-    var target = $(element).prev();
-    $.smoothScroll({ speed: 500, scrollTarget: target });
-    $currentChapter = $(element);
-    setSlideshow();
-};
-
-var setSlideshow = function() {
-    /*
-    * If chapters have slideshows, do some legwork to make them work properly
-    */
-
-    // set up slideshow
-
-    $currentSlideshow = $currentChapter.find('.slide'); // find all slides within the section
-
-    // reset slideshow if returning to chapter
-
-    currentSlide = $currentSlideshow[0];
-    $currentChapter.find('.slide.present').removeClass('present');
-    $currentChapter.addClass('present');
-
-    // append slide controls and load slides, but only if necessary
-
-    if ($currentSlideshow.length > 0) {
-        index = -1; // -1 because of the titlecard. This is awful.
-        $currentChapter.append(JST.slide_nav());
-        loadSlides($currentSlideshow);
-        $rails = $('.rail');
-        $previous = $('.previous-slide');
-        $next = $('.next-slide');
-        $previous.css('display', 'none');
-
-        $previous.on('click', previousSlide);
-        $next.on('click', nextSlide);
-    }
-
-    // check for playing video, stop it if it is playing
-
-    if (jwplayer('player').getState() == 'PLAYING') {
-        jwplayer('player').stop();
-    }
-
-    setChapterHash();
-};
-
-var loadSlides = function(slideshow) {
-
-    /*
-    * Lazy loading for slideshow background images
-    */
-
-    _.each(slideshow, function(slide) {
-        if ($(slide).data('bgimage')) {
-            var backgroundImage = 'assets/img/' + $(slide).data('bgimage');
-            $(slide).css('background-image', 'url(' + backgroundImage + ')');
-        }
-    });
-};
-
-var setChapterHash = function() {
-
-    /*
-    * Set hash for chapter panels
-    */
-
-    currentPanel = $currentChapter.data('panel');
-    hasher.setHash(currentPanel);
-};
-
-var setSlideHash = function() {
-
-    /*
-    * Set hash for slides
-    */
-
-    if (index >= 0) {
-        hasher.setHash(currentPanel + '/' + index);
-    }
-    else {
-        hasher.setHash(currentPanel);
-    }
-};
-
-var previousSlide = function() {
-
-    /*
-    * Handler for moving backwards in slideshows
-    */
-
-    if (index >= 0) {
-        index--;
-        $(currentSlide).removeClass('present');
-        currentSlide = $currentSlideshow[index];
-        $(currentSlide).addClass('present');
-        setSlideHash();
-        checkArrows();
-    }
-};
-
-var nextSlide = function() {
-
-    /*
-    * Handler for moving forwards in slideshows
-    */
-
-    if (index < $currentSlideshow.length) {
-        index++;
-        $(currentSlide).removeClass('present');
-        currentSlide = $currentSlideshow[index];
-        $(currentSlide).addClass('present');
-        setSlideHash();
-        checkArrows();
-    }
-};
-
-var checkArrows = function() {
-
-    /*
-    * Based on where you are in a slideshow, hide and show the appropriate arrow controls
-    */
-
-    if (index < 0) {
-        $previous.css('display', 'none');
-    }
-    else if (index === $currentSlideshow.length - 1) {
-        $next.css('display', 'none');
-    }
-    else {
-        $previous.css('display', 'block');
-        $next.css('display', 'block');
-    }
-};
-
-var handleKeyPress = function(e) {
-
-    /*
-    * Enable keyboard navigation in slideshows
-    */
-
-    if (e.keyCode === 37 && index >= 0) {
-        previousSlide();
-    }
-    else if (e.keyCode === 39 && index < $currentSlideshow.length - 1) {
-        nextSlide();
-    }
-};
+}
 
 var revealVideo = function() {
 
@@ -273,19 +102,14 @@ $(document).ready(function() {
     * Define vars
     */
 
-    $slides = $('.slide');
-    $chapters = $('.chapter');
-    $currentChapter = $($chapters[0]);
-    $currentSlideshow = $currentChapter.find('.slide');
+    $slides = $('.section, .slide');
     $play = $('.btn-play');
     $video = $('.video');
-    currentSlide = $currentSlideshow[index];
-    currentPanel = $currentChapter.data('panel');
 
     // init chapters
 
     setSlideHeight();
-    setUpWaypoints();
+    setUpFullPage();
 
     // hasher setup
 
@@ -295,7 +119,7 @@ $(document).ready(function() {
 
     // handlers
 
-    $(document).keydown(handleKeyPress);
+    // $(document).keydown(handleKeyPress);
     $play.on('click', revealVideo);
 
     // Redraw slides if the window resizes
