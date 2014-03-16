@@ -33,6 +33,7 @@ var setUpFullPage = function() {
         scrollingSpeed: 400,
         loopHorizontal: false,
         easing: 'swing',
+        touchSensitivity: 80
     });
 }
 

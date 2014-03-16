@@ -35,14 +35,15 @@ body {
 
     .text {
         margin: 0 auto;
-        max-width: 60%;
+        max-width: 90%;
+        color: #fff;
 
-        h1, h2, h3, h4, h5, h6, p {
-            color: #fff;
-            font-family: Gotham, Georgia, serif;
+        @media @screen-small-above {
+            max-width: 60%;
         }
 
         h1, h2, h3, h4, h5, h6 {
+            font-family: Gotham, Georgia, serif;
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
@@ -59,10 +60,11 @@ body {
          h6 { font-size: 20px; }
 
          p {
-             font-size: 16px;
-             line-height: 36px;
-             text-align: left;
-             padding: 0 10px;
+            font-family: Gotham, Georgia, serif;
+            font-size: 16px;
+            line-height: 36px;
+            text-align: left;
+            padding: 0 10px;
          }
 
         @media @screen-small-above {
@@ -95,6 +97,12 @@ body {
     img {
         max-height: 100%;
         width: 100%;
+    }
+
+    &.black {
+        .text {
+            color: #000;
+        }
     }
 }
 
