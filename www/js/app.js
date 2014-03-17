@@ -5,9 +5,27 @@
 var $w;
 var $h;
 var $slides;
+var $components;
 var $play;
 var $video;
-var index = -1;
+var chapter;
+var store;
+
+var breakSlidesForMobile = function() {
+    /*
+    * break slides into multiple slides if the screen is too small
+    */
+    $w = $(window).width();
+    $h = $(window).height();
+    if ($w < 768) {
+        $('.component').addClass('slide');
+        chapter = $('.component').parents('.section').attr('id');
+        store = $('.component').clone();
+        console.log(store);
+        $('.component').parents('.slide').remove();
+        $('#' + chapter).append(store);
+    }
+}
 
 var setSlideHeight = function() {
 
@@ -109,6 +127,7 @@ $(document).ready(function() {
 
     // init chapters
 
+    breakSlidesForMobile();
     setSlideHeight();
     setUpFullPage();
 
