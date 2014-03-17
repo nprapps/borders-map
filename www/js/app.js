@@ -30,7 +30,7 @@ var setUpFullPage = function() {
         verticalCentered: true,
         resize: true,
         css3: true,
-        scrollingSpeed: 400,
+        scrollingSpeed: 200,
         loopHorizontal: false,
         easing: 'swing',
         touchSensitivity: 80
