@@ -891,7 +891,7 @@
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
 
-				slides.find('.slidesContainer').addClass('easing').css({
+				slides.find('.slidesContainer').addClass('instant').css({
 					'-webkit-transform': translate3d,
 					'-moz-transform': translate3d,
 					'-ms-transform':translate3d,
