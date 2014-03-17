@@ -137,7 +137,10 @@ body {
 }
 
 .text.slide.component {
-    width: 90%;
+    p {
+        width: 90%;
+        margin: 0 auto;
+    }
 }
 
 footer {
@@ -215,18 +218,29 @@ html, body {
     width: 0;
     height: 0;
     border-style: solid;
-    margin-top: -38px;
+    margin-top: -10px;
+    @media @screen-small-above {
+        margin-top: -38px;
+    }
 }
 .controlArrow.prev {
     left: 15px;
     width: 0;
-    border-width: 38.5px 34px 38.5px 0;
+    border-width: 15.5px 20px 15.5px 0;
     border-color: transparent #fff transparent transparent;
+
+    @media @screen-small-above {
+        border-width: 38.5px 34px 38.5px 0;
+    }
 }
 .controlArrow.next {
     right: 15px;
-    border-width: 38.5px 0 38.5px 34px;
+    border-width: 15.5px 0 15.5px 20px;
     border-color: transparent transparent transparent #fff;
+
+    @media @screen-small-above {
+        border-width: 38.5px 0 38.5px 34px;
+    }
 }
 .scrollable {
     overflow: scroll;
