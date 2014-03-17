@@ -18,12 +18,11 @@ var breakSlidesForMobile = function() {
     $w = $(window).width();
     $h = $(window).height();
     if ($w < 768) {
-        $('.component').addClass('slide');
-        chapter = $('.component').parents('.section').attr('id');
-        store = $('.component').clone();
-        console.log(store);
-        $('.component').parents('.slide').remove();
-        $('#' + chapter).append(store);
+        $components.addClass('slide');
+        chapter = $components.parents('.section');
+        store = $components.clone();
+        $components.parents('.slide').remove();
+        $(chapter).append(store);
     }
 }
 
@@ -124,6 +123,7 @@ $(document).ready(function() {
     $slides = $('.section, .slide');
     $play = $('.btn-play');
     $video = $('.video');
+    $components = $('.component');
 
     // init chapters
 
