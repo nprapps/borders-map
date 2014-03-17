@@ -50,7 +50,7 @@ var setUpFullPage = function() {
         scrollingSpeed: 200,
         loopHorizontal: false,
         easing: 'swing',
-        touchSensitivity: 80
+        touchSensitivity: 5
     });
 }
 
