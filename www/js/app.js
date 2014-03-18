@@ -5,11 +5,13 @@
 var $w;
 var $h;
 var $slides;
+var $sections;
 var $components;
 var $play;
 var $video;
 var chapter;
 var store;
+var anchors;
 
 var breakSlidesForMobile = function() {
     /*
@@ -43,9 +45,25 @@ var setSlideHeight = function() {
 };
 
 var setUpFullPage = function() {
+    // clear all anchors
+    anchors = [];
+
+    // get the anchors
+
+   _.each($sections, function(section) {
+        var anchor = $(section).data('anchor');
+        if (anchor == undefined) {
+            var slides = $(section).find('.slide');
+            console.log(slides);
+            anchor = $(slides[0]).data('anchor');
+            console.log(anchor);
+        }
+        anchors.push(anchor);
+    });
+
     $.fn.fullpage({
         autoScrolling: false,
-        anchors: ['home', 'intro', 'to-border', 'line', 'crossings', 'fence', 'people', 'video', 'line', 'recipe', 'toothbrushes', 'essay', 'words', 'playlist', 'vendors', 'color'],
+        anchors: anchors,
         verticalCentered: true,
         resize: true,
         css3: true,
@@ -114,6 +132,7 @@ $(document).ready(function() {
     */
 
     $slides = $('.section, .slide');
+    $sections = $('.section');
     $play = $('.btn-play');
     $video = $('.video');
     $components = $('.component');
