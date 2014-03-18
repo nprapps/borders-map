@@ -52,11 +52,9 @@ var setUpFullPage = function() {
 
    _.each($sections, function(section) {
         var anchor = $(section).data('anchor');
-        if (anchor == undefined) {
+        if (anchor === undefined) {
             var slides = $(section).find('.slide');
-            console.log(slides);
             anchor = $(slides[0]).data('anchor');
-            console.log(anchor);
         }
         anchors.push(anchor);
     });
