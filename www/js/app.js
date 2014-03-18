@@ -51,9 +51,7 @@ var setUpFullPage = function() {
         css3: true,
         scrollingSpeed: 800,
         loopHorizontal: false,
-        easing: 'swing',
-        touchSensitivity: 5,
-        animateAnchor: false
+        easing: 'swing'
     });
 };
 
