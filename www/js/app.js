@@ -24,7 +24,7 @@ var breakSlidesForMobile = function() {
         $components.parents('.slide').remove();
         $(chapter).append(store);
     }
-}
+};
 
 var setSlideHeight = function() {
 
@@ -44,6 +44,7 @@ var setSlideHeight = function() {
 
 var setUpFullPage = function() {
     $.fn.fullpage({
+        anchors: ['home', 'intro', 'to-border', 'line', 'crossings', 'fence', 'people', 'video', 'line', 'recipe', 'toothbrushes', 'essay', 'words', 'playlist', 'color'],
         verticalCentered: true,
         resize: true,
         css3: true,
@@ -52,7 +53,7 @@ var setUpFullPage = function() {
         easing: 'swing',
         touchSensitivity: 5
     });
-}
+};
 
 var revealVideo = function() {
 
