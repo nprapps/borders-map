@@ -108,14 +108,6 @@ var initPlayer = function(player) {
 
 };
 
-var handleChanges = function(newHash, oldHash){
-
-    /*
-    * Do something when the hash changes. What are we doing here?
-    */
-
-};
-
 $(document).ready(function() {
 
     /*
@@ -132,12 +124,6 @@ $(document).ready(function() {
     breakSlidesForMobile();
     setSlideHeight();
     setUpFullPage();
-
-    // hasher setup
-
-    hasher.changed.add(handleChanges);
-    hasher.initialized.add(handleChanges);
-    hasher.init();
 
     // handlers
 
