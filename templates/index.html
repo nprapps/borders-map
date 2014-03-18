@@ -10,10 +10,50 @@
 {% for row in COPY.content %}
     {% include "%s.html"|format(row.template) ignore missing %}
 {% endfor %}
+</div>
 
-<footer data-anchor="listen">
+<footer class="section slide" data-anchor="listen">
 
-<h1>This is a footer. It is outside of fullpage.</h1>
+<h1>Playlist</h1>
+
+<div class="playlist">
+    <div id="jp_container_N">
+        <div id="jquery_jplayer_N" class="jp-jplayer" style="width: 480px; height: 270px;">
+        </div>
+        <div class="jp-gui">
+            <div class="jp-interface">
+                <div class="jp-progress">
+                    <div class="jp-seek-bar" style="width: 100%;">
+                        <div class="jp-play-bar" style="width: 0%;"></div>
+                    </div>
+                </div>
+                <div class="jp-current-time"></div>
+                <div class="jp-duration"></div>
+                <div class="jp-title" style="display: none;">
+                </div>
+                <div class="jp-controls-holder">
+                    <ul class="jp-controls">
+                        <li><a href="javascript:;" class="jp-previous" tabindex="1"><i class="fa fa-backward"></i></a></li>
+                        <li><a href="javascript:;" class="jp-play" tabindex="1"><i class="fa fa-play"></i></a></li>
+                        <li><a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;"><i class="fa fa-pause"></i></a></li>
+                        <li><a href="javascript:;" class="jp-next" tabindex="1"><i class="fa fa-forward"></i></a></li>
+                        <li><a href="javascript:;" class="jp-stop" tabindex="1"><i class="fa fa-stop"></i></a></li>
+                        <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute"><i class="fa fa-volume-off"></i></a></li>
+                        <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute" style="display: none;"><i class="fa fa-volume-up"></i></a></li>
+                    </ul>
+                    <div class="jp-volume-bar">
+                        <div class="jp-volume-bar-value" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="jp-playlist">
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 </footer>
 

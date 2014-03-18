@@ -9,9 +9,13 @@ var $sections;
 var $components;
 var $play;
 var $video;
+var $playlist;
 var chapter;
 var store;
 var anchors;
+var story_start = 0;
+var story_end_1 = 673;
+var story_end_2 = 771;
 
 var breakSlidesForMobile = function() {
     /*
@@ -123,6 +127,82 @@ var initPlayer = function(player) {
 
 };
 
+var setUpAudio = function() {
+    var myPlaylist = new jPlayerPlaylist({
+        jPlayer: "#jquery_jplayer_N",
+        cssSelectorAncestor: "#jp_container_N"
+    }, [
+        {
+            title:"Grave Science Part One",
+            artist:"All Things Considered",
+            mp3:"../assets/audio/part-1.mp3",
+            oga:"../assets/audio/part-1.ogg",
+        },
+        {
+            title:"Grave Science Part Two",
+            artist:"All Things Considered",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+        }
+    ], {
+        swfPath: "/js",
+        supplied: "mp3, oga",
+        smoothPlayBar: true,
+    });
+
+    console.log(myPlaylist);
+
+    $playlist.append(myPlaylist);
+};
+
+var onStoryTimeUpdate = function(e) {
+    var this_player = e.currentTarget.id;
+    var story_end;
+    if (this_player == 'pop-audio_1') {
+        story_end = story_end_1;
+    } else if (this_player == 'pop-audio_2') {
+        story_end = story_end_2;
+    }
+
+    /*
+    * Handles the time updates for the story player.
+    */
+
+    // If we reach the end, stop playing AND send a Google event.
+    if (e.jPlayer.status.currentTime > parseInt(story_end, 0)) {
+        e.jPlayer('stop');
+        _gaq.push(['_trackEvent', 'Audio', 'Completed story audio', APP_CONFIG.PROJECT_NAME, 1]);
+    }
+
+    // Count down when playing but for the initial time, show the length of the audio.
+    // Set the time to the current time ...
+    var time_text = $.jPlayer.convertTime(e.jPlayer.status.currentTime);
+
+    // ... unless it's the initial state. In that case, show the length of the audio.
+    if (parseInt(e.jPlayer.status.currentTime, 0) === 0) {
+        time_text = $.jPlayer.convertTime(story_end);
+    }
+
+    // Write the current time to our time div.
+    $(this).next().find('.current-time').text(time_text);
+};
+
+var onButtonDownloadClick = function(){
+    /*
+    * Click handler for the download button.
+    */
+    _gaq.push(['_trackEvent', 'Audio', 'Downloaded story audio mp3', APP_CONFIG.PROJECT_NAME, 1]);
+};
+
+var onStoryPlayerButtonClick = function(e){
+    /*
+    * Click handler for the story player "play" button.
+    */
+    _gaq.push(['_trackEvent', 'Audio', 'Played audio story', APP_CONFIG.PROJECT_NAME, 1]);
+    e.data.player.jPlayer("pauseOthers");
+    e.data.player.jPlayer('play');
+};
+
 $(document).ready(function() {
 
     /*
@@ -134,6 +214,8 @@ $(document).ready(function() {
     $play = $('.btn-play');
     $video = $('.video');
     $components = $('.component');
+    $playlist = $('.playlist');
+
 
     // init chapters
 
@@ -141,9 +223,12 @@ $(document).ready(function() {
     setSlideHeight();
     setUpFullPage();
 
+
+    // jplayer
+    setUpAudio();
+
     // handlers
 
-    // $(document).keydown(handleKeyPress);
     $play.on('click', revealVideo);
 
     // Redraw slides if the window resizes

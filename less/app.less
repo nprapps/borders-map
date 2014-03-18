@@ -33,6 +33,53 @@ body {
     background-size: cover;
     background-position: center center;
 
+    h1, h2, h3, h4, h5, h6 {
+        font-family: Gotham, Georgia, serif;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 24px;
+     }
+
+     h2 { font-size: 20px; }
+     h3 { font-size: 16px; }
+     h4 { font-size: 16px; }
+     h5 { font-size: 14px; }
+     h6 { font-size: 12px; }
+
+     p {
+        font-family: Gotham, Georgia, serif;
+        font-size: 16px;
+        line-height: 36px;
+        text-align: left;
+        padding: 0 10px;
+     }
+
+    @media @screen-small-above {
+        h1 { font-size: 100px; }
+        h2 { font-size: 80px; }
+        h3 { font-size: 60px; }
+        h4 { font-size: 48px; }
+        h5 { font-size: 40px; }
+        h6 { font-size: 32px; }
+
+        p {
+            font-size: 24px;
+            line-height: 48px;
+            text-align: left;
+        }
+    }
+
+    &.text-bg {
+        background-color: #000;
+        opacity: .7;
+        padding: 20px;
+
+    }
+
     .text {
         margin: 0 auto;
         max-width: 90%;
@@ -40,53 +87,6 @@ body {
 
         @media @screen-small-above {
             max-width: 60%;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: Gotham, Georgia, serif;
-            text-transform: uppercase;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 24px;
-         }
-
-         h2 { font-size: 20px; }
-         h3 { font-size: 16px; }
-         h4 { font-size: 16px; }
-         h5 { font-size: 14px; }
-         h6 { font-size: 12px; }
-
-         p {
-            font-family: Gotham, Georgia, serif;
-            font-size: 16px;
-            line-height: 36px;
-            text-align: left;
-            padding: 0 10px;
-         }
-
-        @media @screen-small-above {
-            h1 { font-size: 100px; }
-            h2 { font-size: 80px; }
-            h3 { font-size: 60px; }
-            h4 { font-size: 48px; }
-            h5 { font-size: 40px; }
-            h6 { font-size: 32px; }
-
-            p {
-                font-size: 24px;
-                line-height: 48px;
-                text-align: left;
-            }
-        }
-
-        &.text-bg {
-            background-color: #000;
-            opacity: .7;
-            padding: 20px;
-
         }
     }
 
@@ -142,6 +142,139 @@ body {
         margin: 0 auto;
     }
 }
+
+/*
+* jplayer
+*/
+
+footer {
+    background-color: #AF3533;
+
+    a, a:link, a:visited {
+        color: #eee;
+        text-decoration: none;
+    }
+    a:hover, a:active {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.playlist {
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+
+    .download-audio {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 0;
+        width: 120px;
+        height: 50px;
+        font-size: 13px;
+        color: #aaa;
+        font-weight: bold;
+        padding: 18px 0 0 15px;
+        line-height: 1;
+        background-color: #515151;
+        cursor: pointer;
+        &:hover {
+            color: #ccc;
+            background: #6d8ac4;
+        }
+
+        .touch & {
+            display: none;
+        }
+
+    }
+}
+//audio player
+.jp-seek-bar {
+background-color: #222;
+height: 50px;
+}
+
+.jp-play-bar {
+background-color: #444;
+height: 50px;
+}
+
+.jp-progress-container {
+margin-left: 50px;
+cursor: pointer;
+}
+
+div.jp-interface {
+    position: relative;
+    width:100%;
+    background-color:#963432; /* Required for the full screen */
+}
+
+div.jp-controls-holder {
+    clear: both;
+    width:100%;
+    margin:0 auto 10px auto;
+    position: relative;
+    overflow:hidden;
+}
+
+div.jp-interface ul.jp-controls {
+    background: #000;
+    list-style-type:none;
+    width: 100%;
+}
+
+div.jp-interface ul.jp-controls li {
+    display:inline;
+    float: left;
+    padding-left: 3px;
+    width: 50px;
+    height: 50px;
+    background-color: #31888A;
+    padding: 12px 0 0 16px;
+}
+
+.jp-current-time, .jp-duration {
+    width:70px;
+    font-size:18px;
+    color: #31888A;
+    padding: 10px;
+}
+
+.jp-current-time {
+    float: left;
+}
+
+.jp-duration {
+    float: right;
+    text-align:right;
+}
+
+.jp-title ul,
+.jp-playlist ul {
+    list-style-type:none;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+}
+.jp-title li,
+.jp-playlist li {
+    position: relative;
+    padding: 2px 0;
+    overflow: hidden;
+}
+
+.jp-title li{
+    border-bottom:none;
+    border-top:none;
+    padding:0;
+    text-align:center;
+}
+
+
+
 
 /**
  * fullPage 1.6.6
