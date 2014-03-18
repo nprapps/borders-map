@@ -51,7 +51,8 @@ var setUpFullPage = function() {
         scrollingSpeed: 200,
         loopHorizontal: false,
         easing: 'swing',
-        touchSensitivity: 5
+        touchSensitivity: 5,
+        animateAnchor: false
     });
 };
 
