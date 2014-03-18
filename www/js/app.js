@@ -45,7 +45,7 @@ var setSlideHeight = function() {
 var setUpFullPage = function() {
     $.fn.fullpage({
         autoScrolling: false,
-        anchors: ['home', 'intro', 'to-border', 'line', 'crossings', 'fence', 'people', 'video', 'line', 'recipe', 'toothbrushes', 'essay', 'words', 'playlist', 'color'],
+        anchors: ['home', 'intro', 'to-border', 'line', 'crossings', 'fence', 'people', 'video', 'line', 'recipe', 'toothbrushes', 'essay', 'words', 'playlist', 'vendors', 'color'],
         verticalCentered: true,
         resize: true,
         css3: true,
