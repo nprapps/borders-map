@@ -195,7 +195,7 @@ $(document).ready(function() {
 
     $slides = $('.section, .slide');
     $sections = $('.section');
-    $play = $('.btn-play');
+    $play_video = $('.btn-video');
     $video = $('.video');
     $components = $('.component');
     $playlist = $('.playlist');
@@ -212,7 +212,7 @@ $(document).ready(function() {
 
     // handlers
 
-    $play.on('click', revealVideo);
+    $play_video.on('click', revealVideo);
 
     // Redraw slides if the window resizes
 
