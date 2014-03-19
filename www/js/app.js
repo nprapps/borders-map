@@ -336,15 +336,20 @@ var animatePano = function() {
 
 
 var lazyLoad = function(anchor, index) {
-    var section = $sections[index];
-    var slides = $(section).find('.slide');
+    if(anchor === 'listen') {
+        setUpAudio();
+    }
+    else {
+        var section = $sections[index];
+        var slides = $(section).find('.slide');
 
-    _.each($(slides), function(slide) {
-        var image = 'assets/img/' + $(slide).data('bgimage');
-        if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
-            $(slide).css('background-image', 'url(' + image + ')');
-        }
-    });
+        _.each($(slides), function(slide) {
+            var image = 'assets/img/' + $(slide).data('bgimage');
+            if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
+                $(slide).css('background-image', 'url(' + image + ')');
+            }
+        });
+    }
 };
 $(document).ready(function() {
 
@@ -365,9 +370,6 @@ $(document).ready(function() {
     breakSlidesForMobile();
    // setFooter();
     setUpFullPage();
-
-    // jplayer
-    // setUpAudio();
 
     // handlers
 
