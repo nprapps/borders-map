@@ -139,10 +139,6 @@ var setUpAudio = function() {
         supplied: "mp3, oga",
         smoothPlayBar: true,
     });
-
-    console.log(myPlaylist);
-
-    $playlist.append(myPlaylist);
 };
 
 var onStoryTimeUpdate = function(e) {
@@ -222,6 +218,4 @@ $(document).ready(function() {
     $play_video.on('click', revealVideo);
 
     // Redraw slides if the window resizes
-
-    $(window).resize(setSlideHeight);
 });
