@@ -1,7 +1,7 @@
 @import "less/lib/bootstrap/bootstrap";
 @import "less/lib/font-awesome/font-awesome";
 @import "less/lib/prefixer";
-@import "less/adhesion";
+//@import "less/adhesion";
 
 // Global variables
 @img-root: "../assets/img";
@@ -35,7 +35,6 @@ body {
     background-position: center center;
 
     h1, h2, h3, h4, h5, h6 {
-        font-family: Gotham, Georgia, serif;
         text-transform: uppercase;
         font-weight: bold;
         text-align: center;
@@ -284,15 +283,16 @@ div.jp-interface ul.jp-controls li {
  *
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
  */
-html, body {
+
+/*html, body {
     margin: 0;
     padding: 0;
     overflow:hidden;
-}
+}*/
+
 #superContainer {
     height: 100%;
     position: relative;
-
     /* Touch detection for Windows 8 */
     -ms-touch-action: none;
 }
