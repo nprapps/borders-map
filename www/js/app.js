@@ -215,6 +215,4 @@ $(document).ready(function() {
     $play.on('click', revealVideo);
 
     // Redraw slides if the window resizes
-
-    $(window).resize(setSlideHeight);
 });
