@@ -32,22 +32,6 @@ var breakSlidesForMobile = function() {
     }
 };
 
-var setSlideHeight = function() {
-
-    /*
-    * Set the window width and height, make all slides fill the screen.
-    */
-
-    $w = $(window).width();
-    $h = $(window).height();
-    $slides.css('height', $h);
-    $slides.css('width', $w);
-
-    // also resize the video
-
-    jwplayer('player').resize($w, $h);
-};
-
 var setUpFullPage = function() {
     // clear all anchors
     anchors = [];
@@ -69,7 +53,7 @@ var setUpFullPage = function() {
         verticalCentered: true,
         resize: true,
         css3: true,
-        scrollingSpeed: 800,
+        scrollingSpeed: 100,
         loopHorizontal: false,
         easing: 'swing'
     });
