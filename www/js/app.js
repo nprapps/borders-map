@@ -32,10 +32,11 @@ var breakSlidesForMobile = function() {
     }
 };
 
+/*
 var setFooter = function() {
     $('footer').width($w);
     $('footer').height($h);
-};
+};*/
 
 var setUpFullPage = function() {
     // clear all anchors
@@ -123,15 +124,155 @@ var setUpAudio = function() {
         cssSelectorAncestor: "#jp_container_N"
     }, [
         {
-            title:"Grave Science Part One",
-            artist:"All Things Considered 3/14/14",
+            title:"Culture Crossing",
+            artist:"Morning Edition (3/19/14)",
             mp3:"../assets/audio/part-1.mp3",
             oga:"../assets/audio/part-1.ogg",
             free: true
         },
         {
-            title:"Grave Science Part Two",
-            artist:"All Things Considered",
+            title:"States Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Grito",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Crossing from Afar",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Money Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Money Crossing II",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Blocking a Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Music Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Watching the Crossings",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"The Politics of Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Women Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Opportunity Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"The City at the Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Opportunity Crossing II",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Barrio Aztecas",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"The Two Raids at the Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Trade at the Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Weapons Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"The Danger of the Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Crossing Back",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"Entrepreneurship Crossing",
+            artist:"Morning Edition (3/19/14)",
+            mp3:"../assets/audio/part-2.mp3",
+            oga:"../assets/audio/part-2.ogg",
+            free: true
+        },
+        {
+            title:"The Final Crossing",
+            artist:"Morning Edition (3/19/14)",
             mp3:"../assets/audio/part-2.mp3",
             oga:"../assets/audio/part-2.ogg",
             free: true
@@ -208,7 +349,7 @@ $(document).ready(function() {
     // init chapters
 
     breakSlidesForMobile();
-    setFooter();
+   // setFooter();
     setUpFullPage();
 
 
