@@ -41,10 +41,13 @@ body {
 	text-transform: uppercase;
 	font-weight: bold;
 	cursor: pointer;
+	
 	&:hover {
         background-color: #fff;
         color: #000;
     }
+	
+	i {padding-right: 5px;}
 }
 
 // basic slide styles
@@ -63,7 +66,7 @@ body {
         font-size: 24px;
         text-transform: uppercase;
      }
-
+     
      h1, h4 {
 	     text-shadow: 0px 2px 2px rgba(0,0,0,0.5);
      }
@@ -113,8 +116,8 @@ body {
         @media @screen-small-above {
             max-width: 60%;
         }
-
-
+        
+        
         //titlecard play button
         .btn.btn-play {
 	        border-radius: 0;
@@ -130,15 +133,15 @@ body {
 		        padding: 0 22px;
 		        line-height: 44px;
 	        }
-
+	        
 	        &:hover {
 	            background-color: #000;
 	            color: #fff;
 	            cursor: pointer;
 	        }
 	    }
-
-
+        
+        
     }
 
     .player {
@@ -226,33 +229,34 @@ footer {
 
 .playlist {
     width: 50%;
+    
+    
+    .download-audio {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 0;
+        width: 120px;
+        height: 50px;
+        font-size: 13px;
+        color: #aaa;
+        font-weight: bold;
+        padding: 18px 0 0 15px;
+        line-height: 1;
+        background-color: #515151;
+        cursor: pointer;
+        &:hover {
+            color: #ccc;
+            background: #6d8ac4;
+        }
+
+        .touch & {
+            display: none;
+        }
+
+    }
 }
 //audio player
-
-.jp-free-media {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 0;
-    width: 120px;
-    height: 50px;
-    font-size: 13px;
-    color: #aaa;
-    font-weight: bold;
-    padding: 18px 0 0 15px;
-    line-height: 1;
-    background-color: #515151;
-    cursor: pointer;
-    &:hover {
-        color: #ccc;
-        background: #6d8ac4;
-    }
-
-    .touch & {
-        display: none;
-    }
-
-}
 
 .jp-gui {
     position: absolute;
@@ -300,10 +304,6 @@ footer {
     height: 98px;
     background-color: #B4645C;
     padding: 10px;
-}
-
-.jp-progress-container {
-    cursor: pointer;
 }
 
 .jp-seek-bar {
