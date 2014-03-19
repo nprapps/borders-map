@@ -10,6 +10,7 @@ var $components;
 var $play;
 var $video;
 var $playlist;
+var $panos;
 var chapter;
 var store;
 var anchors;
@@ -332,6 +333,10 @@ var onStoryPlayerButtonClick = function(e){
     e.data.player.jPlayer('play');
 };
 
+var animatePano = function() {
+    $(this).css('background-position', $w - 2500);
+}
+
 $(document).ready(function() {
 
     /*
@@ -339,12 +344,12 @@ $(document).ready(function() {
     */
 
     $slides = $('.section, .slide');
-    $sections = $('.section');
+    $sections = $('.section, #playlist, #credits');
     $play_video = $('.btn-video');
     $video = $('.video');
     $components = $('.component');
     $playlist = $('.playlist');
-
+    $panos = $('.pano-container');
 
     // init chapters
 
@@ -352,13 +357,14 @@ $(document).ready(function() {
    // setFooter();
     setUpFullPage();
 
-
     // jplayer
     setUpAudio();
 
     // handlers
 
     $play_video.on('click', revealVideo);
+    $panos.on('click', animatePano);
 
     // Redraw slides if the window resizes
+    $(window).resize(breakSlidesForMobile);
 });

@@ -1,0 +1,7 @@
+<div {% if row.data_panel %} data-anchor="{{ row.data_panel }}" {% endif %} class="slide pano{% if row.extra_class %} {{ row.extra_class }} {% endif %}" style="{% if row.color %} background-color: {{ row.color }}; {% endif %}">
+
+    <div class="pano-container" style="{% if row.image %} background-image: url('assets/img/{{ row.image }}'); {% endif %}">
+    </div>
+
+</div>
+
