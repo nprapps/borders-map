@@ -55,7 +55,7 @@ var setUpFullPage = function() {
         fixedElements: '.primary-navigation-btn',
         resize: true,
         css3: true,
-        scrollingSpeed: 200,
+        scrollingSpeed: 100,
         loopHorizontal: false,
         easing: 'swing',
         afterLoad: lazyLoad,
