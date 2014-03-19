@@ -14,6 +14,7 @@ var $panos;
 var chapter;
 var store;
 var anchors;
+var playlist;
 var story_start = 0;
 var story_end_1 = 673;
 var story_end_2 = 771;
@@ -117,7 +118,7 @@ var initPlayer = function(player) {
 };
 
 var setUpAudio = function() {
-    var myPlaylist = new jPlayerPlaylist({
+    playlist = new jPlayerPlaylist({
         jPlayer: "#jquery_jplayer_N",
         cssSelectorAncestor: "#jp_container_N"
     }, [
@@ -336,8 +337,9 @@ var animatePano = function() {
 
 
 var lazyLoad = function(anchor, index) {
-    if(anchor === 'listen') {
+    if(anchor === 'listen' && !playlist) {
         setUpAudio();
+        console.log('hey');
     }
     else {
         var section = $sections[index];
