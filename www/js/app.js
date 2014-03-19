@@ -51,6 +51,7 @@ var setUpFullPage = function() {
         autoScrolling: false,
         anchors: anchors,
         verticalCentered: true,
+        fixedElements: '.primary-navigation-btn',
         resize: true,
         css3: true,
         scrollingSpeed: 100,
@@ -215,4 +216,6 @@ $(document).ready(function() {
     $play_video.on('click', revealVideo);
 
     // Redraw slides if the window resizes
+
+    $(window).resize(setSlideHeight);
 });
