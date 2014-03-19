@@ -220,7 +220,6 @@ $(document).ready(function() {
     // init chapters
 
     breakSlidesForMobile();
-    setSlideHeight();
     setUpFullPage();
 
 
