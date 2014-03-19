@@ -18,7 +18,6 @@ var playlist;
 var story_start = 0;
 var story_end_1 = 673;
 var story_end_2 = 771;
-var hash;
 
 var breakSlidesForMobile = function() {
     /*
@@ -62,8 +61,10 @@ var setUpFullPage = function() {
         easing: 'swing',
         afterLoad: lazyLoad,
         afterRender: function() {
+            // always get the home stuff
             lazyLoad('home', 0);
 
+            // fade in
             $('body').css('opacity', 1);
         }
     });
@@ -315,17 +316,28 @@ var lazyLoad = function(anchor, index) {
         setUpAudio();
     }
     else {
-        var section = $sections[index];
-        var slides = $(section).find('.slide');
+        // load the next section
+        var nextSection = $sections[index];
+        var slides = $(nextSection).find('.slide ');
+        getBackgroundImages(slides, index);
 
-        _.each($(slides), function(slide) {
-            var image = 'assets/img/' + $(slide).data('bgimage');
-            if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
-                $(slide).css('background-image', 'url(' + image + ')');
-            }
-        });
+        // load the current section if it hasn't been done
+        var thisSection = $sections[index - 1];
+        slides = $(thisSection).find('.slide');
+        getBackgroundImages(slides, index);
+
     }
 };
+
+var getBackgroundImages = function(slides, index) {
+    _.each($(slides), function(slide) {
+        var image = 'assets/img/' + $(slide).data('bgimage');
+        if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
+            $(slide).css('background-image', 'url(' + image + ')');
+        }
+    });
+}
+
 $(document).ready(function() {
 
     /*
@@ -339,18 +351,11 @@ $(document).ready(function() {
     $components = $('.component');
     $playlist = $('.playlist');
     $panos = $('.pano-container');
-    if (window.location.hash) {
-        hash = window.location.hash.substring(1);
-    }
 
     // init chapters
 
     breakSlidesForMobile();
     setUpFullPage();
-
-    if (hash) {
-        lazyLoad(hash, 0);
-    }
 
     // handlers
 
