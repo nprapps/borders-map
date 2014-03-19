@@ -283,38 +283,6 @@ var setUpAudio = function() {
     });
 };
 
-var onStoryTimeUpdate = function(e) {
-    var this_player = e.currentTarget.id;
-    var story_end;
-    if (this_player == 'pop-audio_1') {
-        story_end = story_end_1;
-    } else if (this_player == 'pop-audio_2') {
-        story_end = story_end_2;
-    }
-
-    /*
-    * Handles the time updates for the story player.
-    */
-
-    // If we reach the end, stop playing AND send a Google event.
-    if (e.jPlayer.status.currentTime > parseInt(story_end, 0)) {
-        e.jPlayer('stop');
-        _gaq.push(['_trackEvent', 'Audio', 'Completed story audio', APP_CONFIG.PROJECT_NAME, 1]);
-    }
-
-    // Count down when playing but for the initial time, show the length of the audio.
-    // Set the time to the current time ...
-    var time_text = $.jPlayer.convertTime(e.jPlayer.status.currentTime);
-
-    // ... unless it's the initial state. In that case, show the length of the audio.
-    if (parseInt(e.jPlayer.status.currentTime, 0) === 0) {
-        time_text = $.jPlayer.convertTime(story_end);
-    }
-
-    // Write the current time to our time div.
-    $(this).next().find('.current-time').text(time_text);
-};
-
 var onButtonDownloadClick = function(){
     /*
     * Click handler for the download button.
