@@ -53,7 +53,7 @@ var setUpFullPage = function() {
         verticalCentered: true,
         resize: true,
         css3: true,
-        scrollingSpeed: 800,
+        scrollingSpeed: 100,
         loopHorizontal: false,
         easing: 'swing'
     });
