@@ -127,12 +127,14 @@ var setUpAudio = function() {
             artist:"All Things Considered",
             mp3:"../assets/audio/part-1.mp3",
             oga:"../assets/audio/part-1.ogg",
+            free: true
         },
         {
             title:"Grave Science Part Two",
             artist:"All Things Considered",
             mp3:"../assets/audio/part-2.mp3",
             oga:"../assets/audio/part-2.ogg",
+            free: true
         }
     ], {
         swfPath: "/js",
