@@ -18,6 +18,7 @@ var playlist;
 var story_start = 0;
 var story_end_1 = 673;
 var story_end_2 = 771;
+var hash;
 
 var breakSlidesForMobile = function() {
     /*
@@ -60,9 +61,14 @@ var setUpFullPage = function() {
         loopHorizontal: false,
         easing: 'swing',
         afterLoad: lazyLoad,
+        afterRender: function() {
+            lazyLoad('home', 0);
+
+            $('body').css('opacity', 1);
+        }
     });
 
-    lazyLoad('home', 0);
+
 };
 
 var revealVideo = function() {
@@ -333,11 +339,18 @@ $(document).ready(function() {
     $components = $('.component');
     $playlist = $('.playlist');
     $panos = $('.pano-container');
+    if (window.location.hash) {
+        hash = window.location.hash.substring(1);
+    }
 
     // init chapters
 
     breakSlidesForMobile();
     setUpFullPage();
+
+    if (hash) {
+        lazyLoad(hash, 0);
+    }
 
     // handlers
 
