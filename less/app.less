@@ -25,6 +25,7 @@ body {
     font: 16px/1.5em Gotham, Arial, Helvetica, sans-serif;
     color: #111;
     -webkit-font-smoothing: antialiased;
+    background-color: #000;
 }
 
 // primary navigation
@@ -41,6 +42,11 @@ body {
 	text-transform: uppercase;
 	font-weight: bold;
 	cursor: pointer;
+	
+	&:hover {
+        background-color: #fff;
+        color: #000;
+    }
 	
 	i {padding-right: 5px;}
 }
@@ -358,6 +364,11 @@ div.jp-interface ul.jp-controls li {
     height: 100%;
     display: block;
 }
+
+.slidesContainer {
+	background: rgba(200, 54, 54, 0.5);
+}
+
 .slides {
     height: 100%;
     overflow: hidden;
