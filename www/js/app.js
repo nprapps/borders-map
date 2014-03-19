@@ -32,22 +32,6 @@ var breakSlidesForMobile = function() {
     }
 };
 
-var setSlideHeight = function() {
-
-    /*
-    * Set the window width and height, make all slides fill the screen.
-    */
-
-    $w = $(window).width();
-    $h = $(window).height();
-    $slides.css('height', $h);
-    $slides.css('width', $w);
-
-    // also resize the video
-
-    jwplayer('player').resize($w, $h);
-};
-
 var setUpFullPage = function() {
     // clear all anchors
     anchors = [];
@@ -220,7 +204,6 @@ $(document).ready(function() {
     // init chapters
 
     breakSlidesForMobile();
-    setSlideHeight();
     setUpFullPage();
 
 
