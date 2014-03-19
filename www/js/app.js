@@ -32,6 +32,11 @@ var breakSlidesForMobile = function() {
     }
 };
 
+var setFooter = function() {
+    $('footer').width($w);
+    $('footer').height($h);
+};
+
 var setUpFullPage = function() {
     // clear all anchors
     anchors = [];
@@ -205,6 +210,7 @@ $(document).ready(function() {
     // init chapters
 
     breakSlidesForMobile();
+    setFooter();
     setUpFullPage();
 
 

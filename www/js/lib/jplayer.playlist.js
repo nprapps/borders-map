@@ -84,13 +84,13 @@
 		});
 
 		// Create a resize event handler to show the title in full screen mode.
-		$(this.cssSelector.jPlayer).bind($.jPlayer.event.resize, function(event) {
-			if(event.jPlayer.options.fullScreen) {
-				$(self.cssSelector.title).show();
-			} else {
-				$(self.cssSelector.title).hide();
-			}
-		});
+		// $(this.cssSelector.jPlayer).bind($.jPlayer.event.resize, function(event) {
+		// 	if(event.jPlayer.options.fullScreen) {
+		// 		$(self.cssSelector.title).show();
+		// 	} else {
+		// 		$(self.cssSelector.title).hide();
+		// 	}
+		// });
 
 		// Create click handlers for the extra buttons that do playlist functions.
 		$(this.cssSelector.previous).click(function() {
@@ -115,9 +115,9 @@
 		}).hide();
 
 		// Put the title in its initial display state
-		if(!this.options.fullScreen) {
-			$(this.cssSelector.title).hide();
-		}
+		// if(!this.options.fullScreen) {
+		// 	$(this.cssSelector.title).hide();
+		// }
 
 		// Remove the empty <li> from the page HTML. Allows page to be valid HTML, while not interfereing with display animations
 		$(this.cssSelector.playlist + " ul").empty();
@@ -216,7 +216,7 @@
 				$(this.cssSelector.playlist + " ul").slideUp(displayTime, function() {
 					var $this = $(this);
 					$(this).empty();
-					
+
 					$.each(self.playlist, function(i) {
 						$this.append(self._createListItem(self.playlist[i]));
 					});
@@ -259,7 +259,7 @@
 			}
 
 			// The title is given next in the HTML otherwise the float:right on the free media corrupts in IE6/7
-			listItem += "<a href='javascript:;' class='" + this.options.playlistOptions.itemClass + "' tabindex='1'>" + media.title + (media.artist ? " <span class='jp-artist'>by " + media.artist + "</span>" : "") + "</a>";
+			listItem += "<a href='javascript:;' class='" + this.options.playlistOptions.itemClass + "' tabindex='1'>" + media.title + "</a>";
 			listItem += "</div></li>";
 
 			return listItem;
@@ -311,7 +311,7 @@
 			if(this.playlist.length && index !== undefined) {
 				$(this.cssSelector.playlist + " .jp-playlist-current").removeClass("jp-playlist-current");
 				$(this.cssSelector.playlist + " li:nth-child(" + (index + 1) + ")").addClass("jp-playlist-current").find(".jp-playlist-item").addClass("jp-playlist-current");
-				$(this.cssSelector.title + " li").html(this.playlist[index].title + (this.playlist[index].artist ? " <span class='jp-artist'>by " + this.playlist[index].artist + "</span>" : ""));
+				$(this.cssSelector.title + " li").html(this.playlist[index].title);
 			}
 		},
 		setPlaylist: function(playlist) {

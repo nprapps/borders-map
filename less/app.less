@@ -203,6 +203,8 @@ body {
 */
 
 footer {
+    position: relative;
+    height: 100%;
     background-color: #AF3533;
 
     a, a:link, a:visited {
@@ -216,10 +218,7 @@ footer {
 }
 
 .playlist {
-    position: relative;
     width: 50%;
-    margin: 0 auto;
-
     .download-audio {
         position: absolute;
         top: 0;
@@ -246,55 +245,72 @@ footer {
     }
 }
 //audio player
-.jp-seek-bar {
-background-color: #222;
-height: 50px;
+
+.jp-gui {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    border-top: 5px solid #CF9D98;
 }
 
-.jp-play-bar {
-background-color: #444;
-height: 50px;
-}
-
-.jp-progress-container {
-margin-left: 50px;
-cursor: pointer;
-}
-
-div.jp-interface {
+.jp-interface {
     position: relative;
     width:100%;
     background-color:#963432; /* Required for the full screen */
 }
 
-div.jp-controls-holder {
-    clear: both;
-    width:100%;
-    margin:0 auto 10px auto;
-    position: relative;
-    overflow:hidden;
+.jp-controls-holder {
+    width:30%;
+    float: left;
+    background-color: #B87068;
+    height: 98px;
+    display: table;
 }
 
-div.jp-interface ul.jp-controls {
-    background: #000;
+.jp-controls {
     list-style-type:none;
     width: 100%;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
 }
 
-div.jp-interface ul.jp-controls li {
+.jp-controls li {
     display:inline;
     float: left;
-    padding-left: 3px;
     width: 50px;
     height: 50px;
-    background-color: #31888A;
-    padding: 12px 0 0 16px;
+    padding: 15px 0 0 8px;
+    font-size: 24px;
+    }
+
+
+.player-info {
+    width: 70%;
+    float: right;
+    position: relative;
+    height: 98px;
+    background-color: #B4645C;
+    padding: 10px;
+}
+
+.jp-seek-bar {
+    position: absolute;
+    bottom: 10px;
+    background-color: #CF9D98;
+    height: 10px;
+    margin: 0 10px;
+}
+
+.jp-play-bar {
+    background-color: #B87068;
+    height: 10px;
 }
 
 .jp-current-time, .jp-duration {
     width:70px;
-    font-size:18px;
-    color: #31888A;
+    font-size:12px;
+    color: #eee;
     padding: 10px;
 }
 
@@ -310,7 +326,6 @@ div.jp-interface ul.jp-controls li {
 .jp-title ul,
 .jp-playlist ul {
     list-style-type:none;
-    font-size: 24px;
     margin: 0;
     padding: 0;
 }
@@ -319,6 +334,15 @@ div.jp-interface ul.jp-controls li {
     position: relative;
     padding: 2px 0;
     overflow: hidden;
+}
+
+.jp-playlist ul {
+    font-size: 24px;
+}
+
+.jp-title ul {
+    font-size: 18px;
+    color: #eee;
 }
 
 .jp-title li{

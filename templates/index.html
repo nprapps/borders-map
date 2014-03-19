@@ -12,7 +12,7 @@
 {% endfor %}
 </div>
 <div class="primary-navigation-btn"><i class="fa fa-bars"></i> Contents</div>
-<footer class="section slide" data-anchor="listen">
+<footer data-anchor="listen">
 
 <h1>Playlist</h1>
 
@@ -27,27 +27,26 @@
         </div>
         <div class="jp-gui">
             <div class="jp-interface">
-                <div class="jp-progress">
-                    <div class="jp-seek-bar" style="width: 100%;">
-                        <div class="jp-play-bar" style="width: 0%;"></div>
-                    </div>
-                </div>
-                <div class="jp-current-time"></div>
-                <div class="jp-duration"></div>
-                <div class="jp-title" style="display: none;">
-                </div>
                 <div class="jp-controls-holder">
                     <ul class="jp-controls">
                         <li><a href="javascript:;" class="jp-previous" tabindex="1"><i class="fa fa-backward"></i></a></li>
-                        <li><a href="javascript:;" class="jp-play" tabindex="1"><i class="fa fa-play"></i></a></li>
-                        <li><a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;"><i class="fa fa-pause"></i></a></li>
+                        <li><a href="javascript:;" class="jp-play" tabindex="1"><i class="fa fa-play"></i></a><a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;"><i class="fa fa-pause"></i></a></li>
                         <li><a href="javascript:;" class="jp-next" tabindex="1"><i class="fa fa-forward"></i></a></li>
-                        <li><a href="javascript:;" class="jp-stop" tabindex="1"><i class="fa fa-stop"></i></a></li>
-                        <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute"><i class="fa fa-volume-off"></i></a></li>
-                        <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute" style="display: none;"><i class="fa fa-volume-up"></i></a></li>
                     </ul>
-                    <div class="jp-volume-bar">
-                        <div class="jp-volume-bar-value" style="width: 80%;"></div>
+                </div>
+                <div class="player-info">
+                    <div class="jp-title">
+                        <ul>
+                            <li>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="jp-current-time"></div>
+                    <div class="jp-duration"></div>
+                    <div class="jp-progress">
+                        <div class="jp-seek-bar">
+                            <div class="jp-play-bar"></div>
+                        </div>
                     </div>
                 </div>
             </div>
