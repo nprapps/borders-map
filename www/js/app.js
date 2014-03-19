@@ -124,7 +124,7 @@ var setUpAudio = function() {
     }, [
         {
             title:"Grave Science Part One",
-            artist:"All Things Considered",
+            artist:"All Things Considered 3/14/14",
             mp3:"../assets/audio/part-1.mp3",
             oga:"../assets/audio/part-1.ogg",
             free: true
