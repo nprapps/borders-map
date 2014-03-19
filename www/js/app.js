@@ -339,7 +339,6 @@ var animatePano = function() {
 var lazyLoad = function(anchor, index) {
     if(anchor === 'listen' && !playlist) {
         setUpAudio();
-        console.log('hey');
     }
     else {
         var section = $sections[index];
@@ -370,7 +369,6 @@ $(document).ready(function() {
     // init chapters
 
     breakSlidesForMobile();
-   // setFooter();
     setUpFullPage();
 
     // handlers
