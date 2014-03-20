@@ -72,6 +72,8 @@ var onPageLoad = function() {
     // always get the home stuff
     lazyLoad('home', 0);
 
+    $('.section.active').find('.controlArrow').hide();
+
     // fade in
     $('body').css('opacity', 1);
 
@@ -93,32 +95,30 @@ var lazyLoad = function(anchor, index) {
         getBackgroundImages($slides);
         setTimeout(setUpAudio, 1000);
     }
-    else {
-        // load the next section
-        var nextSection = $sections[index];
-        var slides = $(nextSection).find('.slide ');
-        getBackgroundImages(slides);
+    // load the next section
+    var nextSection = $sections[index];
+    var slides = $(nextSection).find('.slide ');
+    getBackgroundImages(slides);
 
-        // load the current section if it hasn't been done
-        var thisSection = $($sections[index - 1]);
-        slides = thisSection.find('.slide');
-        getBackgroundImages(slides);
+    // load the current section if it hasn't been done
+    var thisSection = $($sections[index - 1]);
+    slides = thisSection.find('.slide');
+    getBackgroundImages(slides);
 
-        // set the slug for the new section
-        slug = thisSection.data('anchor');
+    // set the slug for the new section
+    slug = thisSection.data('anchor');
 
-        // fade in the title
-        thisSection.find('.text').addClass('fade');
-        thisSection.find('.text').css('opacity', 1);
+    // fade in the title
+    thisSection.find('.text').addClass('fade');
+    thisSection.find('.text').css('opacity', 1);
 
-        // hide the next arrow
-        if ($(slides).first().hasClass('active') === true) {
-            $(thisSection).find('.controlArrow').hide();
-        }
-
-        var prevSection = $($sections[index - 2]);
-        prevSection.find('.text').css('opacity', 0);
+    // hide the next arrow
+    if ($(slides).first().hasClass('active') === true) {
+        $(thisSection).find('.controlArrow').hide();
     }
+
+    var prevSection = $($sections[index - 2]);
+    prevSection.find('.text').css('opacity', 0);
 };
 
 var getBackgroundImages = function(slides) {
