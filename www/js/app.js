@@ -12,6 +12,7 @@ var $video;
 var $playlist;
 var $panos;
 var $arrows;
+var $titlecardButtons;
 var chapter;
 var store;
 var anchors;
@@ -347,6 +348,10 @@ var getBackgroundImages = function(slides) {
     });
 };
 
+var onTitlecardButtonClick = function() {
+    $.fn.fullpage.moveSlideRight();
+}
+
 $(document).ready(function() {
 
     /*
@@ -360,7 +365,7 @@ $(document).ready(function() {
     $components = $('.component');
     $playlist = $('.playlist');
     $panos = $('.pano-container');
-    $arrows = $('.controlArrow');
+    $titlecardButtons = $('.btn-play');
 
     // init chapters
 
@@ -371,6 +376,7 @@ $(document).ready(function() {
 
     $play_video.on('click', revealVideo);
     $panos.on('click', animatePano);
+    $titlecardButtons.on('click', onTitlecardButtonClick);
 
     // Redraw slides if the window resizes
     $(window).resize(breakSlidesForMobile);
