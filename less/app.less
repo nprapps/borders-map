@@ -114,9 +114,18 @@ body {
         max-width: 90%;
         color: #fff;
         overflow: hidden;
+        opacity: 0;
 
         @media @screen-small-above {
             max-width: 60%;
+        }
+
+
+        &.fade {
+            -webkit-transition: opacity 1s ease;
+            -moz-transition: opacity 1s ease;
+            -o-transition: opacity 1s ease;
+            transition: opacity 1s ease;
         }
 
 
@@ -127,7 +136,6 @@ body {
 	        text-transform: uppercase;
 	        font: bold 14px "Gotham SSm", helvetica, arial, sans-serif;
 	        padding: 0 10px;
-            opacity: 0;
 	        margin: 15px auto 0 auto;
 	        text-align: center;
 	        line-height: 30px;
@@ -142,13 +150,6 @@ body {
 	            color: #fff;
 	            cursor: pointer;
 	        }
-
-            &.fade-in {
-                -webkit-transition: opacity 2s ease;
-                -moz-transition: opacity 2s ease;
-                -o-transition: opacity 2s ease;
-                transition: opacity 2s ease;
-            }
 	    }
 
 

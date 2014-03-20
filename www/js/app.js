@@ -75,8 +75,8 @@ var onPageLoad = function() {
     // fade in
     $('body').css('opacity', 1);
 
-    // find the begin button and fade in
-    $('.section.active').find('.btn').addClass('fade-in').css('opacity', 1);
+    // find the title and fade in
+    $('.section.active').find('.text').addClass('fade').css('opacity', 1);
 
     // set the slug
     if (window.location.hash) {
@@ -86,6 +86,66 @@ var onPageLoad = function() {
         slug = 'home';
     }
 };
+
+var lazyLoad = function(anchor, index) {
+    if(anchor === 'listen') {
+        // load all the other stuff before jplayer absolutely destroys localhost kill me please
+        getBackgroundImages($slides);
+        setTimeout(setUpAudio, 1000);
+    }
+    else {
+        // load the next section
+        var nextSection = $sections[index];
+        var slides = $(nextSection).find('.slide ');
+        getBackgroundImages(slides);
+
+        // load the current section if it hasn't been done
+        var thisSection = $($sections[index - 1]);
+        slides = thisSection.find('.slide');
+        getBackgroundImages(slides);
+
+        // set the slug for the new section
+        slug = thisSection.data('anchor');
+
+        // fade in the title
+        thisSection.find('.text').addClass('fade');
+        thisSection.find('.text').css('opacity', 1);
+
+        // hide the next arrow
+        if ($(slides).first().hasClass('active') === true) {
+            $(thisSection).find('.controlArrow').hide();
+        }
+
+        var prevSection = $($sections[index - 2]);
+        prevSection.find('.text').css('opacity', 0);
+    }
+};
+
+var getBackgroundImages = function(slides) {
+    _.each($(slides), function(slide) {
+        var image = 'assets/img/' + $(slide).data('bgimage');
+        if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
+            $(slide).css('background-image', 'url(' + image + ')');
+        }
+    });
+};
+
+var animatePano = function() {
+    $(this).css('background-position', $w - 2500);
+};
+
+
+var onTitlecardButtonClick = function() {
+    _.each($('.section'), function(section) {
+        if ($(section).data('anchor') === slug) {
+            thisChapter = section;
+        }
+    });
+    $.smoothScroll($(thisChapter).position().top);
+
+    $.fn.fullpage.moveTo(slug, 1);
+};
+
 
 var revealVideo = function() {
 
@@ -321,61 +381,6 @@ var onStoryPlayerButtonClick = function(e){
     _gaq.push(['_trackEvent', 'Audio', 'Played audio story', APP_CONFIG.PROJECT_NAME, 1]);
     e.data.player.jPlayer("pauseOthers");
     e.data.player.jPlayer('play');
-};
-
-var animatePano = function() {
-    $(this).css('background-position', $w - 2500);
-};
-
-
-var lazyLoad = function(anchor, index) {
-    if(anchor === 'listen') {
-        // load all the other stuff before jplayer absolutely destroys localhost kill me please
-        getBackgroundImages($slides);
-        setTimeout(setUpAudio, 1000);
-    }
-    else {
-        // load the next section
-        var nextSection = $sections[index];
-        var slides = $(nextSection).find('.slide ');
-        getBackgroundImages(slides);
-
-        // load the current section if it hasn't been done
-        var thisSection = $($sections[index - 1]);
-        slides = thisSection.find('.slide');
-        getBackgroundImages(slides);
-
-        // set the slug for the new section
-        slug = thisSection.data('anchor');
-        thisSection.find('.btn').addClass('fade-in');
-        thisSection.find('.btn').css('opacity', 1);
-
-        // hide the next arrow
-        if ($(slides).first().hasClass('active') === true) {
-            $(thisSection).find('.controlArrow').hide();
-        }
-
-    }
-};
-
-var getBackgroundImages = function(slides) {
-    _.each($(slides), function(slide) {
-        var image = 'assets/img/' + $(slide).data('bgimage');
-        if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
-            $(slide).css('background-image', 'url(' + image + ')');
-        }
-    });
-};
-
-var onTitlecardButtonClick = function() {
-    _.each($('.section'), function(section) {
-        if ($(section).data('anchor') === slug) {
-            thisChapter = section;
-        }
-    });
-    $.smoothScroll($(thisChapter).position().top);
-
-    $.fn.fullpage.moveTo(slug, 1);
 };
 
 $(document).ready(function() {
