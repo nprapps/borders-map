@@ -21,12 +21,16 @@
 
 // General styles
 body {
-    font: 16px/1.5em Gotham, Arial, Helvetica, sans-serif;
+	font-size: 16px/1.5em;
     color: #111;
     -webkit-font-smoothing: antialiased;
     background-color: #000;
     opacity: 0;
     -webkit-transition: opacity 3s ease;
+}
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: "Gotham SSm", helvetica, arial, sans-serif;
 }
 
 // primary navigation
@@ -43,10 +47,11 @@ body {
 	text-transform: uppercase;
 	font-weight: bold;
 	cursor: pointer;
+	width: 100%;
 
 	&:hover {
-        background-color: #fff;
-        color: #000;
+        //background-color: #fff;
+        color: #555;
     }
 
 	i {padding-right: 5px;}
@@ -80,7 +85,6 @@ body {
      h6 { font-size: 12px; }
 
      p {
-        font-family: Gotham, Georgia, serif;
         font-size: 16px;
         line-height: 36px;
         text-align: left;
@@ -245,118 +249,150 @@ body {
     }
 }*/
 
-.playlist {
-    //width: 50%;
 
+/*playlist*/
+#playlist {
+
+	background-color: #fff;
+	position: relative;
+	
+	h2,	h3, p {color: #555;}
+ 
+
+	.playlist-wrapper {
+	    overflow: hidden;
+	}
+	
+	
+	.jp-playlist {
+		height: 200px;
+		width: 400px;
+		margin-bottom: 100px;
+		overflow: auto;
+		position: relative;
+		background-color: #ddd;
+		
+		
+		li {
+		font-size: 14px;
+		margin-top: 5px;
+		padding-bottom: 5px;
+		border-bottom: 1px solid #999;
+		}
+	}
+	
+	//audio player
+	.jp-gui {
+	    position: absolute;
+	    bottom: 54px;
+	    left: 0;
+	    width: 100%;
+	    border-top: 5px solid #CF9D98;
+	}
+	
+	.jp-interface {
+	    position: relative;
+	    width:100%;
+	    background-color:#963432; /* Required for the full screen */
+	}
+	
+	.jp-controls-holder {
+	    width:30%;
+	    float: left;
+	    background-color: #B87068;
+	    height: 98px;
+	    display: table;
+	}
+	
+	.jp-controls {
+	    list-style-type:none;
+	    width: 100%;
+	    height: 100%;
+	    display: table-cell;
+	    vertical-align: middle;
+	}
+	
+	.jp-controls li {
+	    display:inline;
+	    float: left;
+	    width: 50px;
+	    height: 50px;
+	    padding: 15px 0 0 8px;
+	    font-size: 24px;
+	    }
+	
+	
+	.player-info {
+	    width: 70%;
+	    float: right;
+	    position: relative;
+	    height: 98px;
+	    background-color: #B4645C;
+	    padding: 10px;
+	}
+	
+	.jp-seek-bar {
+	    position: absolute;
+	    bottom: 10px;
+	    background-color: #CF9D98;
+	    height: 10px;
+	    margin: 0 10px;
+	}
+	
+	.jp-play-bar {
+	    background-color: #B87068;
+	    height: 10px;
+	}
+	
+	.jp-current-time, .jp-duration {
+	    width:70px;
+	    font-size:12px;
+	    color: #eee;
+	    padding: 10px;
+	}
+	
+	.jp-current-time {
+	    float: left;
+	}
+	
+	.jp-duration {
+	    float: right;
+	    text-align:right;
+	}
+	
+	.jp-title ul,
+	.jp-playlist ul {
+	    list-style-type:none;
+	    margin: 0;
+	    padding: 0;
+	}
+	.jp-title li,
+	.jp-playlist li {
+	    position: relative;
+	    padding: 2px 0;
+	    overflow: hidden;
+	}
+	
+	.jp-playlist ul {
+	    font-size: 24px;
+	}
+	
+	.jp-title ul {
+	    font-size: 18px;
+	    color: #eee;
+	}
+	
+	.jp-title li{
+	    border-bottom:none;
+	    border-top:none;
+	    padding:0;
+	    text-align:center;
+	}
+	
+	
+	
+	
 }
-//audio player
-
-.jp-gui {
-    /*position: absolute;
-    bottom: 0;
-    width: 50%;*/
-    border-top: 5px solid #CF9D98;
-}
-
-.jp-interface {
-    position: relative;
-    width:100%;
-    background-color:#963432; /* Required for the full screen */
-}
-
-.jp-controls-holder {
-    width:30%;
-    float: left;
-    background-color: #B87068;
-    height: 98px;
-    display: table;
-}
-
-.jp-controls {
-    list-style-type:none;
-    width: 100%;
-    height: 100%;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.jp-controls li {
-    display:inline;
-    float: left;
-    width: 50px;
-    height: 50px;
-    padding: 15px 0 0 8px;
-    font-size: 24px;
-    }
-
-
-.player-info {
-    width: 70%;
-    float: right;
-    position: relative;
-    height: 98px;
-    background-color: #B4645C;
-    padding: 10px;
-}
-
-.jp-seek-bar {
-    position: absolute;
-    bottom: 10px;
-    background-color: #CF9D98;
-    height: 10px;
-    margin: 0 10px;
-}
-
-.jp-play-bar {
-    background-color: #B87068;
-    height: 10px;
-}
-
-.jp-current-time, .jp-duration {
-    width:70px;
-    font-size:12px;
-    color: #eee;
-    padding: 10px;
-}
-
-.jp-current-time {
-    float: left;
-}
-
-.jp-duration {
-    float: right;
-    text-align:right;
-}
-
-.jp-title ul,
-.jp-playlist ul {
-    list-style-type:none;
-    margin: 0;
-    padding: 0;
-}
-.jp-title li,
-.jp-playlist li {
-    position: relative;
-    padding: 2px 0;
-    overflow: hidden;
-}
-
-.jp-playlist ul {
-    font-size: 24px;
-}
-
-.jp-title ul {
-    font-size: 18px;
-    color: #eee;
-}
-
-.jp-title li{
-    border-bottom:none;
-    border-top:none;
-    padding:0;
-    text-align:center;
-}
-
 
 
 
@@ -428,15 +464,16 @@ body {
 .controlArrow {
     background-color: #fafafa;
     position: absolute;
-    bottom: 0px;
-    @media @screen-small-above { bottom: 15px; }
+    bottom: 65px;
+    @media @screen-small-above { bottom: 65px; }
     cursor: pointer;
     width: 50px;
     height: 50px;
     font-size: 50px;
     font-weight: bold;
     text-align: center;
-    padding: 8px 12px 18px;
+    z-index: 20;
+    line-height: .8;
 }
 .controlArrow.prev {
     right: 60px;
@@ -447,6 +484,7 @@ body {
 }
 .controlArrow.next {
     right: 0px;
+     padding: 0 0 0 5px;
     @media @screen-small-above { right: 15px; }
     &:before {
         content: "\203A"
