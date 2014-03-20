@@ -933,8 +933,6 @@
 			//only changing the URL if the slides are in the current section (not for resize re-adjusting)
 			if(section.hasClass('active')){
 
-				console.log(slideIndex);
-
 				if(!options.loopHorizontal){
 					section.find('.controlArrow.prev').toggle(slideIndex!=0);
 
