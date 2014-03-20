@@ -393,10 +393,10 @@
 					    //is the movement greater than the minimum resistance to scroll?
 					    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
 					        if (touchStartX > touchEndX) {
-					             activeSection.find('.controlArrow.next:visible').trigger('click');
+					             $.fn.fullpage.moveSlideRight();
 
 					        } else {
-					            activeSection.find('.controlArrow.prev:visible').trigger('click');
+					            $.fn.fullpage.moveSlideLeft();
 					        }
 					    }
 					}
@@ -746,12 +746,12 @@
 
 				//left
 				case 37:
-					$('.section.active').find('.controlArrow.prev:visible').trigger('click');
+        			$.fn.fullpage.moveSlideLeft();
 					break;
 
 				//right
 				case 39:
-					$('.section.active').find('.controlArrow.next:visible').trigger('click');
+					$.fn.fullpage.moveSlideRight();
 					break;
 
 				default:
@@ -788,6 +788,62 @@
 				$.fn.fullpage.setMouseWheelScrolling(true);
 			});
 		}
+
+		$.fn.fullpage.moveSlideRight = function() {
+    		moveSlide('next');
+        }
+
+        $.fn.fullpage.moveSlideLeft = function() {
+        	moveSlide('prev');
+        }
+
+        function moveSlide(direction) {
+	        // check direction, presence of >1 slide and whether slide is currently moving
+
+
+	        var activeSection = $('.section.active');
+	        var slides = activeSection.find('.slides');
+
+	        if (!direction || !slides.length || slideMoving) {
+	            return;
+	        }
+
+	        var currentSlide = slides.find('.slide.active');
+	        var destiny = null;
+
+	        if (direction === 'prev') {
+	            destiny = currentSlide.prev('.slide');
+	        } else {
+	            destiny = currentSlide.next('.slide');
+	        }
+
+	        //is there isn't a next slide in the secuence?
+	        if (!destiny.length) {
+	            //respect loopHorizontal setting
+	            if (!options.loopHorizontal) return;
+	            //to the last
+	            if (direction === 'prev') {
+	                destiny = currentSlide.siblings(':last');
+	            } else {
+	                destiny = currentSlide.siblings(':first');
+	            }
+	        }
+
+	        slideMoving = true;
+	        landscapeScroll(slides, destiny);
+	    }
+
+	/**
+	 * Scrolling horizontally when clicking on the slider controls.
+	 */
+	$('.section').on('click', '.controlArrow', function() {
+		if ($(this).hasClass('prev')) {
+	        		$.fn.fullpage.moveSlideLeft();
+	     	} else {
+	        		$.fn.fullpage.moveSlideRight();
+	    		}
+	});
+
 
 		/**
 		 * Scrolling horizontally when clicking on the slider controls.
@@ -881,8 +937,15 @@
 					//hidding it for the fist slide, showing for the rest
 					section.find('.controlArrow.prev').toggle(slideIndex!=0);
 
-					//hidding it for the last slide, showing for the rest
-					section.find('.controlArrow.next').toggle(!destiny.is(':last-child'));
+					if (slideIndex == 0) {
+						section.find('.controlArrow.next').hide();
+					}
+					else if (destiny.is(':last-child')) {
+						section.find('.controlArrow.next').hide();
+					}
+					else {
+						section.find('.controlArrow.next').show();
+					}
 				}
 
 				setURLHash(slideIndex, slideAnchor, anchorLink);

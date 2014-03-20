@@ -11,6 +11,7 @@ var $play;
 var $video;
 var $playlist;
 var $panos;
+var $arrows;
 var chapter;
 var store;
 var anchors;
@@ -328,8 +329,12 @@ var lazyLoad = function(anchor, index) {
         // load the current section if it hasn't been done
         var thisSection = $sections[index - 1];
         slides = $(thisSection).find('.slide');
-        getBackgroundImages(slides);
 
+        if (slides.length > 0) {
+            $(thisSection).find('.controlArrow').hide();
+        }
+
+        getBackgroundImages(slides);
     }
 };
 
@@ -355,6 +360,7 @@ $(document).ready(function() {
     $components = $('.component');
     $playlist = $('.playlist');
     $panos = $('.pano-container');
+    $arrows = $('.controlArrow');
 
     // init chapters
 
