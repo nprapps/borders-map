@@ -13,7 +13,9 @@ var $playlist;
 var $panos;
 var $arrows;
 var $titlecardButtons;
+var slug;
 var chapter;
+var thisChapter;
 var store;
 var anchors;
 var playlist;
@@ -62,16 +64,27 @@ var setUpFullPage = function() {
         loopHorizontal: false,
         easing: 'swing',
         afterLoad: lazyLoad,
-        afterRender: function() {
-            // always get the home stuff
-            lazyLoad('home', 0);
-
-            // fade in
-            $('body').css('opacity', 1);
-        }
+        afterRender: onPageLoad
     });
+};
 
+var onPageLoad = function() {
+    // always get the home stuff
+    lazyLoad('home', 0);
 
+    // fade in
+    $('body').css('opacity', 1);
+
+    // find the begin button and fade in
+    $('.section.active').find('.btn').addClass('fade-in').css('opacity', 1);
+
+    // set the slug
+    if (window.location.hash) {
+        slug = window.location.hash.substring(1);
+    }
+    else {
+        slug = 'home';
+    }
 };
 
 var revealVideo = function() {
@@ -328,13 +341,20 @@ var lazyLoad = function(anchor, index) {
         getBackgroundImages(slides);
 
         // load the current section if it hasn't been done
-        var thisSection = $sections[index - 1];
-        slides = $(thisSection).find('.slide');
-        if ($(slides).first().hasClass('active') == true) {
+        var thisSection = $($sections[index - 1]);
+        slides = thisSection.find('.slide');
+        getBackgroundImages(slides);
+
+        // set the slug for the new section
+        slug = thisSection.data('anchor');
+        thisSection.find('.btn').addClass('fade-in');
+        thisSection.find('.btn').css('opacity', 1);
+
+        // hide the next arrow
+        if ($(slides).first().hasClass('active') === true) {
             $(thisSection).find('.controlArrow').hide();
         }
 
-        getBackgroundImages(slides);
     }
 };
 
@@ -348,8 +368,15 @@ var getBackgroundImages = function(slides) {
 };
 
 var onTitlecardButtonClick = function() {
-    $.fn.fullpage.moveSlideRight();
-}
+    _.each($('.section'), function(section) {
+        if ($(section).data('anchor') === slug) {
+            thisChapter = section;
+        }
+    });
+    $.smoothScroll($(thisChapter).position().top);
+
+    $.fn.fullpage.moveTo(slug, 1);
+};
 
 $(document).ready(function() {
 
@@ -365,6 +392,9 @@ $(document).ready(function() {
     $playlist = $('.playlist');
     $panos = $('.pano-container');
     $titlecardButtons = $('.btn-play');
+    if (window.location.hash) {
+        slug = window.location.hash.substring(1);
+    }
 
     // init chapters
 
