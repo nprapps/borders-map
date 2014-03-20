@@ -13,6 +13,7 @@ var $playlist;
 var $panos;
 var $arrows;
 var $titlecardButtons;
+var panoDirection = 'right';
 var slug;
 var chapter;
 var thisChapter;
@@ -109,13 +110,10 @@ var lazyLoad = function(anchor, index) {
     // load the current section if it hasn't been done
     var thisSection = $($sections[index - 1]);
     slides = thisSection.find('.slide');
+    getBackgroundImages(slides);
     if (anchor === 'panos') {
         getPanoImages(slides);
     }
-    else {
-        getBackgroundImages(slides);
-    }
-
     // set the slug for the new section
     slug = thisSection.data('anchor');
 
@@ -160,6 +158,8 @@ var getPanoImages = function(slides) {
 
 var animatePano = function() {
     // get the width of the background image
+    console.log(panoDirection);
+
     var image_url = $(this).css('background-image');
     var container = $(this);
     var image;
@@ -167,6 +167,10 @@ var animatePano = function() {
     var height;
     var containerHeight;
     var newWidth;
+
+    container.on('transitionend webkitTransitionEnd', function() {
+        $(this).find('.text').show();
+    });
 
     if (!Modernizr.touch && $w > 600) {
         container.find('.text').hide();
@@ -188,16 +192,27 @@ var animatePano = function() {
                 console.log(aspectRatio);
                 newWidth = aspectRatio * containerHeight;
 
-                event.data.panoContainer.css({
-                    'background-position': $w - newWidth
-                });
+                if (panoDirection === 'right') {
+                    event.data.panoContainer.css({
+                        'background-position': $w - newWidth
+                    });
+                    event.data.panoContainer.find('.backward').css('opacity', '1');
+                    panoDirection = 'left';
+                }
+                else if (panoDirection === 'left') {
+                    event.data.panoContainer.css({
+                        'background-position': 0
+                    });
+                    event.data.panoContainer.find('.backward').css('opacity', '0');
+                    panoDirection = 'right';
+
+                }
 
             });
 
             image.src = image_url;
         }
     }
-
 };
 
 
