@@ -58,6 +58,7 @@ var setUpFullPage = function() {
         anchors: anchors,
         verticalCentered: true,
         fixedElements: '.primary-navigation-btn',
+        // paddingBottom: '50px',
         resize: false,
         css3: true,
         scrollingSpeed: 100,
@@ -150,6 +151,10 @@ var animatePano = function() {
     var image;
     var width;
     var height;
+    var containerHeight;
+    var newWidth;
+
+    container.find('.text').hide();
 
     // Remove url() or in case of Chrome url("")
     image_url = image_url.match(/^url\("?(.+?)"?\)$/);
@@ -163,8 +168,13 @@ var animatePano = function() {
         $(image).load({"panoContainer": container}, function(event) {
             width = image.width;
             height = image.height;
+            containerHeight = $h * 0.7;
+            aspectRatio = width/height;
+            console.log(aspectRatio);
+            newWidth = aspectRatio * containerHeight;
+
             event.data.panoContainer.css({
-                'background-position': $w - width,
+                'background-position': $w - newWidth
             });
 
         });

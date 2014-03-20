@@ -134,7 +134,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 
         //titlecard play button
-        .btn.btn-play, .btn.btn-video {
+        .btn.btn-play, .btn.btn-video, .btn.btn-pano {
 	        border-radius: 0;
 	        background-color: #fff;
 	        text-transform: uppercase;
@@ -214,11 +214,37 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .slide.pano {
     background-color: #000;
+    .location{
+        height: 9%;
+        color: #eee;
+    }
+
+    .text {
+        background-color: rgba(0,0,0,.5);
+        height: 100%;
+        max-width: 100%;
+        button {
+            position: absolute;
+            top: 50%; left: 50;
+            -webkit-transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+                    transform: translate(-50%,-50%);
+        }
+    }
+
+    .top-location {
+        vertical-align: top;
+    }
+    .bottom-location {
+        vertical-align: bottom;
+    }
+
+
     .pano-container {
-        height: 80%;
+        height: 70%;
         @media @screen-small-above { max-height: 800px; }
         background-position: 0,0;
-        background-size: initial;
+        background-size: cover;
         -webkit-transition: background-position 8s linear;
     }
 }
@@ -255,15 +281,15 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 	background-color: #fff;
 	position: relative;
-	
+
 	h2,	h3, p {color: #555;}
- 
+
 
 	.playlist-wrapper {
 	    overflow: hidden;
 	}
-	
-	
+
+
 	.jp-playlist {
 		height: 200px;
 		width: 400px;
@@ -271,8 +297,8 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		overflow: auto;
 		position: relative;
 		background-color: #ddd;
-		
-		
+
+
 		li {
 		font-size: 14px;
 		margin-top: 5px;
@@ -280,7 +306,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		border-bottom: 1px solid #999;
 		}
 	}
-	
+
 	//audio player
 	.jp-gui {
 	    position: absolute;
@@ -289,13 +315,13 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    width: 100%;
 	    border-top: 5px solid #CF9D98;
 	}
-	
+
 	.jp-interface {
 	    position: relative;
 	    width:100%;
 	    background-color:#963432; /* Required for the full screen */
 	}
-	
+
 	.jp-controls-holder {
 	    width:30%;
 	    float: left;
@@ -303,7 +329,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    height: 98px;
 	    display: table;
 	}
-	
+
 	.jp-controls {
 	    list-style-type:none;
 	    width: 100%;
@@ -311,7 +337,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    display: table-cell;
 	    vertical-align: middle;
 	}
-	
+
 	.jp-controls li {
 	    display:inline;
 	    float: left;
@@ -320,8 +346,8 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    padding: 15px 0 0 8px;
 	    font-size: 24px;
 	    }
-	
-	
+
+
 	.player-info {
 	    width: 70%;
 	    float: right;
@@ -330,7 +356,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    background-color: #B4645C;
 	    padding: 10px;
 	}
-	
+
 	.jp-seek-bar {
 	    position: absolute;
 	    bottom: 10px;
@@ -338,28 +364,28 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    height: 10px;
 	    margin: 0 10px;
 	}
-	
+
 	.jp-play-bar {
 	    background-color: #B87068;
 	    height: 10px;
 	}
-	
+
 	.jp-current-time, .jp-duration {
 	    width:70px;
 	    font-size:12px;
 	    color: #eee;
 	    padding: 10px;
 	}
-	
+
 	.jp-current-time {
 	    float: left;
 	}
-	
+
 	.jp-duration {
 	    float: right;
 	    text-align:right;
 	}
-	
+
 	.jp-title ul,
 	.jp-playlist ul {
 	    list-style-type:none;
@@ -372,26 +398,26 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    padding: 2px 0;
 	    overflow: hidden;
 	}
-	
+
 	.jp-playlist ul {
 	    font-size: 24px;
 	}
-	
+
 	.jp-title ul {
 	    font-size: 18px;
 	    color: #eee;
 	}
-	
+
 	.jp-title li{
 	    border-bottom:none;
 	    border-top:none;
 	    padding:0;
 	    text-align:center;
 	}
-	
-	
-	
-	
+
+
+
+
 }
 
 
