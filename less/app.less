@@ -220,6 +220,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 
     .text {
+        @media @screen-small { display: none; }
         background-color: rgba(0,0,0,.5);
         height: 100%;
         max-width: 100%;
@@ -242,10 +243,17 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
     .pano-container {
         height: 70%;
-        @media @screen-small-above { max-height: 800px; }
+        max-height: 800px;
         background-position: 0,0;
+
         background-size: cover;
         -webkit-transition: background-position 8s linear;
+
+        @media @screen-small {
+            height: 20%;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+        }
     }
 }
 

@@ -99,12 +99,22 @@ var lazyLoad = function(anchor, index) {
     // load the next section
     var nextSection = $sections[index];
     var slides = $(nextSection).find('.slide ');
-    getBackgroundImages(slides);
+    if (anchor === 'panos') {
+        getPanoImages(slides);
+    }
+    else {
+        getBackgroundImages(slides);
+    }
 
     // load the current section if it hasn't been done
     var thisSection = $($sections[index - 1]);
     slides = thisSection.find('.slide');
-    getBackgroundImages(slides);
+    if (anchor === 'panos') {
+        getPanoImages(slides);
+    }
+    else {
+        getBackgroundImages(slides);
+    }
 
     // set the slug for the new section
     slug = thisSection.data('anchor');
@@ -124,28 +134,32 @@ var lazyLoad = function(anchor, index) {
 
 var getBackgroundImages = function(slides) {
     _.each($(slides), function(slide) {
-        var pano = $(slide).find('.pano-container');
-        if (pano.length > 0) {
-            var image = 'assets/img/' + $(pano).data('bgimage');
-            console.log(image);
+        var image = 'assets/img/' + $(slide).data('bgimage');
 
-            if (image !== 'assets/img/undefined' && $(pano).css('background-image') === 'none') {
-                $(pano).css('background-image', 'url(' + image + ')');
-            }
+        if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
+            $(slide).css('background-image', 'url(' + image + ')');
+        }
+    });
+};
+
+var getPanoImages = function(slides) {
+    _.each($(slides), function(slide) {
+        var pano = $(slide).find('.pano-container');
+        if (!Modernizr.touch && $w > 768) {
+            var image = 'assets/img/' + $(pano).data('bgimage');
         }
         else {
-            var image = 'assets/img/' + $(slide).data('bgimage');
+            var image = 'assets/img/' + $(pano).data('bgimage-small');
+        }
 
-            if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
-                $(slide).css('background-image', 'url(' + image + ')');
-            }
+        if (image !== 'assets/img/undefined' && $(pano).css('background-image') === 'none') {
+            $(pano).css('background-image', 'url(' + image + ')');
         }
     });
 };
 
 var animatePano = function() {
     // get the width of the background image
-
     var image_url = $(this).css('background-image');
     var container = $(this);
     var image;
@@ -154,35 +168,45 @@ var animatePano = function() {
     var containerHeight;
     var newWidth;
 
-    container.find('.text').hide();
+    if (!Modernizr.touch && $w > 600) {
+        container.find('.text').hide();
 
-    // Remove url() or in case of Chrome url("")
-    image_url = image_url.match(/^url\("?(.+?)"?\)$/);
+        // Remove url() or in case of Chrome url("")
+        image_url = image_url.match(/^url\("?(.+?)"?\)$/);
 
-    if (image_url[1]) {
+        if (image_url[1]) {
 
-        image_url = image_url[1];
-        image = new Image();
+            image_url = image_url[1];
+            image = new Image();
 
-        // just in case it is not already loaded
-        $(image).load({"panoContainer": container}, function(event) {
-            width = image.width;
-            height = image.height;
-            containerHeight = $h * 0.7;
-            aspectRatio = width/height;
-            console.log(aspectRatio);
-            newWidth = aspectRatio * containerHeight;
+            // just in case it is not already loaded
+            $(image).load({"panoContainer": container}, function(event) {
+                width = image.width;
+                height = image.height;
+                containerHeight = $h * 0.7;
+                aspectRatio = width/height;
+                console.log(aspectRatio);
+                newWidth = aspectRatio * containerHeight;
 
-            event.data.panoContainer.css({
-                'background-position': $w - newWidth
+                event.data.panoContainer.css({
+                    'background-position': $w - newWidth
+                });
+
             });
 
-        });
-
-        image.src = image_url;
-
-
+            image.src = image_url;
+        }
     }
+
+    // else {
+    //     if ($h * 0.7 > 208) {
+    //         container.css('height', $h * 0.7);
+    //     }
+    //     else {
+    //         container.css('height', 208);
+    //     }
+    // }
+
 };
 
 
