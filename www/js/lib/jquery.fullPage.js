@@ -833,16 +833,16 @@
 	        landscapeScroll(slides, destiny);
 	    }
 
-	/**
-	 * Scrolling horizontally when clicking on the slider controls.
-	 */
-	$('.section').on('click', '.controlArrow', function() {
-		if ($(this).hasClass('prev')) {
-	        		$.fn.fullpage.moveSlideLeft();
-	     	} else {
-	        		$.fn.fullpage.moveSlideRight();
-	    		}
-	});
+		/**
+		 * Scrolling horizontally when clicking on the slider controls.
+		 */
+		$('.section').on('click', '.controlArrow', function() {
+			if ($(this).hasClass('prev')) {
+		        		$.fn.fullpage.moveSlideLeft();
+		     	} else {
+		        		$.fn.fullpage.moveSlideRight();
+		    		}
+		});
 
 
 		/**
@@ -933,8 +933,9 @@
 			//only changing the URL if the slides are in the current section (not for resize re-adjusting)
 			if(section.hasClass('active')){
 
+				console.log(slideIndex);
+
 				if(!options.loopHorizontal){
-					//hidding it for the fist slide, showing for the rest
 					section.find('.controlArrow.prev').toggle(slideIndex!=0);
 
 					if (slideIndex == 0) {

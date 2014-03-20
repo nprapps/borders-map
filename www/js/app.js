@@ -330,8 +330,7 @@ var lazyLoad = function(anchor, index) {
         // load the current section if it hasn't been done
         var thisSection = $sections[index - 1];
         slides = $(thisSection).find('.slide');
-
-        if (slides.length > 0) {
+        if ($(slides).first().hasClass('active') == true) {
             $(thisSection).find('.controlArrow').hide();
         }
 
