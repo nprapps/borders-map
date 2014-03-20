@@ -21,12 +21,16 @@
 
 // General styles
 body {
-    font: 16px/1.5em Gotham, Arial, Helvetica, sans-serif;
+	font-size: 16px/1.5em;
     color: #111;
     -webkit-font-smoothing: antialiased;
     background-color: #000;
     opacity: 0;
     -webkit-transition: opacity 3s ease;
+}
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: "Gotham SSm", helvetica, arial, sans-serif;
 }
 
 // primary navigation
@@ -81,7 +85,6 @@ body {
      h6 { font-size: 12px; }
 
      p {
-        font-family: Gotham, Georgia, serif;
         font-size: 16px;
         line-height: 36px;
         text-align: left;
@@ -468,8 +471,8 @@ body {
     font-size: 50px;
     font-weight: bold;
     text-align: center;
-    padding: 8px 12px 18px;
     z-index: 20;
+    line-height: .8;
 }
 .controlArrow.prev {
     right: 60px;
@@ -480,6 +483,7 @@ body {
 }
 .controlArrow.next {
     right: 0px;
+     padding: 0 0 0 5px;
     @media @screen-small-above { right: 15px; }
     &:before {
         content: "\203A"
