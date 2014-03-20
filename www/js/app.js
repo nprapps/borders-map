@@ -58,7 +58,7 @@ var setUpFullPage = function() {
         anchors: anchors,
         verticalCentered: true,
         fixedElements: '.primary-navigation-btn',
-        resize: true,
+        resize: false,
         css3: true,
         scrollingSpeed: 100,
         loopHorizontal: false,
