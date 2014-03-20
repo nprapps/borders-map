@@ -198,15 +198,6 @@ var animatePano = function() {
         }
     }
 
-    // else {
-    //     if ($h * 0.7 > 208) {
-    //         container.css('height', $h * 0.7);
-    //     }
-    //     else {
-    //         container.css('height', 208);
-    //     }
-    // }
-
 };
 
 
