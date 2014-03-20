@@ -211,7 +211,8 @@ body {
 .slide.pano {
     background-color: #000;
     .pano-container {
-        height: 557px;
+        height: 80%;
+        @media @screen-small-above { max-height: 800px; }
         background-position: 0,0;
         background-size: initial;
         -webkit-transition: background-position 8s linear;

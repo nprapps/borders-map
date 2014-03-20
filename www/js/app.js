@@ -123,15 +123,56 @@ var lazyLoad = function(anchor, index) {
 
 var getBackgroundImages = function(slides) {
     _.each($(slides), function(slide) {
-        var image = 'assets/img/' + $(slide).data('bgimage');
-        if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
-            $(slide).css('background-image', 'url(' + image + ')');
+        var pano = $(slide).find('.pano-container');
+        if (pano.length > 0) {
+            var image = 'assets/img/' + $(pano).data('bgimage');
+            console.log(image);
+
+            if (image !== 'assets/img/undefined' && $(pano).css('background-image') === 'none') {
+                $(pano).css('background-image', 'url(' + image + ')');
+            }
+        }
+        else {
+            var image = 'assets/img/' + $(slide).data('bgimage');
+
+            if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
+                $(slide).css('background-image', 'url(' + image + ')');
+            }
         }
     });
 };
 
 var animatePano = function() {
-    $(this).css('background-position', $w - 2500);
+    // get the width of the background image
+
+    var image_url = $(this).css('background-image');
+    var container = $(this);
+    var image;
+    var width;
+    var height;
+
+    // Remove url() or in case of Chrome url("")
+    image_url = image_url.match(/^url\("?(.+?)"?\)$/);
+
+    if (image_url[1]) {
+
+        image_url = image_url[1];
+        image = new Image();
+
+        // just in case it is not already loaded
+        $(image).load({"panoContainer": container}, function(event) {
+            width = image.width;
+            height = image.height;
+            event.data.panoContainer.css({
+                'background-position': $w - width,
+            });
+
+        });
+
+        image.src = image_url;
+
+
+    }
 };
 
 
