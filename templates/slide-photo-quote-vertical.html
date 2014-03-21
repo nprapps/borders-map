@@ -1,11 +1,11 @@
 <div class="slide photo-quote-vertical {% if row.extra_class %} {{ row.extra_class }} {% endif %}" style="{% if row.color %} background-color: {{ row.color }}; {% endif %}" {% if row.data_panel %} data-panel="{{ data_panel }}" {% endif %}>
     <div class="photo-quote">
-        <div class="text component" style="{% if row.color %} background-color: {{ row.color }}; {% endif %}">
+        <div class="first-block component" style="{% if row.color %} background-color: {{ row.color }}; {% endif %}">
             {{ row.text }}
-        </div>
-        <div class="image component">
-            <img src="assets/img/{{ row.image }}">
-        </div>
-    </div>
-</div>
+		</div><!-- /text-component-->
+        
+        <div class="second-block component" style="background-image: url(assets/img/{{ row.image }});">
+        </div><!-- /image-component-->
+    </div><!-- /photo-quote-->
+</div><!-- /slide-->
 

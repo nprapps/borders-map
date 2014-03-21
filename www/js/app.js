@@ -57,7 +57,7 @@ var setUpFullPage = function() {
     $.fn.fullpage({
         autoScrolling: false,
         anchors: anchors,
-        verticalCentered: true,
+        verticalCentered: false,
         fixedElements: '.primary-navigation-btn',
         // paddingBottom: '50px',
         resize: false,
