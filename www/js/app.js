@@ -23,6 +23,8 @@ var playlist;
 var story_start = 0;
 var story_end_1 = 673;
 var story_end_2 = 771;
+var is_touch = Modernizr.touch;
+
 
 var breakSlidesForMobile = function() {
     /*
@@ -30,7 +32,7 @@ var breakSlidesForMobile = function() {
     */
     $w = $(window).width();
     $h = $(window).height();
-    if ($w < 768) {
+    if ($w < 768 && is_touch) {
         $components.addClass('slide');
         chapter = $components.parents('.section');
         store = $components.clone();
