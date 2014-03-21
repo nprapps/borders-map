@@ -119,6 +119,7 @@ body {
 		.full-block-content {
 			width: 100%;
 			padding: 0;
+			.text-shadow(2px 2px 2px #000);
 		}
     }
     
@@ -201,18 +202,24 @@ body {
     
 
 
-//video player
-    .player {
-        display: none;
-    }
 
-
-    &.black {
-        .text {
-            color: #000;
-        }
-    }
 }
+
+//video player
+.video {
+	
+	.full-block {
+		background-color: rgba(0,0,0,.3);
+		.text-shadow(2px 2px 2px #000);
+	}
+	
+	
+	
+	.player {
+	    display: none;
+	}
+}
+
 
 //portrait tempate
 .slide.photo-quote-vertical {
