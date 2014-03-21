@@ -27,7 +27,6 @@ body {
 }
 
 //typography
-
     h1, h2, h3, h4, h5, h6 {
         font-weight: bold;
     }
@@ -70,16 +69,6 @@ body {
             text-align: left;
         }
     }
-
-//generic container for all content within a section or slide only use this class for JS hooks and global styles that will apply to all templates.
-.text {
-opacity: 0;
-
-    &.fade {
-    	.transition(opacity 1s ease);
-    }
-
-}
 
 // primary navigation
 .primary-navigation-btn {
@@ -182,7 +171,7 @@ opacity: 0;
 
 
 
-//video player
+//video template
 .video {
 	
 	.full-block {
@@ -227,7 +216,7 @@ opacity: 0;
 
 //pano tempate
 .slide.pano {
-    background-color: #000;
+
     .location{
         height: 9%;
         color: #eee;
@@ -258,7 +247,6 @@ opacity: 0;
         vertical-align: bottom;
     }
 
-
     .pano-container {
         height: 70%;
         max-height: 800px;
@@ -275,35 +263,7 @@ opacity: 0;
     }
 }
 
-
-/*credits */
-
-#credits {
-	background-color: #ccc;
-}
-
-/*
-* jplayer
-*/
-
-/* footer {
-    position: relative;
-    height: 100%;
-    background-color: #AF3533;
-
-    a, a:link, a:visited {
-        color: #eee;
-        text-decoration: none;
-    }
-    a:hover, a:active {
-        color: #fff;
-        text-decoration: none;
-    }
-}*/
-
-
-
-/*playlist*/
+/*playlist template */
 #playlist {
 	background-color: #fff;
 	position: relative;
@@ -438,17 +398,12 @@ opacity: 0;
 
 }
 
-// basic slide styles
-
-.section, .slide {
-    margin-bottom: 0;
-    .background-size(cover);
-    background-position: center center;
-    position: relative;
+/*credits template */
+#credits {
+	background-color: #ccc;
 }
 
-
-
+// default slide styles
 #superContainer {
     height: 100%;
     position: relative;
@@ -461,31 +416,58 @@ opacity: 0;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
-}
-.slide {
-    float: left;
-}
-.slide, .slidesContainer {
-    height: 100%;
-    display: block;
+    
+    .slides {
+	    height: 100%;
+	    overflow: hidden;
+	    position: relative;
+	    -webkit-transition: all 0.3s ease-out;
+	    -moz-transition: all 0.3s ease-out;
+	    -o-transition: all 0.3s ease-out;
+	    transition: all 0.3s ease-out;
+	    
+    	//transition between slides
+		.instant {
+		    -webkit-transition: all 0 ease;
+		    -moz-transition: all 0 ease;
+		    -o-transition: all 0 ease;
+		    transition: all 0 ease;
+		}
+    
+    	.slidesContainer {
+		    float: left;
+		    position: relative;
+		    height: 100%;
+		    display: block;
+		    
+		    .slide {
+			    float: left; 
+			    height: 100%;
+			    display: block;   
+			}
+		    
+		}
+	}
 }
 
+//generic container for all content within a section or slide only use this class for JS hooks and global styles that will apply to all templates.
+.text {
+opacity: 0;
 
+    &.fade {
+    	.transition(opacity 1s ease);
+    }
 
-.slides {
-    height: 100%;
-    overflow: hidden;
+}
+
+//full-bleed background images on sections and slides
+.section, .slide {
+    .background-size(cover);
+    background-position: center center;
     position: relative;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
 }
 
-.slidesContainer {
-    float: left;
-    position: relative;
-}
+//slide navigation
 .controlArrow {
     background-color: #fafafa;
     position: absolute;
@@ -517,20 +499,6 @@ opacity: 0;
         content: "\203A"
     }
 }
-
-.easing {
-    -webkit-transition: all 0.8s ease;
-    -moz-transition: all 0.8s ease;
-    -o-transition: all 0.8s ease;
-    transition: all 0.8s ease;
-}
-.instant {
-    -webkit-transition: all 0 ease;
-    -moz-transition: all 0 ease;
-    -o-transition: all 0 ease;
-    transition: all 0 ease;
-}
-
 
 /**
  * fullPage 1.6.6
@@ -646,6 +614,13 @@ html, body {
 }
 .fullPage-tooltip.left {
     left: 20px;
+}
+
+.easing {
+    -webkit-transition: all 0.8s ease;
+    -moz-transition: all 0.8s ease;
+    -o-transition: all 0.8s ease;
+    transition: all 0.8s ease;
 }
 
 */
