@@ -43,7 +43,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	color: #fff;
 	z-index: 10;
 	font-size: 14px;
-	padding: 15px;
+	padding: 8px 0 8px 15px;
 	text-transform: uppercase;
 	font-weight: bold;
 	cursor: pointer;
@@ -58,6 +58,8 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 // basic slide styles
+
+
 
 .section, .slide {
     margin-bottom: 0;
@@ -288,34 +290,47 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 }*/
 
+.left-block {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	}
+	
+.right-block {
+background: url(../assets/img/playlist.jpg) no-repeat center center;
+.background-size(cover);
+position: absolute;
+top: 0;
+right: 0;
+width: 50%;
+height: 100%;
+}
 
 /*playlist*/
 #playlist {
-
 	background-color: #fff;
 	position: relative;
 
 	h2,	h3, p {color: #555;}
 
 
-	.playlist-wrapper {
-	    overflow: hidden;
-	}
-
-
 	.jp-playlist {
-		height: 200px;
-		width: 400px;
-		margin-bottom: 100px;
+		height: 100%;
+		width: 100%;
+		padding: 20px 10px 170px 10px;
+		
 		overflow: auto;
-		position: relative;
-		background-color: #ddd;
+		position: absolute;
+		top: 0;
+		left: 0;
 
 
 		li {
 		font-size: 14px;
 		margin-top: 5px;
-		padding-bottom: 5px;
+		padding-bottom: 10px;
 		border-bottom: 1px solid #999;
 		}
 	}
@@ -323,7 +338,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	//audio player
 	.jp-gui {
 	    position: absolute;
-	    bottom: 54px;
+	    bottom: 0;
 	    left: 0;
 	    width: 100%;
 	    border-top: 5px solid #CF9D98;
@@ -339,7 +354,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    width:30%;
 	    float: left;
 	    background-color: #B87068;
-	    height: 98px;
+	    height: 140px;
 	    display: table;
 	}
 
@@ -348,7 +363,6 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    width: 100%;
 	    height: 100%;
 	    display: table-cell;
-	    vertical-align: middle;
 	}
 
 	.jp-controls li {
@@ -365,14 +379,14 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    width: 70%;
 	    float: right;
 	    position: relative;
-	    height: 98px;
+	    height: 140px;
 	    background-color: #B4645C;
 	    padding: 10px;
 	}
 
 	.jp-seek-bar {
 	    position: absolute;
-	    bottom: 10px;
+	    top: 70px;
 	    background-color: #CF9D98;
 	    height: 10px;
 	    margin: 0 10px;
@@ -405,15 +419,10 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    margin: 0;
 	    padding: 0;
 	}
-	.jp-title li,
-	.jp-playlist li {
+	.jp-title li {
 	    position: relative;
 	    padding: 2px 0;
 	    overflow: hidden;
-	}
-
-	.jp-playlist ul {
-	    font-size: 24px;
 	}
 
 	.jp-title ul {
@@ -427,9 +436,6 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    padding:0;
 	    text-align:center;
 	}
-
-
-
 
 }
 
@@ -460,6 +466,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    width: 100%;
 }
 .slide {
     float: left;
