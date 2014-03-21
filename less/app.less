@@ -98,20 +98,31 @@ body {
     width: 100%;
     height: 100%;
     
+    .full-block-cell {
+		display: table-cell;
+	    vertical-align: middle;
+	    text-align: center;
+	    width: 100%;
+	}
+    
+
+	.full-block-content {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 20px;
+	}
+
+	//style title slides uniquely
     .titlecard & {
 	    background-color: rgba(0,0,0,.3);
+		
+		.full-block-content {
+			width: 100%;
+			padding: 0;
+		}
     }
+    
 }
-
-.full-block-content {
-	display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-}
-
-
 
 // basic slide styles
 
@@ -158,8 +169,8 @@ body {
          }
 
         p {
-            font-size: 24px;
-            line-height: 48px;
+            font-size: 18px;
+            line-height: 2;
             text-align: left;
         }
     }
