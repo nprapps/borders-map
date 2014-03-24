@@ -62,6 +62,7 @@ var setUpFullPage = function() {
         verticalCentered: false,
         fixedElements: '.primary-navigation-btn',
         // paddingBottom: '50px',
+        scrollOverflow: true,
         resize: false,
         css3: true,
         scrollingSpeed: 100,
