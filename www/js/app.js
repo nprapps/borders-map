@@ -265,7 +265,7 @@ var initPlayer = function(player) {
             config: {
                 levels: [
                     {
-                        file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2013/02/20130219_nprvid_oscars-n-600000.mp4',
+                        file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
                         image: 'http://apps.npr.org/oscars-2013/img/cheat-sheet-promo_wide.jpg'
                     }
                 ]
