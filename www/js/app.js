@@ -64,7 +64,6 @@ var setUpFullPage = function() {
         menu: '.nav',
         verticalCentered: false,
         fixedElements: '.primary-navigation-btn, .nav',
-        // paddingBottom: '50px',
         scrollOverflow: true,
         resize: false,
         css3: true,
@@ -72,6 +71,7 @@ var setUpFullPage = function() {
         loopHorizontal: false,
         easing: 'swing',
         afterLoad: lazyLoad,
+        onLeave: fadeOutText,
         afterRender: onPageLoad
     });
 };
@@ -131,10 +131,15 @@ var lazyLoad = function(anchor, index) {
     if ($(slides).first().hasClass('active') === true) {
         $(thisSection).find('.controlArrow').hide();
     }
-
-    var prevSection = $($sections[index - 2]);
-    prevSection.find('.text').css('opacity', 0);
 };
+
+var fadeOutText = function() {
+    _.each($sections, function(section) {
+        if ($(section).hasClass('active') === false) {
+            $(section).find('.text').css('opacity', 0);
+        }
+    });
+}
 
 var getBackgroundImages = function(slides) {
     _.each($(slides), function(slide) {
@@ -237,6 +242,24 @@ var showNav = function() {
     $nav.height($h);
     $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
     $nav.toggleClass('active');
+    if ($nav.hasClass('active')) {
+        $nav.css('display', 'block');
+        var fade = _.debounce(fadeInNav, 1);
+        fade();
+    }
+    else {
+        $nav.css('opacity', 0);
+        var fade = _.debounce(fadeOutNav, 500);
+        fade();
+    }
+}
+
+var fadeInNav = function() {
+    $nav.css('opacity', 1);
+}
+
+var fadeOutNav = function() {
+    $nav.css('display', 'none');
 }
 
 

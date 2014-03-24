@@ -104,14 +104,11 @@ body {
     background-color: #333;
     z-index: 9;
     font-size: 16px;
+    min-width: 250px;
     width: 25%;
     opacity: 0;
+    display: none;
     .transition(opacity 0.5s ease);
-
-    &.active {
-        display: block;
-        opacity: 1;
-    }
 
     ul {
         list-style-type: none;
@@ -193,6 +190,7 @@ body {
 	display: table;
     width: 100%;
     height: 100%;
+    .text-shadow(2px 2px 2px #000);
 
     .full-block-cell {
 		display: table-cell;
@@ -225,17 +223,13 @@ body {
 
 //video template
 .video {
-
-	.full-block {
-		background-color: rgba(0,0,0,.3);
-		.text-shadow(2px 2px 2px #000);
-	}
-
-
-
 	.player {
 	    display: none;
 	}
+}
+
+.video > .full-block {
+    background-color: rgba(0,0,0,.3);
 }
 
 
@@ -259,7 +253,7 @@ body {
 		text-shadow: 0 2px 5px #444;
 
 		p {
-			font-size: 32px;
+			font-size: 42px;
 			font-weight: bold;
 			line-height: 1.2;
 			padding: 0;
@@ -556,7 +550,7 @@ opacity: 0;
     cursor: pointer;
     width: 50px;
     height: 50px;
-    font-size: 50px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
     z-index: 20;
@@ -567,7 +561,8 @@ opacity: 0;
     color: #000;
     @media @screen-small-above { right: 85px; }
     &:before {
-        content: '\2039';
+        font-family: "FontAwesome";
+        content: '\f053';
     }
 }
 .controlArrow.next {
@@ -576,8 +571,26 @@ opacity: 0;
      padding: 0 0 0 5px;
     @media @screen-small-above { right: 15px; }
     &:before {
-        content: "\203A"
+        font-family: "FontAwesome";
+        content: "\f054"
     }
+}
+
+.controlArrow.nextChapter {
+    right: 0px;
+    color: #000;
+    right: 0px;
+    color: #000;
+    padding: 0 0 0 5px;
+    font-size: 20px;
+    width: 200px;
+    @media @screen-small-above { right: 15px; }
+
+    &:after {
+        font-family: "FontAwesome";
+        content: "\f078"
+    }
+
 }
 
 /**
