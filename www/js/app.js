@@ -64,7 +64,7 @@ var setUpFullPage = function() {
         autoScrolling: false,
         anchors: anchors,
         menu: '.nav',
-        easing: 'easeOutQuad',
+        easing: 'easeOutQuart',
         verticalCentered: false,
         fixedElements: '.primary-navigation, .nav',
         scrollOverflow: true,
