@@ -670,6 +670,7 @@
 				, options.scrollingSpeed, options.easing, function () {
 					//fix section order from continuousVertical
 					continuousVerticalFixSectionOrder();
+					console.log(options.easing);
 
 					//callback (afterLoad)
 					$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
