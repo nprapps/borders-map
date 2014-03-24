@@ -13,6 +13,8 @@ var $playlist;
 var $panos;
 var $arrows;
 var $titlecardButtons;
+var $navButton;
+var $nav;
 var panoDirection = 'right';
 var slug;
 var chapter;
@@ -60,7 +62,7 @@ var setUpFullPage = function() {
         autoScrolling: false,
         anchors: anchors,
         verticalCentered: false,
-        fixedElements: '.primary-navigation-btn',
+        fixedElements: '.primary-navigation-btn, .nav',
         // paddingBottom: '50px',
         scrollOverflow: true,
         resize: false,
@@ -229,6 +231,11 @@ var onTitlecardButtonClick = function() {
 
     $.fn.fullpage.moveTo(slug, 1);
 };
+
+var showNav = function() {
+    $nav.height($h);
+    $nav.toggleClass('active');
+}
 
 
 var revealVideo = function() {
@@ -481,6 +488,8 @@ $(document).ready(function() {
     $playlist = $('.playlist');
     $panos = $('.pano-container');
     $titlecardButtons = $('.btn-play');
+    $navButton = $('.primary-navigation-btn');
+    $nav = $('.nav');
     if (window.location.hash) {
         slug = window.location.hash.substring(1);
     }
@@ -495,6 +504,7 @@ $(document).ready(function() {
     $play_video.on('click', revealVideo);
     $panos.on('click', animatePano);
     $titlecardButtons.on('click', onTitlecardButtonClick);
+    $navButton.on('click', showNav);
 
     // Redraw slides if the window resizes
     $(window).resize(breakSlidesForMobile);

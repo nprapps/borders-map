@@ -60,4 +60,19 @@
 	</div>
 </div><!--/#credits-->
 <div class="primary-navigation-btn"><i class="fa fa-bars"></i> Contents</div>
+
+<div class="nav">
+    <ul>
+        {% for row in COPY.content %}
+            {% if row.chapter_title %}
+                {% if row.chapter_title != 'chapter_title' %}
+                    <li data-menuanchor="{{row.data_panel}}"><a href="#{{row.data_panel}}">{{row.chapter_title}}</a></li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        <li data-menuanchor="listen"><a href="#listen">Listen to Borderland</a></li>
+        <li data-menuanchor="about"><a href="#about">About Borderland</a></li>
+    </ul>
+</div>
+
 {% endblock %}
