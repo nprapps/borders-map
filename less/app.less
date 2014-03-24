@@ -87,6 +87,7 @@ body {
 	font-weight: bold;
 	cursor: pointer;
 	width: 100%;
+	opacity: .6;
 
 	&:hover {
         //background-color: #fff;
@@ -243,8 +244,9 @@ body {
 
 	blockquote {
 		position: absolute;
-		top: 30%;
+		top: 20%;
 		left: 0;
+		z-index: 20;
 		border: none;
 		margin: 0;
 		padding: 0 50px;
@@ -254,13 +256,28 @@ body {
 			font-size: 42px;
 			font-weight: bold;
 			line-height: 1.2;
+			padding: 0;
 		}
 
 		dl {
-			font-size: 18px;
+			margin-top: 40px;
+			opacity: .6;
+			font-style: italic;
+			font-size: 15px;
+		}
+		
+		h6 {
+			font-size: 20px;
+			margin: 20px 0;
+			font-style: italic;
+			opacity: .6;
+			line-height: 1.5;
 		}
 	}
 }
+
+//big quote
+
 
 //pano tempate
 .slide.pano {
