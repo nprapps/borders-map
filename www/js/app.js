@@ -61,6 +61,7 @@ var setUpFullPage = function() {
     $.fn.fullpage({
         autoScrolling: false,
         anchors: anchors,
+        menu: '.nav',
         verticalCentered: false,
         fixedElements: '.primary-navigation-btn, .nav',
         // paddingBottom: '50px',
@@ -234,6 +235,7 @@ var onTitlecardButtonClick = function() {
 
 var showNav = function() {
     $nav.height($h);
+    $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
     $nav.toggleClass('active');
 }
 
