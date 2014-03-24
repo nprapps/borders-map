@@ -238,10 +238,12 @@ var showNav = function() {
     $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
     $nav.toggleClass('active');
     if ($nav.hasClass('active')) {
+        $nav.css('display', 'block');
         var fade = _.debounce(fadeInNav, 1);
         fade();
     }
     else {
+        $nav.css('opacity', 0);
         var fade = _.debounce(fadeOutNav, 250);
         fade();
     }
