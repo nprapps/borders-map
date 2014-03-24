@@ -237,6 +237,22 @@ var showNav = function() {
     $nav.height($h);
     $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
     $nav.toggleClass('active');
+    if ($nav.hasClass('active')) {
+        var fade = _.debounce(fadeInNav, 1);
+        fade();
+    }
+    else {
+        var fade = _.debounce(fadeOutNav, 250);
+        fade();
+    }
+}
+
+var fadeInNav = function() {
+    $nav.css('opacity', 1);
+}
+
+var fadeOutNav = function() {
+    $nav.css('display', 'none');
 }
 
 
