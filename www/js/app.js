@@ -256,9 +256,9 @@ var initPlayer = function(player) {
             src: 'http://www.npr.org/templates/javascript/jwplayer/player.swf',
             config: {
                 skin: 'http://media.npr.org/templates/javascript/jwplayer/skins/mle/npr-video-archive/npr-video-archive.zip',
-                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2013/02/20130219_nprvid_oscars-n-600000.mp4',
-                image: 'http://apps.npr.org/oscars-2013/img/cheat-sheet-promo_wide.jpg',
-                'hd.file': 'http://pd.npr.org/npr-mp4/npr/nprvid/2013/02/20130219_nprvid_oscars-n-1200000.mp4'
+                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
+                image: '../assets/img/junior/junior.jpg',
+                'hd.file': 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4'
             }
         }, {
             type: 'html5',
