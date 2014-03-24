@@ -96,6 +96,11 @@ var onPageLoad = function() {
     else {
         slug = 'home';
     }
+
+    // set the next chapter button
+    var nextChapterButton =  $('.section.active').find('.controlArrow.nextChapter');
+    var nextChapter = $('.section.active').next().data('chapter');
+    nextChapterButton.html(nextChapter);
 };
 
 var lazyLoad = function(anchor, index) {
