@@ -318,8 +318,8 @@ var initPlayer = function(player) {
         controlbar: 'over',
         icons: 'true',
         autostart: false,
-        width: $w,
-        height: $h
+        width: '100%',
+        height: $h - 50
     });
     jwplayer('player').play();
 
