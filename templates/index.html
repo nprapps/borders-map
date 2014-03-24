@@ -11,7 +11,7 @@
     {% include "%s.html"|format(row.template) ignore missing %}
 {% endfor %}
 </div>
-<div id="playlist" class="section slide" data-anchor="listen">
+<div id="playlist" class="section slide" data-anchor="listen" data-chapter="Listen">
 <div id="jp_container_N">
 	<div class="first-block">
 		<div id="jquery_jplayer_N" class="jp-jplayer"></div>
@@ -54,13 +54,14 @@
 </div><!--/#playlist-->
 
 
-<div id="credits" class="section slide"  data-anchor="about">
+<div id="credits" class="section slide" data-chapter="About" data-anchor="about">
 	<div class="text">
 		<h2>About/Credits</h2>
 	</div>
 </div><!--/#credits-->
 <div class="primary-navigation">
 	<div class="primary-navigation-btn"><i class="fa fa-bars"></i> Contents</div>
+    <div class="next-section"></div>
 </div>
 
 <div class="nav">

@@ -15,6 +15,7 @@ var $arrows;
 var $titlecardButtons;
 var $navButton;
 var $nav;
+var $nextSectionButton;
 var panoDirection = 'right';
 var slug;
 var chapter;
@@ -67,7 +68,7 @@ var setUpFullPage = function() {
         scrollOverflow: true,
         resize: false,
         css3: true,
-        scrollingSpeed: 100,
+        scrollingSpeed: 500,
         loopHorizontal: false,
         easing: 'swing',
         afterLoad: lazyLoad,
@@ -97,9 +98,9 @@ var onPageLoad = function() {
     }
 
     // set the next chapter button
-    var nextChapterButton =  $('.section.active').find('.controlArrow.nextChapter');
-    var nextChapter = $('.section.active').next().data('chapter');
-    nextChapterButton.html(nextChapter);
+    var next = $('.section.active').next().data('chapter');
+    $nextSectionButton.html(next);
+    $nextSectionButton.width('auto');
 };
 
 var lazyLoad = function(anchor, index) {
@@ -129,9 +130,8 @@ var lazyLoad = function(anchor, index) {
     slug = thisSection.data('anchor');
 
     // set the next chapter button
-    var nextChapterButton =  $(thisSection).find('.controlArrow.nextChapter');
-    var nextChapter = $(nextSection).data('chapter');
-    nextChapterButton.html(nextChapter);
+    var next = $(nextSection).data('chapter');
+    $nextSectionButton.html(next);
 
     // fade in the title
     thisSection.find('.text').addClass('fade');
@@ -267,10 +267,14 @@ var showNav = function() {
 
 var fadeInNav = function() {
     $nav.css('opacity', 1);
-}
+};
 
 var fadeOutNav = function() {
     $nav.css('display', 'none');
+};
+
+var nextSection = function() {
+    $.fn.fullpage.moveSectionDown();
 }
 
 var revealVideo = function() {
@@ -524,6 +528,7 @@ $(document).ready(function() {
     $panos = $('.pano-container');
     $titlecardButtons = $('.btn-play');
     $navButton = $('.primary-navigation-btn');
+    $nextSectionButton = $('.next-section');
     $nav = $('.nav');
     if (window.location.hash) {
         slug = window.location.hash.substring(1);
@@ -540,6 +545,7 @@ $(document).ready(function() {
     $panos.on('click', animatePano);
     $titlecardButtons.on('click', onTitlecardButtonClick);
     $navButton.on('click', showNav);
+    $nextSectionButton.on('click', nextSection);
 
     // Redraw slides if the window resizes
     $(window).resize(breakSlidesForMobile);
