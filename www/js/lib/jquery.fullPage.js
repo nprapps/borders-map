@@ -1346,17 +1346,17 @@
 					}
 
 					lastScrolledSlide = slideAnchor;
-					location.hash = sectionHash + '/' + slideAnchor;
+					location.replace('#' + sectionHash + '/' + slideAnchor);
 
 				//first slide won't have slide anchor, just the section one
 				}else if(typeof slideIndex !== 'undefined'){
 					lastScrolledSlide = slideAnchor;
-					location.hash = anchorLink;
+					location.replace('#' + anchorLink);
 				}
 
 				//section without slides
 				else{
-					location.hash = anchorLink;
+					location.replace('#' + anchorLink);
 				}
 			}
 		}
