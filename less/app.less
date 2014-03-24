@@ -182,6 +182,7 @@ body {
 	right: 0;
 	width: 50%;
 	height: 100%;
+	overflow: hidden;
 }
 
 // full width container within a section or slide
@@ -237,29 +238,32 @@ body {
 
 //portrait tempate
 .slide.photo-quote-vertical {
+	.second-block {
+		img {
+			height: 100%;
+			float: right;
+		}
+	}
 
-	/*
-    .text {
-        display: inline-block;
-        float: left;
-        position: relative;
-        top: 0; left: 0;
-        width: 40%;
-        padding: 0 10px;
-    }
-    .image {
-        display: inline-block;
-        float: left;
-        position: relative;
-        width: 60%;
-        padding: 0 10px;
-        img {
-            width: 100%;
-            height: auto;
-        }
-        vertical-align: middle;
-    }*/
+	blockquote {
+		position: absolute;
+		top: 30%;
+		left: 0;
+		border: none;
+		margin: 0;
+		padding: 0 50px;
+		text-shadow: 0 2px 5px #444;
 
+		p {
+			font-size: 42px;
+			font-weight: bold;
+			line-height: 1.2;
+		}
+
+		dl {
+			font-size: 18px;
+		}
+	}
 }
 
 //pano tempate
