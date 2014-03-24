@@ -1319,7 +1319,6 @@
 			nav.find('li').first().find('a').addClass('active');
 		}
 
-
 		/**
 		* Sets the URL hash for a section with slides
 		*/

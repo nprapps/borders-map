@@ -68,7 +68,7 @@ var setUpFullPage = function() {
         scrollOverflow: true,
         resize: false,
         css3: true,
-        scrollingSpeed: 500,
+        scrollingSpeed: 100,
         loopHorizontal: false,
         easing: 'swing',
         afterLoad: lazyLoad,
