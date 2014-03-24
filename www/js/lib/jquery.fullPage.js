@@ -838,14 +838,14 @@
 		 */
 		$('.section').on('click', '.controlArrow', function() {
 			if ($(this).hasClass('prev')) {
-		        		$.fn.fullpage.moveSlideLeft();
-		     	}
-		     	else if ($(this).hasClass('nextChapter')) {
-		     		$.fn.fullpage.moveSectionDown();
-		     	}
-		     	else {
-		        		$.fn.fullpage.moveSlideRight();
-		    		}
+        		$.fn.fullpage.moveSlideLeft();
+	     	}
+	     	else if ($(this).hasClass('nextChapter')) {
+	     		$.fn.fullpage.moveSectionDown();
+	     	}
+	     	else {
+        		$.fn.fullpage.moveSlideRight();
+    		}
 		});
 
 
@@ -942,8 +942,6 @@
 
 					if (slideIndex == 0) {
 						section.find('.controlArrow.next').hide();
-						section.find('.controlArrow.nextChapter').hide();
-						section.find('.controlArrow.prev').css('right', '');
 					}
 					else if (destiny.is(':last-child')) {
 						section.find('.controlArrow.next').hide();

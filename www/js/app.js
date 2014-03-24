@@ -15,7 +15,6 @@ var $arrows;
 var $titlecardButtons;
 var $navButton;
 var $nav;
-var nextChapterButton;
 var panoDirection = 'right';
 var slug;
 var chapter;
@@ -525,7 +524,6 @@ $(document).ready(function() {
     $panos = $('.pano-container');
     $titlecardButtons = $('.btn-play');
     $navButton = $('.primary-navigation-btn');
-    $nextChapterButton = $('.controlArrow.nextChapter');
     $nav = $('.nav');
     if (window.location.hash) {
         slug = window.location.hash.substring(1);
