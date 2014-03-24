@@ -202,7 +202,7 @@
 				slides.parent().wrap('<div class="slides" />');
 
 				$(this).find('.slidesContainer').css('width', sliderWidth + '%');
-				$(this).find('.slides').after('<div class="controlArrow prev"></div><div class="controlArrow next"></div>');
+				$(this).find('.slides').after('<div class="controlArrow prev"></div><div class="controlArrow next"></div><div class="controlArrow nextChapter"</div>');
 
 				if(options.controlArrowColor!='#fff'){
 					$(this).find('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
@@ -839,7 +839,11 @@
 		$('.section').on('click', '.controlArrow', function() {
 			if ($(this).hasClass('prev')) {
 		        		$.fn.fullpage.moveSlideLeft();
-		     	} else {
+		     	}
+		     	else if ($(this).hasClass('nextChapter')) {
+		     		$.fn.fullpage.moveSectionDown();
+		     	}
+		     	else {
 		        		$.fn.fullpage.moveSlideRight();
 		    		}
 		});
@@ -938,12 +942,18 @@
 
 					if (slideIndex == 0) {
 						section.find('.controlArrow.next').hide();
+						section.find('.controlArrow.nextChapter').hide();
+						section.find('.controlArrow.prev').css('right', '');
 					}
 					else if (destiny.is(':last-child')) {
 						section.find('.controlArrow.next').hide();
+						section.find('.controlArrow.nextChapter').show();
+						section.find('.controlArrow.prev').css('right', 275);
 					}
 					else {
 						section.find('.controlArrow.next').show();
+						section.find('.controlArrow.nextChapter').hide();
+						section.find('.controlArrow.prev').css('right', '');
 					}
 				}
 

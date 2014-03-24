@@ -15,6 +15,7 @@ var $arrows;
 var $titlecardButtons;
 var $navButton;
 var $nav;
+var nextChapterButton;
 var panoDirection = 'right';
 var slug;
 var chapter;
@@ -123,14 +124,20 @@ var lazyLoad = function(anchor, index) {
     // set the slug for the new section
     slug = thisSection.data('anchor');
 
+    // set the next chapter button
+    var nextChapterButton =  $(thisSection).find('.controlArrow.nextChapter');
+    var nextChapter = $(nextSection).data('chapter');
+    nextChapterButton.html(nextChapter);
+
     // fade in the title
     thisSection.find('.text').addClass('fade');
     thisSection.find('.text').css('opacity', 1);
 
-    // hide the next arrow
+    // hide the next arrow on titlecards
     if ($(slides).first().hasClass('active') === true) {
         $(thisSection).find('.controlArrow').hide();
     }
+
 };
 
 var fadeOutText = function() {
@@ -261,7 +268,6 @@ var fadeInNav = function() {
 var fadeOutNav = function() {
     $nav.css('display', 'none');
 }
-
 
 var revealVideo = function() {
 
@@ -514,6 +520,7 @@ $(document).ready(function() {
     $panos = $('.pano-container');
     $titlecardButtons = $('.btn-play');
     $navButton = $('.primary-navigation-btn');
+    $nextChapterButton = $('.controlArrow.nextChapter');
     $nav = $('.nav');
     if (window.location.hash) {
         slug = window.location.hash.substring(1);
