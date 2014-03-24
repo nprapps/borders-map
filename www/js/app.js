@@ -244,7 +244,7 @@ var showNav = function() {
     }
     else {
         $nav.css('opacity', 0);
-        var fade = _.debounce(fadeOutNav, 250);
+        var fade = _.debounce(fadeOutNav, 500);
         fade();
     }
 }
