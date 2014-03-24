@@ -106,9 +106,8 @@ body {
 
 
 .next-section {
+    width: 50%;
     min-width: 250px;
-    width: auto;
-    max-width: 300px;
     text-align: right;
     float: right;
     &:after {
@@ -556,10 +555,7 @@ body {
 
     	//transition between slides
 		.instant {
-		    -webkit-transition: all 0 ease;
-		    -moz-transition: all 0 ease;
-		    -o-transition: all 0 ease;
-		    transition: all 0 ease;
+		    .transition(all 0.75s cubic-bezier(0.645, 0.045, 0.355, 1));
 		}
 
     	.slidesContainer {

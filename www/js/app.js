@@ -16,6 +16,7 @@ var $titlecardButtons;
 var $navButton;
 var $nav;
 var $nextSectionButton;
+var $nextSectionTease;
 var panoDirection = 'right';
 var slug;
 var chapter;
@@ -98,9 +99,10 @@ var onPageLoad = function() {
     }
 
     // set the next chapter button
-    var next = $('.section.active').next().data('chapter');
-    $nextSectionButton.html(next);
-    $nextSectionButton.width('auto');
+    if ($w > 768) {
+        var next = $('.section.active').next().data('chapter');
+        $nextSectionTease.html(': ' + next);
+    }
 };
 
 var lazyLoad = function(anchor, index) {
@@ -130,8 +132,11 @@ var lazyLoad = function(anchor, index) {
     slug = thisSection.data('anchor');
 
     // set the next chapter button
-    var next = $(nextSection).data('chapter');
-    $nextSectionButton.html(next);
+    if ($w > 768) {
+        var next = $(nextSection).data('chapter');
+        $nextSectionTease.html(': ' + next);
+    }
+
 
     // fade in the title
     thisSection.find('.text').addClass('fade');
@@ -529,6 +534,7 @@ $(document).ready(function() {
     $titlecardButtons = $('.btn-play');
     $navButton = $('.primary-navigation-btn');
     $nextSectionButton = $('.next-section');
+    $nextSectionTease = $('.section-tease')
     $nav = $('.nav');
     if (window.location.hash) {
         slug = window.location.hash.substring(1);
