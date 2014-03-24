@@ -942,6 +942,8 @@
 
 					if (slideIndex == 0) {
 						section.find('.controlArrow.next').hide();
+						section.find('.controlArrow.nextChapter').hide();
+						section.find('.controlArrow.prev').css('right', '');
 					}
 					else if (destiny.is(':last-child')) {
 						section.find('.controlArrow.next').hide();
