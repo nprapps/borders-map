@@ -64,12 +64,13 @@ var setUpFullPage = function() {
         autoScrolling: false,
         anchors: anchors,
         menu: '.nav',
+        easing: 'easeOutQuad',
         verticalCentered: false,
         fixedElements: '.primary-navigation, .nav',
         scrollOverflow: true,
         resize: false,
         css3: true,
-        scrollingSpeed: 100,
+        scrollingSpeed: 750,
         loopHorizontal: false,
         easing: 'swing',
         afterLoad: lazyLoad,
@@ -555,4 +556,20 @@ $(document).ready(function() {
 
     // Redraw slides if the window resizes
     $(window).resize(breakSlidesForMobile);
+
+    /*
+    * disable keyboard scrolling so that the animation isn't jittery when using keyboard
+    * navigation. http://stackoverflow.com/questions/1056562/how-do-i-prevent-scrolling-with-arrow-keys-but-not-the-mouse
+    */
+
+    var keys=new Array(33,34,35,36,37,38,39,40);
+
+    $(document).keydown(function(e) {
+         var key = e.which;
+          if($.inArray(key,keys) > -1) {
+              e.preventDefault();
+              return false;
+          }
+          return true;
+    });
 });
