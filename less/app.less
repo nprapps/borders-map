@@ -103,13 +103,10 @@ body {
     background-color: #333;
     z-index: 9;
     font-size: 16px;
+    min-width: 250px;
     width: 25%;
     opacity: 0;
     .transition(opacity 0.5s ease);
-
-    @media @screen-tiny {
-        width: 75%;
-    }
 
     &.active {
         display: block;
