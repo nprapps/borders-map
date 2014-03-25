@@ -280,7 +280,7 @@ body {
 		border: none;
 		margin: 0;
 		padding: 0 50px;
-		text-shadow: 0 2px 5px #444;
+		color: #444;
 
 		p {
 			font-size: 28px;
@@ -292,7 +292,6 @@ body {
 		dl {
 			margin-top: 40px;
 			opacity: .8;
-			font-style: italic;
 			font-size: 15px;
 		}
 
@@ -327,9 +326,12 @@ body {
 				font-weight: bold;
 			}
 
-			dl {
-				font-size: 22px;
-			}
+			
+		}
+		
+		dl {
+		text-align: left;
+		font-size: 22px;
 		}
 	}
 }
@@ -557,7 +559,7 @@ body {
 
     	//transition between slides
 		.instant {
-		    .transition(all 0.75s cubic-bezier(0.445, 0.05, 0.55, 0.95));
+		    .transition(all 0s cubic-bezier(0.445, 0.05, 0.55, 0.95));
 		}
 
     	.slidesContainer {
