@@ -157,9 +157,10 @@ var lazyLoad = function(anchor, index) {
 };
 
 var showSectionNav = function(anchor, index, slideIndex, direction) {
+    console.log(anchor, index, slideIndex, direction)
+
     if (slideIndex >= 0 && direction === 'right') {
         $nextSectionButton.show();
-        console.log('shown');
     }
     else if (slideIndex > 1 && direction === 'left') {
         $nextSectionButton.show();

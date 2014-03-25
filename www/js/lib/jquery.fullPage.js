@@ -670,7 +670,6 @@
 				, options.scrollingSpeed, options.easing, function () {
 					//fix section order from continuousVertical
 					continuousVerticalFixSectionOrder();
-					console.log(options.easing);
 
 					//callback (afterLoad)
 					$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
@@ -698,9 +697,16 @@
 			var section = value[0];
 			var slide = value[1];
 
-			if(section){  //if theres any #
+
+			if(section && slide === undefined) {
+				scrollPage(section);
+			}
+
+			else if(section){  //if theres any #
 				scrollPageAndSlide(section, slide);
 			}
+
+			console.log(slide);
 		}
 
 		//detecting any change on the URL to scroll to the given anchor link
