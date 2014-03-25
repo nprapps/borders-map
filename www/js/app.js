@@ -29,7 +29,15 @@ var story_start = 0;
 var story_end_1 = 673;
 var story_end_2 = 771;
 var is_touch = Modernizr.touch;
-
+var active_counter = null;
+var begin = moment();
+var COUNTS = [
+    ['marijuana', 0.08844, 'pounds of marijuana seized.'],
+    ['cocaine', 0.00069 * 12, 'ounces of cocaine seized.'],
+    ['illegal-entry', 0.01065, 'people apprehended for illegal entry.'],
+    ['vehicles', 2.15096, 'vehicles crossed the border legally.'],
+    ['pedestrians', 1.30102, 'pedestrians crossed the border legally.']
+]
 
 var breakSlidesForMobile = function() {
     /*
@@ -154,6 +162,10 @@ var lazyLoad = function(anchor, index) {
     // fade in the title
     thisSection.find('.text').addClass('fade');
     thisSection.find('.text').css('opacity', 1);
+
+    if (anchor === 'dashboard') {
+        onStartCounts();
+    }
 };
 
 var showSectionNav = function(anchor, index, slideIndex, direction) {
@@ -539,6 +551,28 @@ var onStoryPlayerButtonClick = function(e){
     e.data.player.jPlayer('play');
 };
 
+var onUpdateCounts = function(e) {
+    /*
+    * Handler for starting the dashboard counts.
+    */
+    var now = moment();
+    var elapsed_seconds = (now-begin) / 1000;
+
+    _.each(COUNTS, function(count, i){
+        var count_category = count[0];
+        var count_number = count[1];
+        var count_unit = count[2];
+
+        $('#' + count_category).html(Math.round(count_number * elapsed_seconds) + ' ' + count_unit);
+    });
+
+};
+
+
+var onStartCounts = function(e) {
+    active_counter = setInterval(onUpdateCounts,500);
+}
+
 $(document).ready(function() {
 
     /*
@@ -555,7 +589,7 @@ $(document).ready(function() {
     $titlecardButtons = $('.btn-play');
     $navButton = $('.primary-navigation-btn');
     $nextSectionButton = $('.next-section');
-    $nextSectionTease = $('.section-tease')
+    $nextSectionTease = $('.section-tease');
     $nav = $('.nav');
     if (window.location.hash) {
         slug = window.location.hash.substring(1);
@@ -592,4 +626,5 @@ $(document).ready(function() {
           }
           return true;
     });
+
 });

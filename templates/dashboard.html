@@ -1,0 +1,19 @@
+</div>
+
+<div data-anchor="{{ row.data_panel }}" data-chapter="{{ row.chapter_title }}" class="dashboard section {% if row.extra_class %} {{ row.extra_class }} {% endif %}" style="{% if row.image %} background-image: url('assets/img/{{ row.image }}'); {% endif %} {% if row.color %} background-color: {{ row.color }}; {% endif %}">
+
+    <div class="text full-block {% if row.text_background == 'yes' %} text-bg {% endif %}">
+        <div class="full-block-cell">
+            <div class="full-block-content">
+                {{ row.text }}
+
+                <div id="marijuana">0 pounds of marijuana have been seized.</div>
+                <div id="cocaine">0 pounds of cocaine have been seized.</div>
+                <div id="illegal-entry">0 people have been apprehended for illegal entry.</div>
+                <div id="vehicles">0 vehicles have crossed the border legally.</div>
+                <div id="pedestrians">0 pedestrians have crossed the border legally.</div>
+
+            </div><!--full-block-content-->
+        </div><!--full-block-cell-->
+    </div><!--full-block-->
+</div><!--section-->
