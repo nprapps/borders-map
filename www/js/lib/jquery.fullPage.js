@@ -971,7 +971,7 @@
 					}
 
 					slideMoving = false;
-				}, options.scrollingSpeed, options.easing);
+				}, 0, options.easing);
 			}else{
 				slidesContainer.animate({
 					scrollLeft : destinyPos.left

@@ -86,10 +86,12 @@ body {
 
 .primary-navigation-btn, .next-section {
     font-size: 14px;
+    @media @screen-tiny { font-size: 12px; }
     padding: 15px;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
+    width: 50%;
 }
 
 .primary-navigation-btn {
@@ -106,8 +108,6 @@ body {
 
 
 .next-section {
-    width: 50%;
-    min-width: 250px;
     text-align: right;
     float: right;
     &:after {
@@ -144,7 +144,6 @@ body {
                 overflow: hidden;
             }
         }
-
     }
 }
 
@@ -555,7 +554,7 @@ body {
 
     	//transition between slides
 		.instant {
-		    .transition(all 0.75s cubic-bezier(0.445, 0.05, 0.55, 0.95));
+		    .transition(all 0 ease-in);
 		}
 
     	.slidesContainer {

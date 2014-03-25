@@ -17,6 +17,7 @@ var $navButton;
 var $nav;
 var $nextSectionButton;
 var $nextSectionTease;
+var nextSection;
 var panoDirection = 'right';
 var slug;
 var chapter;
@@ -74,6 +75,7 @@ var setUpFullPage = function() {
         loopHorizontal: false,
         afterLoad: lazyLoad,
         onLeave: fadeOutText,
+        onSlideLeave: showSectionNav,
         afterRender: onPageLoad
     });
 };
@@ -100,9 +102,11 @@ var onPageLoad = function() {
 
     // set the next chapter button
     if ($w > 768) {
-        var next = $('.section.active').next().data('chapter');
-        $nextSectionTease.html(': ' + next);
+        nextSection = $('.section.active').next().data('chapter');
+        $nextSectionTease.html(': ' + nextSection);
     }
+
+    $nextSectionButton.hide();
 };
 
 var lazyLoad = function(anchor, index) {
@@ -111,6 +115,7 @@ var lazyLoad = function(anchor, index) {
         getBackgroundImages($slides);
         setTimeout(setUpAudio, 1000);
     }
+
     // load the next section
     var nextSection = $sections[index];
     var slides = $(nextSection).find('.slide ');
@@ -128,8 +133,11 @@ var lazyLoad = function(anchor, index) {
     if (anchor === 'panos') {
         getPanoImages(slides);
     }
+
     // set the slug for the new section
     slug = thisSection.data('anchor');
+
+
 
     // set the next chapter button
     if ($w > 768) {
@@ -137,17 +145,29 @@ var lazyLoad = function(anchor, index) {
         $nextSectionTease.html(': ' + next);
     }
 
+    // hide slide/section nav on titlecards
+    if ($(slides).first().hasClass('active') === true) {
+        $(thisSection).find('.controlArrow').hide();
+        $nextSectionButton.hide();
+    }
 
     // fade in the title
     thisSection.find('.text').addClass('fade');
     thisSection.find('.text').css('opacity', 1);
-
-    // hide the next arrow on titlecards
-    if ($(slides).first().hasClass('active') === true) {
-        $(thisSection).find('.controlArrow').hide();
-    }
-
 };
+
+var showSectionNav = function(anchor, index, slideIndex, direction) {
+    if (slideIndex >= 0 && direction === 'right') {
+        $nextSectionButton.show();
+        console.log('shown');
+    }
+    else if (slideIndex > 1 && direction === 'left') {
+        $nextSectionButton.show();
+    }
+    else {
+        $nextSectionButton.hide();
+    }
+}
 
 var fadeOutText = function() {
     _.each($sections, function(section) {
