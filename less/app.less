@@ -97,7 +97,7 @@ body {
 .primary-navigation-btn {
 	display: inline-block;
     float: left;
-
+	max-width: 140px;
 	&:hover {
         //background-color: #fff;
         color: #fff;
@@ -121,30 +121,59 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #333;
+    background-color: rgba(255,255,255,.7);
     z-index: 9;
     font-size: 16px;
     min-width: 250px;
-    width: 25%;
+    width: 100%;
+    height: 100%;
     opacity: 0;
+    overflow: auto;
     display: none;
     .transition(opacity 0.5s ease);
+    background-color: rgba(0,0,0,.7);
+    //background: url(../assets/img/playlist.jpg) no-repeat center center;
+	//background-size: cover;
 
     ul {
         list-style-type: none;
-        padding: 10px;
+        padding: 0;
         li {
-            padding-bottom: 15px;
+            padding: 3px 10px;
             &.active {
-                font-weight: bold;
+                a {
+                	background-color: rgba(255,255,255,1);
+                	color: #000;
+                }
             }
             a {
-                text-transform: uppercase;
-                color: white;
+            	display: block;
+				padding: 20px;
+                color: #fff;
                 overflow: hidden;
+                text-align: left;
+                text-transform: uppercase;
+                font-weight: bold;
+                
+                
+                &:hover {
+			        background-color: rgba(255,255,255,1);
+					text-decoration: none;
+					color: #000;
+			    }
             }
         }
     }
+    
+    .close-nav {
+		text-transform: uppercase;
+		font-size: 14px;
+		font-weight: bold;
+		text-align: right;
+		display: block;
+		padding: 10px;
+		cursor: pointer;
+	}
 }
 
 //credit

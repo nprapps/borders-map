@@ -276,7 +276,7 @@ var onTitlecardButtonClick = function() {
 };
 
 var showNav = function() {
-    $nav.height($h);
+    //$nav.height($h);
     $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
     $nav.toggleClass('active');
     if ($nav.hasClass('active')) {
