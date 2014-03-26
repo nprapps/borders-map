@@ -70,16 +70,19 @@ var onPageLoad = function() {
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     var thisSlide = $slides[slideIndex];
-    var nextSlide = $slides[slideIndex + 1];
 
     if ($(thisSlide).data('anchor')) {
         currentSection = $(thisSlide).data('anchor');
         findSlideIndex();
     };
 
-    console.log(currentSectionIndex);
-
-    slides = [thisSlide, nextSlide];
+    slides = [
+        $slides[slideIndex - 2],
+        $slides[slideIndex - 1],
+        thisSlide,
+        $slides[slideIndex + 1],
+        $slides[slideIndex + 2]
+    ];
 
     getBackgroundImages(slides)
 
@@ -106,7 +109,6 @@ var findSlideIndex = function() {
 }
 
 var getBackgroundImages = function(slides) {
-    console.log(slides);
     _.each($(slides), function(slide) {
         var image = 'assets/img/' + $(slide).data('bgimage');
 
