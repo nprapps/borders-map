@@ -11,10 +11,7 @@
     {% include "%s.html"|format(row.template) ignore missing %}
 {% endfor %}
 </div>
-<div class="primary-navigation">
-	<div class="primary-navigation-btn"><i class="fa fa-bars"></i> Contents</div>
-    <div class="next-section"><span>Next Section<span class="section-tease"></span></span></div>
-</div>
+<div class="primary-navigation-btn"><i class="fa fa-bars"></i> Contents</div>
 
 <div class="nav">
 <span class="close-nav"><i class="fa fa-times"></i> Close</span>
@@ -26,8 +23,6 @@
                 {% endif %}
             {% endif %}
         {% endfor %}
-        <li data-menuanchor="listen"><a href="#listen">Listen to Borderland</a></li>
-        <li data-menuanchor="about"><a href="#about">About Borderland</a></li>
     </ul>
 </div>
 

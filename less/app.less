@@ -73,47 +73,56 @@ body {
         }
     }
 
-// primary navigation
-.primary-navigation {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	z-index: 10;
-	color: #ddd;
-	background-color: rgba(0,0,0,.4);
-	width: 100%;
-}
-
-.primary-navigation-btn, .next-section {
-    font-size: 14px;
-    @media @screen-tiny { font-size: 12px; }
-    padding: 15px;
+.primary-navigation-btn, .controlArrow {
+    background-color: #fafafa;
+    position: absolute;
+    color: #000;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
-    width: 50%;
 }
 
 .primary-navigation-btn {
-	display: inline-block;
-    float: left;
-	max-width: 140px;
-	&:hover {
-        //background-color: #fff;
+    bottom: 10px;
+    left: 15px;
+    font-size: 12px;
+    @media @screen-tiny-above { font-size: 14px; }
+    padding: 15px;
+    display: inline-block;
+    i {padding-right: 5px;}
+    max-width: 140px;
+    &:hover {
+        background-color: #000;
         color: #fff;
     }
-
-	i {padding-right: 5px;}
 }
 
-
-.next-section {
-    text-align: right;
-    float: right;
-    &:after {
+//slide navigation
+.controlArrow {
+    bottom: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 20;
+    line-height: 2.1;
+}
+.controlArrow.prev {
+    right: 60px;
+    @media @screen-small-above { right: 85px; }
+    &:before {
         font-family: "FontAwesome";
-        content: "\f078";
-        padding-left: 5px;
+        content: '\f053';
+    }
+}
+.controlArrow.next {
+    right: 0px;
+    padding: 0 0 0 5px;
+    @media @screen-small-above { right: 15px; }
+    &:before {
+        font-family: "FontAwesome";
+        content: "\f054"
     }
 }
 
@@ -452,141 +461,6 @@ body {
 	}
 }
 
-/*playlist template */
-#playlist {
-	background-color: #fff;
-	position: relative;
-
-	h2,	h3, p {color: #555;}
-
-	.second-block {
-		background: url(../assets/img/playlist.jpg) no-repeat center center;
-	}
-
-
-	.jp-playlist {
-		height: 100%;
-		width: 100%;
-		padding: 20px 10px 170px 10px;
-
-		overflow: auto;
-		position: absolute;
-		top: 0;
-		left: 0;
-
-
-		li {
-		font-size: 14px;
-		margin-top: 5px;
-		padding-bottom: 10px;
-		border-bottom: 1px solid #999;
-		}
-	}
-
-	//audio player
-	.jp-gui {
-	    position: absolute;
-	    bottom: 0;
-	    left: 0;
-	    width: 100%;
-	    border-top: 5px solid #CF9D98;
-	}
-
-	.jp-interface {
-	    position: relative;
-	    width:100%;
-	    background-color:#963432; /* Required for the full screen */
-	}
-
-	.jp-controls-holder {
-	    width:30%;
-	    float: left;
-	    background-color: #B87068;
-	    height: 140px;
-	    display: table;
-	}
-
-	.jp-controls {
-	    list-style-type:none;
-	    width: 100%;
-	    height: 100%;
-	    display: table-cell;
-	}
-
-	.jp-controls li {
-	    display:inline;
-	    float: left;
-	    width: 50px;
-	    height: 50px;
-	    padding: 15px 0 0 8px;
-	    font-size: 24px;
-	    }
-
-
-	.player-info {
-	    width: 70%;
-	    float: right;
-	    position: relative;
-	    height: 140px;
-	    background-color: #B4645C;
-	    padding: 10px;
-	}
-
-	.jp-seek-bar {
-	    position: absolute;
-	    top: 70px;
-	    background-color: #CF9D98;
-	    height: 10px;
-	    margin: 0 10px;
-	}
-
-	.jp-play-bar {
-	    background-color: #B87068;
-	    height: 10px;
-	}
-
-	.jp-current-time, .jp-duration {
-	    width:70px;
-	    font-size:12px;
-	    color: #eee;
-	    padding: 10px;
-	}
-
-	.jp-current-time {
-	    float: left;
-	}
-
-	.jp-duration {
-	    float: right;
-	    text-align:right;
-	}
-
-	.jp-title ul,
-	.jp-playlist ul {
-	    list-style-type:none;
-	    margin: 0;
-	    padding: 0;
-	}
-	.jp-title li {
-	    position: relative;
-	    padding: 2px 0;
-	    overflow: hidden;
-	}
-
-	.jp-title ul {
-	    font-size: 18px;
-	    color: #eee;
-	}
-
-	.jp-title li{
-	    border-bottom:none;
-	    border-top:none;
-	    padding:0;
-	    text-align:center;
-	}
-
-}
-
 /*credits template */
 #credits {
 	background-color: #ccc;
@@ -653,163 +527,3 @@ opacity: 0;
     background-position: center center;
     position: relative;
 }
-
-//slide navigation
-.controlArrow {
-    background-color: #fafafa;
-    position: absolute;
-    bottom: 65px;
-    @media @screen-small-above { bottom: 65px; }
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    z-index: 20;
-    line-height: 2.1;
-}
-.controlArrow.prev {
-    right: 60px;
-    color: #000;
-    @media @screen-small-above { right: 85px; }
-    &:before {
-        font-family: "FontAwesome";
-        content: '\f053';
-    }
-}
-.controlArrow.next {
-    right: 0px;
-    color: #000;
-     padding: 0 0 0 5px;
-    @media @screen-small-above { right: 15px; }
-    &:before {
-        font-family: "FontAwesome";
-        content: "\f054"
-    }
-}
-
-/**
- * fullPage 1.6.6
- * https://github.com/alvarotrigo/fullPage.js
- * MIT licensed
- *
- * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
- */
-
-/*
-fullPage default styles we don't need
-
-
-html, body {
-    margin: 0;
-    padding: 0;
-    overflow:hidden;
-}
-
-.section.table, .slide.table {
-    display: table;
-    width: 100%;
-}
-.tableCell {
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%;
-    height: 100%;
-}
-
-.scrollable {
-    overflow: scroll;
-}
-
-#fullPage-nav {
-    position: fixed;
-    z-index: 100;
-    margin-top: -32px;
-    top: 50%;
-    opacity: 1;
-}
-#fullPage-nav.right {
-    right: 17px;
-}
-#fullPage-nav.left {
-    left: 17px;
-}
-.fullPage-slidesNav {
-    position: absolute;
-    z-index: 4;
-    left: 50%;
-    opacity: 1;
-}
-.fullPage-slidesNav.bottom {
-    bottom: 17px;
-}
-.fullPage-slidesNav.top {
-    top: 17px;
-}
-#fullPage-nav ul,
-.fullPage-slidesNav ul {
-  margin: 0;
-  padding: 0;
-}
-#fullPage-nav li,
-.fullPage-slidesNav li {
-    display: block;
-    width: 14px;
-    height: 13px;
-    margin: 7px;
-    position:relative;
-}
-.fullPage-slidesNav li {
-    display: inline-block;
-}
-#fullPage-nav li a,
-.fullPage-slidesNav li a {
-    display: block;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    text-decoration: none;
-}
-#fullPage-nav li .active span,
-.fullPage-slidesNav .active span {
-    background: #333;
-}
-#fullPage-nav span,
-.fullPage-slidesNav span {
-    top: 2px;
-    left: 2px;
-    width: 8px;
-    height: 8px;
-    border: 1px solid #000;
-    background: rgba(0, 0, 0, 0);
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    position: absolute;
-    z-index: 1;
-}
-.fullPage-tooltip {
-    position: absolute;
-    color: #fff;
-    font-size: 14px;
-    font-family: arial, helvetica, sans-serif;
-    top: -2px;
-}
-.fullPage-tooltip.right {
-    right: 20px;
-}
-.fullPage-tooltip.left {
-    left: 20px;
-}
-
-.easing {
-    -webkit-transition: all 0.8s ease;
-    -moz-transition: all 0.8s ease;
-    -o-transition: all 0.8s ease;
-    transition: all 0.8s ease;
-}
-
-*/
