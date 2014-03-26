@@ -86,6 +86,10 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     // hide slide/section nav on titlecards
     if ($slides.first().hasClass('active') === true) {
         $slides.find('.controlArrow').hide();
+        $('.next-section').css('display', 'none');
+    }
+    else {
+        $('.next-section').css('display', 'block');
     }
 
     if (slideAnchor === 'dashboard') {
