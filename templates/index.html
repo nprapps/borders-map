@@ -15,20 +15,20 @@
 <div class="next-section">Next Section</div>
 
 <div class="nav">
-    <span class="close-nav"><i class="fa fa-times"></i> Close</span>
-    <div class="container-fluid">
+<!--     <span class="close-nav"><i class="fa fa-times"></i> Close</span>
         <div class="row">
             <div class="col-md-12 nav-title">
                 <h3>Borderland Stories</h3>
             </div>
-        </div>
+        </div> -->
+    <div class="container-fluid">
         <div class="row">
             {% for row in COPY.content %}
                 {% if row.chapter_title %}
                     {% if row.chapter_title != 'chapter_title' %}
                     <a data-menuanchor="{{row.data_panel}}" href="#/{{row.data_panel}}">
                         <div class="section-tease col-md-3 col-sm-12">
-                            <img class="visible-md visible-lg" src="assets/img/{{row.menu_image}}">
+                            <img src="assets/img/{{row.menu_image}}">
                             <h4>{{row.chapter_title}}</h4>
                         </div>
                     </a>
