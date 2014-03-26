@@ -97,6 +97,10 @@ var getBackgroundImages = function(slides) {
     });
 };
 
+var gotoNextSlide = function() {
+    $.fn.fullpage.moveSlideRight();
+}
+
 var showNav = function() {
     //$nav.height($h);
     $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
@@ -213,6 +217,7 @@ $(document).ready(function() {
     $portraits = $('.section[data-anchor="people"] .slide')
     $navButton = $('.primary-navigation-btn');
     $nav = $('.nav');
+    $titleCardButton = $('.btn-play');
 
     // init chapters
 
@@ -223,6 +228,8 @@ $(document).ready(function() {
 
     $play_video.on('click', revealVideo);
     $navButton.on('click', showNav);
+    $titleCardButton.on('click', gotoNextSlide);
+
 
     // Redraw slides if the window resizes
     $(window).resize(breakSlidesForMobile);
