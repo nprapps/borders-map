@@ -949,7 +949,7 @@
 
                 if(!options.loopHorizontal){
                     section.find('.controlArrow.prev').toggle(slideIndex!=0);
-                    section.find('.controlArrow.next').show();
+                    section.find('.controlArrow.next').toggle(slideIndex!=0);
                 }
 
                 setURLHash(slideIndex, slideAnchor, anchorLink);

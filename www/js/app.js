@@ -57,7 +57,7 @@ var setUpFullPage = function() {
 
 var onPageLoad = function() {
     // always get the home stuff
-    lazyLoad(0);
+    lazyLoad('_', 0, 'home', 0);
 
     $('.section.active').find('.controlArrow').hide();
 
