@@ -17,11 +17,12 @@ var $nextSectionButtton;
 var currentSection = '_'
 var currentSectionIndex = 0;
 var anchors;
+var player;
 var is_touch = Modernizr.touch;
 var active_counter = null;
 var begin = moment();
 
-var breakSlidesForMobile = function() {
+var resize = function() {
     /*
     * break slides into multiple slides if the screen is too small
     */
@@ -51,7 +52,6 @@ var setUpFullPage = function() {
         menu: '.nav',
         verticalCentered: false,
         fixedElements: '.primary-navigation, .nav',
-        scrollOverflow: true,
         resize: false,
         css3: true,
         loopHorizontal: false,
@@ -156,7 +156,7 @@ var revealVideo = function() {
     var text = $(this).parents('.text');
     $(text).hide();
     $(text).parent().css('background-image', '');
-    $(text).next().css('display', 'table-cell');
+    $(text).next().css('display', 'block');
     var player = text.siblings('#player');
     initPlayer(player);
 };
@@ -167,7 +167,7 @@ var initPlayer = function(player) {
     * Setup JWPlayer.
     */
 
-    jwplayer('player').setup({
+    var player = jwplayer('player').setup({
         modes: [{
             type: 'flash',
             src: 'http://www.npr.org/templates/javascript/jwplayer/player.swf',
@@ -192,10 +192,12 @@ var initPlayer = function(player) {
         controlbar: 'over',
         icons: 'true',
         autostart: false,
-        width: '100%',
+        width: $w,
         height: $h - 50
     });
-    jwplayer('player').play();
+    player.play();
+
+    $(window).resize(player.resize($w, $h));
 
 };
 
@@ -247,7 +249,7 @@ $(document).ready(function() {
 
     // init chapters
 
-    breakSlidesForMobile();
+    resize();
     setUpFullPage();
 
     // handlers
@@ -262,6 +264,6 @@ $(document).ready(function() {
 
 
     // Redraw slides if the window resizes
-    $(window).resize(breakSlidesForMobile);
+    $(window).resize(resize);
 
 });
