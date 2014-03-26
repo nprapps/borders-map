@@ -264,8 +264,6 @@ $(document).ready(function() {
     $titleCardButton.on('click', goToNextSlide);
     $nextSectionButtton.on('click', goToNextSection);
 
-
-
     // Redraw slides if the window resizes
     $(window).resize(resize);
 
