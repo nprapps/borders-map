@@ -64,13 +64,8 @@ var onPageLoad = function() {
     // always get the home stuff
     lazyLoad('_', 0, 'home', 0);
 
-    $('.section.active').find('.controlArrow').hide();
-
     // fade in
     $('body').css('opacity', 1);
-
-    // find the title and fade in
-    $('.section.active').find('.text').addClass('fade').css('opacity', 1);
 };
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
@@ -125,7 +120,7 @@ var goToNextSlide = function() {
     $.fn.fullpage.moveSlideRight();
 }
 
-var showNav = function() {
+var showAndHideNav = function() {
     //$nav.height($h);
     $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
     $nav.toggleClass('active');
@@ -254,9 +249,9 @@ $(document).ready(function() {
     // handlers
 
     $play_video.on('click', revealVideo);
-    $navButton.on('click', showNav);
-    $navItems.on('click', showNav);
-    $navClose.on('click', showNav);
+    $navButton.on('click', showAndHideNav);
+    $navItems.on('click', showAndHideNav);
+    $navClose.on('click', showAndHideNav);
     $titleCardButton.on('click', goToNextSlide);
     $nextSectionButtton.on('click', goToNextSection);
 
