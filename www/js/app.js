@@ -245,7 +245,7 @@ $(document).ready(function() {
     $portraits = $('.section[data-anchor="people"] .slide')
     $navButton = $('.primary-navigation-btn');
     $nav = $('.nav');
-    $navItems = $('.nav ul li');
+    $navItems = $('.nav .section-tease');
     $navClose = $('.close-nav');
     $nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');

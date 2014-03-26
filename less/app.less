@@ -99,6 +99,10 @@ h1 {
     font-size: 20px;
 }
 
+.titlecard p {
+    text-align: center;
+}
+
 .primary-navigation-btn, .controlArrow, .next-section {
     background-color: #fafafa;
     position: absolute;
@@ -179,10 +183,9 @@ h1 {
 
 .nav {
     position: fixed;
-    bottom: 50px;
+    top: 0;
     left: 0;
-    padding-top: 60px;
-    background-color: rgba(255,255,255,.7);
+    padding-top: 20px;
     z-index: 9;
     font-size: 16px;
     min-width: 250px;
@@ -192,37 +195,13 @@ h1 {
     overflow: auto;
     display: none;
     .transition(opacity 0.5s ease);
-    background-color: rgba(0,0,0,.7);
-    //background: url(../assets/img/playlist.jpg) no-repeat center center;
-	//background-size: cover;
+    background-color: rgba(0,0,0, 1);
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-        li {
-            padding: 3px 10px;
-            &.active {
-                a {
-                	background-color: rgba(255,255,255,1);
-                	color: #000;
-                }
-            }
-            a {
-            	display: block;
-				padding: 20px;
-                color: #fff;
-                overflow: hidden;
-                text-align: left;
-                text-transform: uppercase;
-                font-weight: bold;
-
-
-                &:hover {
-			        background-color: rgba(255,255,255,1);
-					text-decoration: none;
-					color: #000;
-			    }
-            }
+    .section-tease {
+        img {
+            width: auto;
+            max-height: 190px; // for my own sanity right now
+            margin: 0 auto;
         }
     }
 
@@ -413,19 +392,19 @@ h1 {
 			bottom: 60px;
 			right: 15px;
 			padding: 20px;
-			
+
 			p {
 				font-size: 20px;
 				font-weight: bold;
 				line-height: 1.2;
 				padding: 0;
 			}
-	
+
 			dl {
 				margin-top: 10px;
 				font-size: 12px;
 			}
-	
+
 			h6 {
 				font-size: 13px;
 				margin: 0 0 20px 0;

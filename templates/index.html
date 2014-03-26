@@ -15,16 +15,23 @@
 <div class="next-section">Next Section</div>
 
 <div class="nav">
-<span class="close-nav"><i class="fa fa-times"></i> Close</span>
-    <ul>
-        {% for row in COPY.content %}
-            {% if row.chapter_title %}
-                {% if row.chapter_title != 'chapter_title' %}
-                    <li data-menuanchor="{{row.data_panel}}"><a href="#_/{{row.data_panel}}">{{row.chapter_title}}</a></li>
+    <span class="close-nav"><i class="fa fa-times"></i> Close</span>
+    <div class="container-fluid">
+        <div class="row">
+            {% for row in COPY.content %}
+                {% if row.chapter_title %}
+                    {% if row.chapter_title != 'chapter_title' %}
+                    <a data-menuanchor="{{row.data_panel}}" href="#/{{row.data_panel}}">
+                        <div class="section-tease col-md-3 col-sm-12">
+                            <img class="visible-md visible-lg" src="assets/img/{{row.menu_image}}">
+                            <h4>{{row.chapter_title}}</h4>
+                        </div>
+                    </a>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        {% endfor %}
-    </ul>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}
