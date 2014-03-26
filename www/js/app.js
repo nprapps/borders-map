@@ -169,35 +169,36 @@ var initPlayer = function(player) {
 
     var player = jwplayer('player').setup({
         modes: [{
-            type: 'flash',
-            src: 'http://www.npr.org/templates/javascript/jwplayer/player.swf',
-            config: {
-                skin: 'http://media.npr.org/templates/javascript/jwplayer/skins/mle/npr-video-archive/npr-video-archive.zip',
-                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
-                image: '../assets/img/junior/junior.jpg',
-                'hd.file': 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4'
-            }
-        }, {
             type: 'html5',
             config: {
                 levels: [
                     {
                         file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
-                        image: '../assets/img/junior/junior.jpg'
+                        file: '../assets/img/junior/junior.webm',
+                        image: '../assets/img/junior/junior.jpg',
+                        skin: 'http://media.npr.org/templates/javascript/jwplayer/skins/mle/npr-video-archive/npr-video-archive.zip',
                     }
                 ]
+            }
+        },{
+            type: 'flash',
+            src: 'http://www.npr.org/templates/javascript/jwplayer/player.swf',
+            config: {
+                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
+                image: '../assets/img/junior/junior.jpg',
+                'hd.file': 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4'
             }
         }],
         bufferlength: '5',
         controlbar: 'over',
         icons: 'true',
         autostart: false,
-        width: $w,
+        width: '100%',
         height: $h - 50
     });
     player.play();
 
-    $(window).resize(player.resize($w, $h));
+    // $(window).resize(player.resize($w, $h));
 
 };
 
