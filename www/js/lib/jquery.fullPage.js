@@ -563,6 +563,11 @@
 
         function scrollPage(element, callback, isMovementUp){
             var scrollOptions = {}, scrolledElement;
+
+            // Fixes a bug Wes found. Boy, I hope this isn't going to be a thing.
+            element = $('div[data-anchor="' + element + '"]')[0];
+            element = $(element);
+
             var dest = element.position();
             if(typeof dest === "undefined"){ return; } //there's no element to scroll, leaving the function
             var dtop = dest.top;
