@@ -174,7 +174,7 @@ var initPlayer = function(player) {
                 levels: [
                     {
                         file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
-                        file: '../assets/img/junior/junior.webm',
+                        // file: '../assets/img/junior/junior.webm',
                         image: '../assets/img/junior/junior.jpg',
                         skin: 'http://media.npr.org/templates/javascript/jwplayer/skins/mle/npr-video-archive/npr-video-archive.zip',
                     }
