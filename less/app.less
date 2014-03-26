@@ -172,7 +172,7 @@ body {
 		font-weight: bold;
 		text-align: right;
 		display: block;
-		padding: 10px;
+		padding: 10px 20px;
 		cursor: pointer;
 	}
 }
@@ -479,10 +479,29 @@ body {
 
 
 		li {
-		font-size: 14px;
-		margin-top: 5px;
+		position: relative;
+		font-size: 16px;
+		margin-top: 10px;
 		padding-bottom: 10px;
 		border-bottom: 1px solid #999;
+		padding: 0 15px 10px 45px;
+			&.jp-playlist-current {
+                	background-color: #ddd;
+            }
+		}
+		
+		.jp-artist {
+		display: block;
+		text-transform: uppercase;
+		font-size: 12px;
+		font-weight: bold;
+		margin-bottom: 3px;
+		}
+		
+		.jp-free-media {
+		position: absolute;
+		top: 0;
+		right: 0;
 		}
 	}
 
@@ -492,7 +511,7 @@ body {
 	    bottom: 0;
 	    left: 0;
 	    width: 100%;
-	    border-top: 5px solid #CF9D98;
+	    visibility: hidden;
 	}
 
 	.jp-interface {

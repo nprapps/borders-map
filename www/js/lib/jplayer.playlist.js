@@ -249,14 +249,14 @@
 						} else {
 							listItem += " | ";
 						}
-						listItem += "<a class='" + self.options.playlistOptions.freeItemClass + "' href='" + value + "' tabindex='1'><i class='fa fa-download'></i> Download</a>";
+						listItem += "<a class='" + self.options.playlistOptions.freeItemClass + "' href='" + value + "' tabindex='1'><i class='fa fa-download'></i></a>";
 					}
 				});
 				listItem += "</span>";
 			}
 
 			// The title is given next in the HTML otherwise the float:right on the free media corrupts in IE6/7
-			listItem += "<a href='javascript:;' class='" + this.options.playlistOptions.itemClass + "' tabindex='1'>" + media.title + (media.artist ? " <span class='jp-artist'>by " + media.artist + "</span>" : "") + "</a>";
+			listItem += "<span class='bpl-icon'><i class='fa fa-play'></i></span> <a href='javascript:;' class='" + this.options.playlistOptions.itemClass + "' tabindex='1'>" + (media.artist ? "<span class='jp-artist'>" + media.artist + "</span>" + media.title : "") + "</a>";
 			listItem += "</div></li>";
 
 			return listItem;
