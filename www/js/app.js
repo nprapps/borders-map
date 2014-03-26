@@ -5,8 +5,8 @@
 var $w;
 var $h;
 var $slides;
-var $sections;
 var $components;
+var $portraits;
 var $play;
 var $video;
 var $playlist;
@@ -38,13 +38,6 @@ var breakSlidesForMobile = function() {
     */
     $w = $(window).width();
     $h = $(window).height();
-    if ($w < 768 && is_touch) {
-        $components.addClass('slide');
-        chapter = $components.parents('.section');
-        store = $components.clone();
-        $components.parents('.slide').remove();
-        $(chapter).append(store);
-    }
 };
 
 var setUpFullPage = function() {
@@ -53,14 +46,15 @@ var setUpFullPage = function() {
 
     // get the anchors
 
-   _.each($sections, function(section) {
+   _.each($slides, function(section) {
         var anchor = $(section).data('anchor');
-        if (anchor === undefined) {
-            var slides = $(section).find('.slide');
-            anchor = $(slides[0]).data('anchor');
+        if (anchor === null || anchor === '_' || anchor === undefined) {
+            return false;
         }
         anchors.push(anchor);
     });
+
+   console.log(anchors);
 
     $.fn.fullpage({
         autoScrolling: false,
@@ -68,15 +62,15 @@ var setUpFullPage = function() {
         menu: '.nav',
         verticalCentered: false,
         fixedElements: '.primary-navigation, .nav',
-        scrollOverflow: true,
+        // scrollOverflow: true,
         resize: false,
         css3: true,
-        scrollingSpeed: 750,
+        scrollingSpeed: 0,
         easing: 'easeInOutSine',
         loopHorizontal: false,
         afterLoad: lazyLoad,
         onLeave: fadeOutText,
-        onSlideLeave: showSectionNav,
+        // onSlideLeave: checkForLastSlide,
         afterRender: onPageLoad
     });
 };
@@ -85,7 +79,7 @@ var onPageLoad = function() {
     // always get the home stuff
     lazyLoad('home', 0);
 
-    $('.section.active').find('.controlArrow').hide();
+    // $('.section.active').find('.controlArrow').hide();
 
     // fade in
     $('body').css('opacity', 1);
@@ -107,7 +101,7 @@ var onPageLoad = function() {
         $nextSectionTease.html(': ' + nextSection);
     }
 
-    $nextSectionButton.hide();
+    // $nextSectionButton.hide();
 };
 
 var lazyLoad = function(anchor, index) {
@@ -138,8 +132,6 @@ var lazyLoad = function(anchor, index) {
     // set the slug for the new section
     slug = thisSection.data('anchor');
 
-
-
     // set the next chapter button
     if ($w > 768) {
         var next = $(nextSection).data('chapter');
@@ -149,7 +141,7 @@ var lazyLoad = function(anchor, index) {
     // hide slide/section nav on titlecards
     if ($(slides).first().hasClass('active') === true) {
         $(thisSection).find('.controlArrow').hide();
-        $nextSectionButton.hide();
+        // $nextSectionButton.hide();
     }
 
     // fade in the title
@@ -161,19 +153,25 @@ var lazyLoad = function(anchor, index) {
     }
 };
 
-var showSectionNav = function(anchor, index, slideIndex, direction) {
-    console.log(anchor, index, slideIndex, direction)
+// var checkForLastSlide = function(anchor, index, slideIndex, direction) {
+//     var section = $('.section[data-anchor="' + anchor + '"]')
+//     if (slideIndex == section.find('.slide').length - 2) {
+//         var arrow = $(section).find('.controlArrow.next');
+//         arrow.addClass('nextChapter');
+//     }
+// }
 
-    if (slideIndex >= 0 && direction === 'right') {
-        $nextSectionButton.show();
-    }
-    else if (slideIndex > 1 && direction === 'left') {
-        $nextSectionButton.show();
-    }
-    else {
-        $nextSectionButton.hide();
-    }
-}
+// var showSectionNav = function(anchor, index, slideIndex, direction) {
+//     if (slideIndex >= 0 && direction === 'right') {
+//         $nextSectionButton.show();
+//     }
+//     else if (slideIndex > 1 && direction === 'left') {
+//         $nextSectionButton.show();
+//     }
+//     else {
+//         $nextSectionButton.hide();
+//     }
+// }
 
 var fadeOutText = function() {
     _.each($sections, function(section) {
@@ -584,6 +582,7 @@ $(document).ready(function() {
     $play_video = $('.btn-video');
     $video = $('.video');
     $components = $('.component');
+    $portraits = $('.section[data-anchor="people"] .slide')
     $playlist = $('.playlist');
     $panos = $('.pano-container');
     $titlecardButtons = $('.btn-play');

@@ -70,7 +70,7 @@
         {% for row in COPY.content %}
             {% if row.chapter_title %}
                 {% if row.chapter_title != 'chapter_title' %}
-                    <li data-menuanchor="{{row.data_panel}}"><a href="#{{row.data_panel}}">{{row.chapter_title}}</a></li>
+                    <li data-menuanchor="{{row.data_panel}}"><a href="#_/{{row.data_panel}}">{{row.chapter_title}}</a></li>
                 {% endif %}
             {% endif %}
         {% endfor %}
