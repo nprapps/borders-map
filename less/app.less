@@ -73,28 +73,32 @@ body {
         }
     }
 
-.primary-navigation-btn, .controlArrow {
+.primary-navigation-btn, .controlArrow, .next-section {
     background-color: #fafafa;
     position: absolute;
+    bottom: 10px;
     color: #000;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
 }
 
-.primary-navigation-btn {
-    bottom: 10px;
+.primary-navigation-btn, .next-section {
     left: 15px;
     font-size: 12px;
     @media @screen-tiny-above { font-size: 14px; }
     padding: 15px;
     display: inline-block;
     i {padding-right: 5px;}
-    max-width: 140px;
+    max-width: 150px;
     &:hover {
         background-color: #000;
         color: #fff;
     }
+}
+
+.next-section {
+    left: 70px;
 }
 
 //slide navigation

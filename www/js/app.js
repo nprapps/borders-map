@@ -11,6 +11,9 @@ var $play;
 var $video;
 var $navButton;
 var $nav;
+var $nextSectionButtton;
+var currentSection = '_'
+var currentSectionIndex = 0;
 var anchors;
 var is_touch = Modernizr.touch;
 var active_counter = null;
@@ -72,6 +75,13 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     var thisSlide = $slides[slideIndex];
     var nextSlide = $slides[slideIndex + 1];
 
+    if ($(thisSlide).data('anchor')) {
+        currentSection = $(thisSlide).data('anchor');
+        findSlideIndex();
+    };
+
+    console.log(currentSectionIndex);
+
     slides = [thisSlide, nextSlide];
 
     getBackgroundImages(slides)
@@ -86,6 +96,14 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     }
 };
 
+var findSlideIndex = function() {
+    for (i=0; i < anchors.length; i++) {
+        if (anchors[i] === currentSection) {
+            currentSectionIndex = i;
+        }
+    }
+}
+
 var getBackgroundImages = function(slides) {
     console.log(slides);
     _.each($(slides), function(slide) {
@@ -97,7 +115,11 @@ var getBackgroundImages = function(slides) {
     });
 };
 
-var gotoNextSlide = function() {
+var goToNextSection = function() {
+    $.fn.fullpage.moveTo(0, anchors[currentSectionIndex + 1]);
+}
+
+var goToNextSlide = function() {
     $.fn.fullpage.moveSlideRight();
 }
 
@@ -217,6 +239,7 @@ $(document).ready(function() {
     $portraits = $('.section[data-anchor="people"] .slide')
     $navButton = $('.primary-navigation-btn');
     $nav = $('.nav');
+    $nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');
 
     // init chapters
@@ -228,7 +251,8 @@ $(document).ready(function() {
 
     $play_video.on('click', revealVideo);
     $navButton.on('click', showNav);
-    $titleCardButton.on('click', gotoNextSlide);
+    $titleCardButton.on('click', goToNextSlide);
+    $nextSectionButtton.on('click', goToNextSection);
 
 
     // Redraw slides if the window resizes
