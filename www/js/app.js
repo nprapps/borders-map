@@ -11,6 +11,8 @@ var $play;
 var $video;
 var $navButton;
 var $nav;
+var $navItems;
+var $navClose;
 var $nextSectionButtton;
 var currentSection = '_'
 var currentSectionIndex = 0;
@@ -239,6 +241,8 @@ $(document).ready(function() {
     $portraits = $('.section[data-anchor="people"] .slide')
     $navButton = $('.primary-navigation-btn');
     $nav = $('.nav');
+    $navItems = $('.nav ul li');
+    $navClose = $('.close-nav');
     $nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');
 
@@ -251,8 +255,11 @@ $(document).ready(function() {
 
     $play_video.on('click', revealVideo);
     $navButton.on('click', showNav);
+    $navItems.on('click', showNav);
+    $navClose.on('click', showNav);
     $titleCardButton.on('click', goToNextSlide);
     $nextSectionButtton.on('click', goToNextSection);
+
 
 
     // Redraw slides if the window resizes
