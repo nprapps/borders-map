@@ -11,6 +11,11 @@ var $play;
 var $video;
 var $navButton;
 var $nav;
+var $navItems;
+var $navClose;
+var $nextSectionButtton;
+var currentSection = '_'
+var currentSectionIndex = 0;
 var anchors;
 var is_touch = Modernizr.touch;
 var active_counter = null;
@@ -59,18 +64,20 @@ var onPageLoad = function() {
     // always get the home stuff
     lazyLoad('_', 0, 'home', 0);
 
-    $('.section.active').find('.controlArrow').hide();
-
     // fade in
     $('body').css('opacity', 1);
-
-    // find the title and fade in
-    $('.section.active').find('.text').addClass('fade').css('opacity', 1);
 };
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     var thisSlide = $slides[slideIndex];
     var nextSlide = $slides[slideIndex + 1];
+
+    if ($(thisSlide).data('anchor')) {
+        currentSection = $(thisSlide).data('anchor');
+        findSlideIndex();
+    };
+
+    console.log(currentSectionIndex);
 
     slides = [thisSlide, nextSlide];
 
@@ -79,12 +86,24 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     // hide slide/section nav on titlecards
     if ($slides.first().hasClass('active') === true) {
         $slides.find('.controlArrow').hide();
+        $('.next-section').css('display', 'none');
+    }
+    else {
+        $('.next-section').css('display', 'block');
     }
 
     if (slideAnchor === 'dashboard') {
         onStartCounts();
     }
 };
+
+var findSlideIndex = function() {
+    for (i=0; i < anchors.length; i++) {
+        if (anchors[i] === currentSection) {
+            currentSectionIndex = i;
+        }
+    }
+}
 
 var getBackgroundImages = function(slides) {
     console.log(slides);
@@ -97,11 +116,15 @@ var getBackgroundImages = function(slides) {
     });
 };
 
-var gotoNextSlide = function() {
+var goToNextSection = function() {
+    $.fn.fullpage.moveTo(0, anchors[currentSectionIndex + 1]);
+}
+
+var goToNextSlide = function() {
     $.fn.fullpage.moveSlideRight();
 }
 
-var showNav = function() {
+var showAndHideNav = function() {
     //$nav.height($h);
     $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
     $nav.toggleClass('active');
@@ -217,6 +240,9 @@ $(document).ready(function() {
     $portraits = $('.section[data-anchor="people"] .slide')
     $navButton = $('.primary-navigation-btn');
     $nav = $('.nav');
+    $navItems = $('.nav ul li');
+    $navClose = $('.close-nav');
+    $nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');
 
     // init chapters
@@ -227,8 +253,12 @@ $(document).ready(function() {
     // handlers
 
     $play_video.on('click', revealVideo);
-    $navButton.on('click', showNav);
-    $titleCardButton.on('click', gotoNextSlide);
+    $navButton.on('click', showAndHideNav);
+    $navItems.on('click', showAndHideNav);
+    $navClose.on('click', showAndHideNav);
+    $titleCardButton.on('click', goToNextSlide);
+    $nextSectionButtton.on('click', goToNextSection);
+
 
 
     // Redraw slides if the window resizes
