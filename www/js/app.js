@@ -170,7 +170,7 @@ var initPlayer = function(player) {
         icons: 'true',
         autostart: false,
         width: '100%',
-        height: $h - 50
+        height: $h - 70
     });
     jwplayer('player').play();
 
