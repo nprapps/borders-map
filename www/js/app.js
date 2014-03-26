@@ -31,13 +31,6 @@ var story_end_2 = 771;
 var is_touch = Modernizr.touch;
 var active_counter = null;
 var begin = moment();
-var COUNTS = [
-    ['marijuana', 0.08844, 'pounds of marijuana seized.'],
-    ['cocaine', 0.00069 * 12, 'ounces of cocaine seized.'],
-    ['illegal-entry', 0.01065, 'people apprehended for illegal entry.'],
-    ['vehicles', 2.15096, 'vehicles crossed the border legally.'],
-    ['pedestrians', 1.30102, 'pedestrians crossed the border legally.']
-]
 
 var breakSlidesForMobile = function() {
     /*
@@ -553,17 +546,24 @@ var onStoryPlayerButtonClick = function(e){
 
 var onUpdateCounts = function(e) {
     /*
-    * Handler for starting the dashboard counts.
+    * Updates the count based on elapsed time and known rates.
     */
     var now = moment();
-    var elapsed_seconds = (now-begin) / 1000;
+    var elapsed_seconds = (now - begin) / 1000;
+    var RATES = [
+        ['marijuana', 0.08844],
+        ['cocaine', 0.01116],
+        ['illegal-entry', 0.01065],
+        ['vehicles', 2.15096],
+        ['pedestrians', 1.30102]
+    ]
 
-    _.each(COUNTS, function(count, i){
+    _.each(RATES, function(count, i){
         var count_category = count[0];
         var count_number = count[1];
         var count_unit = count[2];
 
-        $('#' + count_category).html(Math.round(count_number * elapsed_seconds) + ' ' + count_unit);
+        $('#' + count_category + ' span.number').html(Math.round(count_number * elapsed_seconds));
     });
 
 };
