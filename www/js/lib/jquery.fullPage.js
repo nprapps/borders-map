@@ -556,8 +556,6 @@
 
             if (slide !== 'undefined'){
                 scrollPageAndSlide(section, slide);
-            }else if(destiny.length > 0){
-                scrollPage(destiny);
             }
         };
 
@@ -676,7 +674,6 @@
                 , options.scrollingSpeed, options.easing, function () {
                     //fix section order from continuousVertical
                     continuousVerticalFixSectionOrder();
-                    console.log(options.easing);
 
                     //callback (afterLoad)
                     $.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
@@ -705,12 +702,7 @@
             var value = hashString.replace('#', '').split('/');
             var section = value[0];
             var slide = value[1];
-
-            if(section && slide === undefined) {
-                scrollPage(section);
-            }
-
-            else if(section){
+            if(section){
                 // if theres any #
                 scrollPageAndSlide(section, slide);
             }
@@ -854,6 +846,7 @@
          * Scrolling horizontally when clicking on the slider controls.
          */
         $('.section').on('click', '.controlArrow', function() {
+            console.log(this);
             if ($(this).hasClass('prev')) {
                 $.fn.fullpage.moveSlideLeft();
             }
@@ -956,16 +949,7 @@
 
                 if(!options.loopHorizontal){
                     section.find('.controlArrow.prev').toggle(slideIndex!=0);
-
-                    if (slideIndex == 0) {
-                        section.find('.controlArrow.next').hide();
-                    }
-                    else if (destiny.is(':last-child')) {
-                        section.find('.controlArrow.next').hide();
-                    }
-                    else {
-                        section.find('.controlArrow.next').show();
-                    }
+                    section.find('.controlArrow.next').toggle(slideIndex!=0);
                 }
 
                 setURLHash(slideIndex, slideAnchor, anchorLink);
@@ -1354,8 +1338,6 @@
                     if(typeof slideAnchor === 'undefined'){
                         slideAnchor = slideIndex;
                     }
-
-                    console.log(slideIndex, slideAnchor, anchorLink);
 
                     lastScrolledSlide = slideAnchor;
                     window.location.replace('#' + sectionHash + '/' + slideAnchor);
