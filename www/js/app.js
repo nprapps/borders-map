@@ -17,11 +17,12 @@ var $nextSectionButtton;
 var currentSection = '_'
 var currentSectionIndex = 0;
 var anchors;
+var player;
 var is_touch = Modernizr.touch;
 var active_counter = null;
 var begin = moment();
 
-var breakSlidesForMobile = function() {
+var resize = function() {
     /*
     * break slides into multiple slides if the screen is too small
     */
@@ -51,7 +52,6 @@ var setUpFullPage = function() {
         menu: '.nav',
         verticalCentered: false,
         fixedElements: '.primary-navigation, .nav',
-        scrollOverflow: true,
         resize: false,
         css3: true,
         loopHorizontal: false,
@@ -70,16 +70,19 @@ var onPageLoad = function() {
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     var thisSlide = $slides[slideIndex];
-    var nextSlide = $slides[slideIndex + 1];
 
     if ($(thisSlide).data('anchor')) {
         currentSection = $(thisSlide).data('anchor');
         findSlideIndex();
     };
 
-    console.log(currentSectionIndex);
-
-    slides = [thisSlide, nextSlide];
+    slides = [
+        $slides[slideIndex - 2],
+        $slides[slideIndex - 1],
+        thisSlide,
+        $slides[slideIndex + 1],
+        $slides[slideIndex + 2]
+    ];
 
     getBackgroundImages(slides)
 
@@ -106,7 +109,6 @@ var findSlideIndex = function() {
 }
 
 var getBackgroundImages = function(slides) {
-    console.log(slides);
     _.each($(slides), function(slide) {
         var image = 'assets/img/' + $(slide).data('bgimage');
 
@@ -156,7 +158,7 @@ var revealVideo = function() {
     var text = $(this).parents('.text');
     $(text).hide();
     $(text).parent().css('background-image', '');
-    $(text).next().css('display', 'table-cell');
+    $(text).next().css('display', 'block');
     var player = text.siblings('#player');
     initPlayer(player);
 };
@@ -167,25 +169,26 @@ var initPlayer = function(player) {
     * Setup JWPlayer.
     */
 
-    jwplayer('player').setup({
+    var player = jwplayer('player').setup({
         modes: [{
-            type: 'flash',
-            src: 'http://www.npr.org/templates/javascript/jwplayer/player.swf',
-            config: {
-                skin: 'http://media.npr.org/templates/javascript/jwplayer/skins/mle/npr-video-archive/npr-video-archive.zip',
-                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
-                image: '../assets/img/junior/junior.jpg',
-                'hd.file': 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4'
-            }
-        }, {
             type: 'html5',
             config: {
                 levels: [
                     {
                         file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
-                        image: '../assets/img/junior/junior.jpg'
+                        // file: '../assets/img/junior/junior.webm',
+                        image: '../assets/img/junior/junior.jpg',
+                        skin: 'http://media.npr.org/templates/javascript/jwplayer/skins/mle/npr-video-archive/npr-video-archive.zip',
                     }
                 ]
+            }
+        },{
+            type: 'flash',
+            src: 'http://www.npr.org/templates/javascript/jwplayer/player.swf',
+            config: {
+                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
+                image: '../assets/img/junior/junior.jpg',
+                'hd.file': 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4'
             }
         }],
         bufferlength: '5',
@@ -195,7 +198,9 @@ var initPlayer = function(player) {
         width: '100%',
         height: $h - 70
     });
-    jwplayer('player').play();
+    player.play();
+
+    // $(window).resize(player.resize($w, $h));
 
 };
 
@@ -247,7 +252,7 @@ $(document).ready(function() {
 
     // init chapters
 
-    breakSlidesForMobile();
+    resize();
     setUpFullPage();
 
     // handlers
@@ -262,6 +267,6 @@ $(document).ready(function() {
 
 
     // Redraw slides if the window resizes
-    $(window).resize(breakSlidesForMobile);
+    $(window).resize(resize);
 
 });
