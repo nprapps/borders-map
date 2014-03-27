@@ -30,6 +30,8 @@ var resize = function() {
     */
     $w = $(window).width();
     $h = $(window).height();
+
+    $slides.width($w);
 };
 
 var setUpFullPage = function() {
@@ -303,8 +305,8 @@ $(document).ready(function() {
 
     // init chapters
 
-    resize();
     setUpFullPage();
+    resize();
 
     // handlers
 
