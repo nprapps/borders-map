@@ -44,8 +44,6 @@ var setUpFullPage = function() {
         anchors.push(anchor);
     });
 
-   console.log(anchors);
-
     $.fn.fullpage({
         autoScrolling: false,
         anchors: anchors,
@@ -109,11 +107,31 @@ var findSlideIndex = function() {
 }
 
 var getBackgroundImages = function(slides) {
-    _.each($(slides), function(slide) {
-        var image = 'assets/img/' + $(slide).data('bgimage');
+    /*
+    * Set background images on slides.
+    * Should get square images for mobile.
+    */
 
-        if (image !== 'assets/img/undefined' && $(slide).css('background-image') === 'none') {
-            $(slide).css('background-image', 'url(' + image + ')');
+    // Mobile suffix should be blank by default.
+    var mobile_suffix = '';
+
+    //
+    if ($w < 769 && is_touch) {
+        mobile_suffix = '-sq';
+    }
+
+    _.each($(slides), function(slide) {
+
+        if ($(slide).data('bgimage')) {
+
+            var image_filename = $(slide).data('bgimage').split('.')[0];
+            var image_extension = '.' + $(slide).data('bgimage').split('.')[1];
+            var image_path = 'assets/img/' + image_filename + mobile_suffix + image_extension;
+
+            if ($(slide).css('background-image') === 'none') {
+                $(slide).css('background-image', 'url(' + image_path + ')');
+            }
+
         }
     });
 };
