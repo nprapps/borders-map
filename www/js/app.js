@@ -30,6 +30,7 @@ var optimalWidth;
 var optimalHeight;
 var imageWidth;
 var imageHeight;
+var $jplayer = null;
 
 var resize = function() {
     /*
@@ -76,7 +77,8 @@ var setUpFullPage = function() {
         css3: true,
         loopHorizontal: false,
         afterSlideLoad: lazyLoad,
-        afterRender: onPageLoad
+        afterRender: onPageLoad,
+        onSlideLeave: onSlideLeave
     });
 };
 
@@ -88,11 +90,8 @@ var onPageLoad = function() {
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     if ($($slides[slideIndex]).find('img').length > 0) {
-
         setImages($($slides[slideIndex]).find('img')[0]);
-    }
-
-    else {
+    } else {
         getCurrentSection(slideIndex);
     }
 
@@ -115,9 +114,15 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     if (slideAnchor === 'dashboard') {
         onStartCounts();
     }
-
-
 };
+
+var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
+    var thisSlide = $slides[slideIndex];
+
+    if ($jplayer && $(thisSlide).hasClass('video')) {
+        stopVideo();
+    }
+}
 
 var getCurrentSection = function(slideIndex) {
     var thisSlide = $slides[slideIndex];
@@ -137,7 +142,7 @@ var getCurrentSection = function(slideIndex) {
 
     setMobileSuffix(slides);
 
-    if ($(thisSlide).hasClass('video')) {
+    if (!$jplayer && $(thisSlide).hasClass('video')) {
         setupVideoPlayer();
     }
 }
@@ -280,8 +285,6 @@ var fadeOutNav = function() {
     $nav.css('display', 'none');
 };
 
-
-
 var setupVideoPlayer = function() {
     /*
     * Setup jPlayer.
@@ -290,7 +293,7 @@ var setupVideoPlayer = function() {
         return ($h - ($('.jp-interface').height() + NAV_HEIGHT))
     }
 
-    $('.jp-jplayer').jPlayer({
+    $jplayer = $('.jp-jplayer').jPlayer({
         ready: function () {
             $(this).jPlayer('setMedia', {
                 poster: '../assets/img/junior/junior.jpg',
@@ -316,7 +319,7 @@ var setupVideoPlayer = function() {
     });
 
     $(window).resize(function() {
-        $('.jp-jplayer').jPlayer('option', { 'size': {
+        $jplayer.jPlayer('option', { 'size': {
             width: $w,
             height: computePlayerHeight() + 'px'
         }});
@@ -329,9 +332,11 @@ var startVideo = function() {
     $(text).parent().css('background-image', '');
     $(text).next().css('display', 'block');
 
-    console.log('playing');
-
     $('.jp-jplayer').jPlayer('play');
+}
+
+var stopVideo = function() {
+    $('.jp-jplayer').jPlayer('stop');
 }
 
 var onUpdateCounts = function(e) {
