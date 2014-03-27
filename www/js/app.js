@@ -202,8 +202,6 @@ var setupVideoPlayer = function() {
                 m4v: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
                 webmv: '../assets/img/junior/junior.webm'
             });
-
-            $('.jp-video').hide();
         },
         play: function (){
             $('.jp-current-time').removeClass('hide');
@@ -238,7 +236,6 @@ var startVideo = function() {
 
     console.log('playing');
 
-    $('.jp-video').show();
     $('.jp-jplayer').jPlayer('play');
 }
 
