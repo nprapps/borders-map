@@ -12,7 +12,7 @@ var $video;
 var $navButton;
 var $nav;
 var $navItems;
-var $navClose;
+var $secondaryNav;
 var $nextSectionButtton;
 var $arrows;
 var currentSection = '_'
@@ -128,9 +128,9 @@ var setMobileSuffix = function(slides) {
 
     _.each($(slides), function(slide) {
 
-        getBackgroundImage(slide);             
+        getBackgroundImage(slide);
         var containedImage = $(slide).find('.contained-image');
-       	getBackgroundImage(containedImage);        
+       	getBackgroundImage(containedImage);
     });
 };
 
@@ -296,7 +296,7 @@ $(document).ready(function() {
     $navButton = $('.primary-navigation-btn');
     $nav = $('.nav');
     $navItems = $('.nav .section-tease');
-    $navClose = $('.close-nav');
+    $secondaryNav = $('.secondary-nav-btn');
     $nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
@@ -311,7 +311,7 @@ $(document).ready(function() {
     $play_video.on('click', revealVideo);
     $navButton.on('click', animateNav);
     $navItems.on('click', animateNav);
-    $navClose.on('click', animateNav);
+    $secondaryNav.on('click', animateNav);
     $titleCardButton.on('click', goToNextSlide);
     $nextSectionButtton.on('click', goToNextSection);
 
