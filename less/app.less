@@ -408,18 +408,44 @@ h1 {
 //image-split
 .image-split {
 
-	.contained-image {
+	.contained-image-wrapper {
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 225px;
+		
+		overflow: auto;
+	}
+	.contained-image {
+		//top: 50%;
+		//height: 225px;
 		//.background-size(cover);
-		background-size: 100% auto;
-		background-position: top left;
-		background-repeat: no-repeat;
+		//background-size: 100% auto;
+		//background-position: top left;
+		//background-repeat: no-repeat;
+		position: relative;
+		
+		.contained-image-wrapper {
+			width: 100%;
+			margin: 0 auto;
+		}
+		
+		img {
+		width: 100%;
+		}
+		
+		h4 {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 20px;
+			width: 300px;
+			background-color: #000;
+			z-index: 10;
+		}
+		
 		@media @screen-small-above {
-			height: 100%;
+			//height: 100%;
 		}
 
 	}
@@ -429,12 +455,6 @@ h1 {
 		padding-bottom: 100px;
 
 		.full-block-content {margin: 0;}
-		
-		h4 {
-			position: absolute;
-			bottom: 225px;
-			right: 0;
-		}
 
 		blockquote {
 			position: absolute;
