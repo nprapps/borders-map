@@ -101,6 +101,11 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     if (slideAnchor === 'dashboard') {
         onStartCounts();
     }
+
+    if ($(thisSlide).hasClass('video')) {
+        console.log('setup video player');
+        setupVideoPlayer();
+    }
 };
 
 var findSlideIndex = function() {
@@ -180,20 +185,7 @@ var fadeOutNav = function() {
     $nav.css('display', 'none');
 };
 
-var revealVideo = function() {
-    /*
-    * Show the video.
-    */
-    var text = $(this).parents('.text');
-    $(text).hide();
-    $(text).parent().css('background-image', '');
-    $(text).next().css('display', 'block');
-
-    var $player = text.siblings('.jp-jplayer');
-    initPlayer($player);
-};
-
-var initPlayer = function($player) {
+var setupVideoPlayer = function() {
     /*
     * Setup jPlayer.
     */
@@ -201,13 +193,17 @@ var initPlayer = function($player) {
         return ($h - ($('.jp-interface').height() + NAV_HEIGHT))
     }
 
+    console.log('setting up');
+
     $('.jp-jplayer').jPlayer({
         ready: function () {
             $(this).jPlayer('setMedia', {
                 poster: '../assets/img/junior/junior.jpg',
                 m4v: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
                 webmv: '../assets/img/junior/junior.webm'
-            }).jPlayer('play');
+            });
+
+            $('.jp-video').hide();
         },
         play: function (){
             $('.jp-current-time').removeClass('hide');
@@ -232,8 +228,19 @@ var initPlayer = function($player) {
             height: computePlayerHeight() + 'px'
         }});
     });
-
 };
+
+var startVideo = function() {
+    var text = $(this).parents('.text');
+    $(text).hide();
+    $(text).parent().css('background-image', '');
+    $(text).next().css('display', 'block');
+
+    console.log('playing');
+
+    $('.jp-video').show();
+    $('.jp-jplayer').jPlayer('play');
+}
 
 var onUpdateCounts = function(e) {
     /*
@@ -289,7 +296,7 @@ $(document).ready(function() {
 
     // handlers
 
-    $play_video.on('click', revealVideo);
+    $play_video.on('click', startVideo);
     $navButton.on('click', showAndHideNav);
     $navItems.on('click', showAndHideNav);
     $navClose.on('click', showAndHideNav);
@@ -298,5 +305,4 @@ $(document).ready(function() {
 
     // Redraw slides if the window resizes
     $(window).resize(resize);
-
 });
