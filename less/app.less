@@ -202,11 +202,30 @@ h1 {
     }
 
     .section-tease {
+        position: relative;
+        background-color: rgba(0,0,0,.2);
         img {
             width: 100%;
             max-height: 190px; // for my own sanity right now
             margin: 0 auto;
+            opacity: 0.7;
         }
+        h4 {
+            width: 50%;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            -webkit-transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+                    transform: translate(-50%,-50%);
+
+            color: #fff;
+            font-size: 24px;
+        }
+        margin-bottom: 20px;
+
     }
 
     .close-nav {
