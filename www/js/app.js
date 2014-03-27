@@ -1,6 +1,8 @@
 /*
 * Global vars
 */
+var VIDEO_CONTROLS_HEIGHT = 100;
+var NAV_HEIGHT = 75;
 
 var $w;
 var $h;
@@ -172,22 +174,22 @@ var revealVideo = function() {
     /*
     * Show the video.
     */
-
     var text = $(this).parents('.text');
     $(text).hide();
     $(text).parent().css('background-image', '');
     $(text).next().css('display', 'block');
-    var player = text.siblings('#player');
-    initPlayer(player);
+
+    var $player = text.siblings('.jp-jplayer');
+    initPlayer($player);
 };
 
-var initPlayer = function(player) {
+var initPlayer = function($player) {
 
     /*
     * Setup JWPlayer.
     */
 
-    var player = jwplayer('player').setup({
+    /*var player = jwplayer('player').setup({
         modes: [{
             type: 'html5',
             config: {
@@ -216,7 +218,27 @@ var initPlayer = function(player) {
         width: '100%',
         height: $h - 70
     });
-    player.play();
+    player.play();*/
+
+   console.log($('.jp-jplayer'));
+
+    $('.jp-jplayer').jPlayer({
+        ready: function () {
+            $(this).jPlayer('setMedia', {
+                poster: '../assets/img/junior/junior.jpg',
+                m4v: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
+                //webmv: STORY_OGG
+            }).jPlayer('play');
+        },
+        size: {
+            width: $w,
+            height: ($h - (VIDEO_CONTROLS_HEIGHT + NAV_HEIGHT)) + 'px' 
+        },
+        swfPath: 'js/lib',
+        supplied: 'm4v',
+        loop: false
+    });
+
 
     // $(window).resize(player.resize($w, $h));
 
