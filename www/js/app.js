@@ -203,7 +203,7 @@ var initPlayer = function(player) {
             config: {
                 levels: [
                     {
-                        file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
+                        file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
                         // file: '../assets/img/junior/junior.webm',
                         image: '../assets/img/junior/junior.jpg',
                         skin: 'http://media.npr.org/templates/javascript/jwplayer/skins/mle/npr-video-archive/npr-video-archive.zip',
@@ -214,7 +214,7 @@ var initPlayer = function(player) {
             type: 'flash',
             src: 'http://www.npr.org/templates/javascript/jwplayer/player.swf',
             config: {
-                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
+                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
                 image: '../assets/img/junior/junior.jpg',
                 'hd.file': 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4'
             }
