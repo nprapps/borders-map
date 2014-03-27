@@ -1,7 +1,6 @@
 /*
 * Global vars
 */
-var VIDEO_CONTROLS_HEIGHT = 100;
 var NAV_HEIGHT = 75;
 
 var $w;
@@ -195,44 +194,9 @@ var revealVideo = function() {
 };
 
 var initPlayer = function($player) {
-
     /*
-    * Setup JWPlayer.
+    * Setup jPlayer.
     */
-
-    /*var player = jwplayer('player').setup({
-        modes: [{
-            type: 'html5',
-            config: {
-                levels: [
-                    {
-                        file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
-                        // file: '../assets/img/junior/junior.webm',
-                        image: '../assets/img/junior/junior.jpg',
-                        skin: 'http://media.npr.org/templates/javascript/jwplayer/skins/mle/npr-video-archive/npr-video-archive.zip',
-                    }
-                ]
-            }
-        },{
-            type: 'flash',
-            src: 'http://www.npr.org/templates/javascript/jwplayer/player.swf',
-            config: {
-                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
-                image: '../assets/img/junior/junior.jpg',
-                'hd.file': 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4'
-            }
-        }],
-        bufferlength: '5',
-        controlbar: 'over',
-        icons: 'true',
-        autostart: false,
-        width: '100%',
-        height: $h - 70
-    });
-    player.play();*/
-
-   console.log($('.jp-jplayer'));
-
     $('.jp-jplayer').jPlayer({
         ready: function () {
             $(this).jPlayer('setMedia', {
@@ -243,15 +207,19 @@ var initPlayer = function($player) {
         },
         size: {
             width: $w,
-            height: ($h - (VIDEO_CONTROLS_HEIGHT + NAV_HEIGHT)) + 'px' 
+            height: ($h - ($('.jp-interface').height() + NAV_HEIGHT)) + 'px' 
         },
         swfPath: 'js/lib',
         supplied: 'm4v',
         loop: false
     });
 
-
-    // $(window).resize(player.resize($w, $h));
+    $(window).resize(function() {
+        $('.jp-jplayer').jPlayer('option', { 'size': {
+            width: $w,
+            height: ($h - ($('.jp-interface').height() + NAV_HEIGHT)) + 'px'
+        }});
+    });
 
 };
 
