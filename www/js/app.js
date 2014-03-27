@@ -16,9 +16,11 @@ var $nav;
 var $navItems;
 var $navClose;
 var $nextSectionButtton;
+var $arrows;
 var currentSection = '_'
 var currentSectionIndex = 0;
 var anchors;
+var mobileSuffix;
 var player;
 var is_touch = Modernizr.touch;
 var active_counter = null;
@@ -69,6 +71,7 @@ var onPageLoad = function() {
 };
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
+
     var thisSlide = $slides[slideIndex];
 
     if ($(thisSlide).data('anchor')) {
@@ -84,14 +87,15 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
         $slides[slideIndex + 2]
     ];
 
-    getBackgroundImages(slides)
+    setMobileSuffix(slides)
 
     // hide slide/section nav on titlecards
     if ($slides.first().hasClass('active') === true) {
-        $slides.find('.controlArrow').hide();
+        $arrows.css('display', 'none');
         $('.next-section').css('display', 'none');
     }
     else {
+        $arrows.css('display', 'block');
         $('.next-section').css('display', 'block');
     }
 
@@ -108,35 +112,42 @@ var findSlideIndex = function() {
     }
 }
 
-var getBackgroundImages = function(slides) {
+var setMobileSuffix = function(slides) {
     /*
     * Set background images on slides.
     * Should get square images for mobile.
     */
 
     // Mobile suffix should be blank by default.
-    var mobile_suffix = '';
+    mobileSuffix = '';
 
     //
     if ($w < 769 && is_touch) {
-        mobile_suffix = '-sq';
+        mobileSuffix = '-sq';
     }
 
     _.each($(slides), function(slide) {
 
-        if ($(slide).data('bgimage')) {
-
-            var image_filename = $(slide).data('bgimage').split('.')[0];
-            var image_extension = '.' + $(slide).data('bgimage').split('.')[1];
-            var image_path = 'assets/img/' + image_filename + mobile_suffix + image_extension;
-
-            if ($(slide).css('background-image') === 'none') {
-                $(slide).css('background-image', 'url(' + image_path + ')');
-            }
-
-        }
+        getBackgroundImage(slide);             
+        var containedImage = $(slide).find('.contained-image');
+       	getBackgroundImage(containedImage);        
     });
 };
+
+var getBackgroundImage = function(container) {
+
+	if ($(container).data('bgimage')) {
+
+            var image_filename = $(container).data('bgimage').split('.')[0];
+            var image_extension = '.' + $(container).data('bgimage').split('.')[1];
+            var image_path = 'assets/img/' + image_filename + mobileSuffix + image_extension;
+
+            if ($(container).css('background-image') === 'none') {
+                $(container).css('background-image', 'url(' + image_path + ')');
+            }
+
+     }
+}
 
 var goToNextSection = function() {
     $.fn.fullpage.moveTo(0, anchors[currentSectionIndex + 1]);
@@ -195,7 +206,7 @@ var initPlayer = function($player) {
             config: {
                 levels: [
                     {
-                        file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
+                        file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
                         // file: '../assets/img/junior/junior.webm',
                         image: '../assets/img/junior/junior.jpg',
                         skin: 'http://media.npr.org/templates/javascript/jwplayer/skins/mle/npr-video-archive/npr-video-archive.zip',
@@ -206,7 +217,7 @@ var initPlayer = function($player) {
             type: 'flash',
             src: 'http://www.npr.org/templates/javascript/jwplayer/player.swf',
             config: {
-                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
+                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
                 image: '../assets/img/junior/junior.jpg',
                 'hd.file': 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4'
             }
@@ -289,6 +300,7 @@ $(document).ready(function() {
     $navClose = $('.close-nav');
     $nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');
+    $arrows = $('.controlArrow');
 
     // init chapters
 

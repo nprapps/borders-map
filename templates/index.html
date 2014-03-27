@@ -11,8 +11,12 @@
     {% include "%s.html"|format(row.template) ignore missing %}
 {% endfor %}
 </div>
-<div class="primary-navigation-btn"><i class="fa fa-bars"></i></div>
-<div class="next-section">Next Section</div>
+<div class="primary-navigation">
+    <div class="primary-navigation-btn"><i class="fa fa-bars"></i></div>
+    <div class="next-section">Next Section</div>
+    <div class="controlArrow prev"></div>
+    <div class="controlArrow next"></div>
+</div>
 
 <div class="nav">
 <!--     <span class="close-nav"><i class="fa fa-times"></i> Close</span>
@@ -22,20 +26,18 @@
             </div>
         </div> -->
     <div class="container-fluid">
+        {% for row in nav %}
         <div class="row">
-            {% for row in COPY.content %}
-                {% if row.chapter_title %}
-                    {% if row.chapter_title != 'chapter_title' %}
-                    <a data-menuanchor="{{row.data_panel}}" href="#/{{row.data_panel}}">
-                        <div class="section-tease col-md-3 col-sm-12">
-                            <img src="assets/img/{{row.menu_image}}">
-                            <h4>{{row.chapter_title}}</h4>
-                        </div>
-                    </a>
-                    {% endif %}
-                {% endif %}
+            {% for item in row %}
+            <a data-menuanchor="{{ item.data_panel }}" href="#/{{ item.data_panel }}">
+                <div class="section-tease col-md-3 col-sm-12">
+                    <img src="assets/img/{{ item.menu_image }}">
+                    <h4>{{ item.chapter_title }}</h4>
+                </div>
+            </a>
             {% endfor %}
         </div>
+        {% endfor %}
     </div>
 </div>
 

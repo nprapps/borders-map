@@ -202,7 +202,6 @@
                 slides.parent().wrap('<div class="slides" />');
 
                 $(this).find('.slidesContainer').css('width', sliderWidth + '%');
-                $(this).find('.slides').after('<div class="controlArrow prev"></div><div class="controlArrow next"></div>');
 
                 if(options.controlArrowColor!='#fff'){
                     $(this).find('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
@@ -845,7 +844,7 @@
         /**
          * Scrolling horizontally when clicking on the slider controls.
          */
-        $('.section').on('click', '.controlArrow', function() {
+        $('.controlArrow').on('click', function() {
             console.log(this);
             if ($(this).hasClass('prev')) {
                 $.fn.fullpage.moveSlideLeft();

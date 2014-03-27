@@ -17,7 +17,32 @@ def index():
     """
     Example view demonstrating rendering a simple HTML page.
     """
-    return render_template('index.html', **make_context())
+    context = make_context()
+
+    # Nav needs to be a list of lists.
+    # The inner list should only have four objects max.
+    # Because of reasons.
+    context['nav'] = []
+    contents = list(context['COPY']['content'])
+    not_yet_four = []
+
+    for idx, row in enumerate(contents):
+        row = dict(zip(row.__dict__['_columns'], row.__dict__['_row']))
+        row_title = row.get('chapter_title', None)
+
+        if row_title:
+            if row_title not in [u'chapter_title']:
+                not_yet_four.append(row)
+
+                if len(not_yet_four) == 4:
+                    context['nav'].append(not_yet_four)
+                    not_yet_four = []
+
+        if (idx + 1) == len(contents):
+            if len(not_yet_four) > 0:
+                context['nav'].append(not_yet_four)
+
+    return render_template('index.html', **context)
 
 @app.route('/widget.html')
 def widget():
@@ -36,7 +61,7 @@ def test_widget():
 @app.route('/test/test.html')
 def test_dir():
     return render_template('index.html', **make_context())
-    
+
 app.register_blueprint(static.static)
 
 # Boilerplate
