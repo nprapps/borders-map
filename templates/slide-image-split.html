@@ -1,11 +1,9 @@
 <div {% if row.data_panel %} data-anchor="{{ row.data_panel }}" {% endif %} class="slide image-split {% if row.extra_class %} {{ row.extra_class }} {% endif %}" style="{% if row.color %} background-color: {{ row.color }}; {% endif %}">
 
-    <div class="text full-block">
-        <div class="full-block-cell">
-            <div class="full-block-content">
-            	<div class="contained-image" {% if row.image %} data-bgimage="{{ row.image }}" {% endif %}></div>
-                {{ row.text }}
-            </div><!--full-block-content-->
-        </div><!--full-block-cell-->
-    </div><!--full-block-->
+    	<div class="text">
+    			<div class="contained-image-wrapper">
+    				<div class="contained-image" {% if row.image %} data-bgimage="{{ row.image }}" {% endif %}>{{ row.text }}
+					</div><!--contained-image-->
+    			</div><!--contained-image-wrapper-->
+    </div><!--text-->
 </div><!--slide-->

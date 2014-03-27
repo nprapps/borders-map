@@ -13,7 +13,7 @@ var $video;
 var $navButton;
 var $nav;
 var $navItems;
-var $navClose;
+var $secondaryNav;
 var $nextSectionButtton;
 var $arrows;
 var currentSection = '_'
@@ -31,6 +31,8 @@ var resize = function() {
     */
     $w = $(window).width();
     $h = $(window).height();
+
+    $slides.width($w);
 };
 
 var setUpFullPage = function() {
@@ -62,15 +64,36 @@ var setUpFullPage = function() {
 };
 
 var onPageLoad = function() {
-    // always get the home stuff
-    lazyLoad('_', 0, 'home', 0);
-
+    getCurrentSection(0)
     // fade in
     $('body').css('opacity', 1);
 };
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
+    getCurrentSection(slideIndex);
 
+    // hide slide/section nav on titlecards
+    if ($slides.first().hasClass('active')) {
+        $arrows.removeClass('active');
+        $arrows.css({
+            'opacity': 0,
+            'display': 'none'
+        });
+        $('.next-section').css('display', 'none');
+    }
+    else {
+        if (!$arrows.hasClass('active')) {
+            animateArrows();
+        }
+        $('.next-section').css('display', 'block');
+    }
+
+    if (slideAnchor === 'dashboard') {
+        onStartCounts();
+    }
+};
+
+var getCurrentSection = function(slideIndex) {
     var thisSlide = $slides[slideIndex];
 
     if ($(thisSlide).data('anchor')) {
@@ -86,27 +109,12 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
         $slides[slideIndex + 2]
     ];
 
-    setMobileSuffix(slides)
-
-    // hide slide/section nav on titlecards
-    if ($slides.first().hasClass('active') === true) {
-        $arrows.css('display', 'none');
-        $('.next-section').css('display', 'none');
-    }
-    else {
-        $arrows.css('display', 'block');
-        $('.next-section').css('display', 'block');
-    }
-
-    if (slideAnchor === 'dashboard') {
-        onStartCounts();
-    }
+    setMobileSuffix(slides);
 
     if ($(thisSlide).hasClass('video')) {
-        console.log('setup video player');
         setupVideoPlayer();
     }
-};
+}
 
 var findSlideIndex = function() {
     for (i=0; i < anchors.length; i++) {
@@ -132,9 +140,9 @@ var setMobileSuffix = function(slides) {
 
     _.each($(slides), function(slide) {
 
-        getBackgroundImage(slide);             
+        getBackgroundImage(slide);
         var containedImage = $(slide).find('.contained-image');
-       	getBackgroundImage(containedImage);        
+       	getBackgroundImage(containedImage);
     });
 };
 
@@ -142,13 +150,13 @@ var getBackgroundImage = function(container) {
 
 	if ($(container).data('bgimage')) {
 
-            var image_filename = $(container).data('bgimage').split('.')[0];
-            var image_extension = '.' + $(container).data('bgimage').split('.')[1];
-            var image_path = 'assets/img/' + image_filename + mobileSuffix + image_extension;
+        var image_filename = $(container).data('bgimage').split('.')[0];
+        var image_extension = '.' + $(container).data('bgimage').split('.')[1];
+        var image_path = 'assets/img/' + image_filename + mobileSuffix + image_extension;
 
-            if ($(container).css('background-image') === 'none') {
-                $(container).css('background-image', 'url(' + image_path + ')');
-            }
+        if ($(container).css('background-image') === 'none') {
+            $(container).css('background-image', 'url(' + image_path + ')');
+        }
 
      }
 }
@@ -161,8 +169,7 @@ var goToNextSlide = function() {
     $.fn.fullpage.moveSlideRight();
 }
 
-var showAndHideNav = function() {
-    //$nav.height($h);
+var animateNav = function() {
     $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
     $nav.toggleClass('active');
     if ($nav.hasClass('active')) {
@@ -177,13 +184,29 @@ var showAndHideNav = function() {
     }
 }
 
+var animateArrows = function() {
+    $arrows.addClass('active');
+
+    if ($arrows.hasClass('active')) {
+        $arrows.css('display', 'block');
+        var fade = _.debounce(fadeInArrows, 1);
+        fade();
+    }
+};
+
 var fadeInNav = function() {
     $nav.css('opacity', 1);
+};
+
+var fadeInArrows = function() {
+    $arrows.css('opacity', 1)
 };
 
 var fadeOutNav = function() {
     $nav.css('display', 'none');
 };
+
+
 
 var setupVideoPlayer = function() {
     /*
@@ -192,8 +215,6 @@ var setupVideoPlayer = function() {
     var computePlayerHeight = function() {
         return ($h - ($('.jp-interface').height() + NAV_HEIGHT))
     }
-
-    console.log('setting up');
 
     $('.jp-jplayer').jPlayer({
         ready: function () {
@@ -281,22 +302,22 @@ $(document).ready(function() {
     $navButton = $('.primary-navigation-btn');
     $nav = $('.nav');
     $navItems = $('.nav .section-tease');
-    $navClose = $('.close-nav');
+    $secondaryNav = $('.secondary-nav-btn');
     $nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
 
     // init chapters
 
-    resize();
     setUpFullPage();
+    resize();
 
     // handlers
 
     $play_video.on('click', startVideo);
-    $navButton.on('click', showAndHideNav);
-    $navItems.on('click', showAndHideNav);
-    $navClose.on('click', showAndHideNav);
+    $navButton.on('click', animateNav);
+    $navItems.on('click', animateNav);
+    $secondaryNav.on('click', animateNav);
     $titleCardButton.on('click', goToNextSlide);
     $nextSectionButtton.on('click', goToNextSection);
 
