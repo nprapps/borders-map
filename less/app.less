@@ -385,6 +385,90 @@ h1 {
     background-color: rgba(0,0,0,.3);
 }
 
+.jp-interface {
+    position: relative;
+    width: 100%;
+    height: 75px;
+    background-color: #222;
+
+    .time {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        margin-top: -10px;
+        height: 20px;
+    }
+
+    .playback {
+        .square(75px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background: #6d8ac4;
+        color: #fff;
+        text-align: center;
+        line-height: 75px;
+
+        .jp-play,
+        .jp-pause {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            line-height: 75px;
+
+            .fa {
+                position: relative;
+                top: 10px;
+                left: -1px;
+            }
+        }
+
+
+        .jp-play {
+
+        }
+
+        .jp-pause {
+            display: none;
+        }
+
+        .fa {
+            font-size: 3em;
+        }
+    }
+
+    .jp-progress {
+        background: #555;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 75px;
+        right: 0;
+
+        .jp-seek-bar,
+        .jp-play-bar {
+            height: 100%;
+        }
+
+        .jp-seek-bar {
+            background: #222;
+
+            .jp-play-bar {
+                background: #444;
+            }
+        }
+    }
+
+    /*@media @screen-small {
+        height: 0px;
+    }*/
+}
 
 //portrait tempate
 .slide.photo-quote-vertical {
@@ -430,75 +514,95 @@ h1 {
 
 //image-split
 .image-split {
+	.contained-image-wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		
+		overflow: auto;
+	}
+	.contained-image {
+		//top: 50%;
+		//height: 225px;
+		//.background-size(cover);
+		//background-size: 100% auto;
+		//background-position: top left;
+		//background-repeat: no-repeat;
+		position: relative;
+		
+		.contained-image-wrapper {
+			width: 100%;
+			margin: 0 auto;
+		}
+		
+		img {
+		width: 100%;
+		}
+		
+		h4 {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 20px;
+			width: 300px;
+			background-color: #000;
+			z-index: 10;
+		}
+		
+		@media @screen-small-above {
+			//height: 100%;
+		}
 
-    .contained-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 225px;
-        //.background-size(cover);
-        background-size: 100% auto;
-        background-position: top left;
-        background-repeat: no-repeat;
-        @media @screen-small-above {
-            height: 100%;
-        }
+	}
 
-    }
+	.full-block-cell {
+		vertical-align: bottom;
+		padding-bottom: 100px;
 
-    .full-block-cell {
-        vertical-align: bottom;
-        padding-bottom: 100px;
+		.full-block-content {margin: 0;}
 
-        .full-block-content {margin: 0;}
+		blockquote {
+			position: absolute;
+			top: 225px;
+			right: 0;
+			width: 100%;
+			border: 0;
+			text-align: left;
+			text-shadow: 2px 2px 5px #333;
+			 background-color: rgba(0,0,0,.8);
+			max-width: 500px !important;
+			padding: 20px;
 
-        h4 {
-            position: absolute;
-            bottom: 225px;
-            right: 0;
-        }
-
-        blockquote {
-            position: absolute;
-            top: 225px;
-            right: 0;
-            width: 100%;
-            border: 0;
-            text-align: left;
-            text-shadow: 2px 2px 5px #333;
-             background-color: rgba(0,0,0,.8);
-            max-width: 500px !important;
-            padding: 20px;
-
-            @media @screen-small-above {
-                top: auto;
-                bottom: 60px;
-                right: 15px;
-                width: auto;
-            }
+			@media @screen-small-above {
+				top: auto;
+				bottom: 60px;
+				right: 15px;
+				width: auto;
+			}
 
 
-            p {
-                font-size: 20px;
-                font-weight: bold;
-                line-height: 1.2;
-                padding: 0;
-            }
+			p {
+				font-size: 20px;
+				font-weight: bold;
+				line-height: 1.2;
+				padding: 0;
+			}
 
-            dl {
-                margin-top: 10px;
-                font-size: 12px;
-            }
+			dl {
+				margin-top: 10px;
+				font-size: 12px;
+			}
 
-            h6 {
-                font-size: 13px;
-                margin: 0 0 20px 0;
-                opacity: .6;
-                line-height: 1.5;
-            }
-        }
-    }
+			h6 {
+				font-size: 13px;
+				margin: 0 0 20px 0;
+				opacity: .6;
+				line-height: 1.5;
+			}
+		}
+	}
+
 }
 
 //big quote

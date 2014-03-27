@@ -1,6 +1,7 @@
 /*
 * Global vars
 */
+var NAV_HEIGHT = 75;
 
 var $w;
 var $h;
@@ -135,6 +136,10 @@ var getCurrentSection = function(slideIndex) {
     ];
 
     setMobileSuffix(slides);
+
+    if ($(thisSlide).hasClass('video')) {
+        setupVideoPlayer();
+    }
 }
 
 var findSlideIndex = function() {
@@ -277,59 +282,57 @@ var fadeOutNav = function() {
 
 
 
-var revealVideo = function() {
+var setupVideoPlayer = function() {
     /*
-    * Show the video.
+    * Setup jPlayer.
     */
+    var computePlayerHeight = function() {
+        return ($h - ($('.jp-interface').height() + NAV_HEIGHT))
+    }
 
+    $('.jp-jplayer').jPlayer({
+        ready: function () {
+            $(this).jPlayer('setMedia', {
+                poster: '../assets/img/junior/junior.jpg',
+                m4v: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
+                webmv: '../assets/img/junior/junior.webm'
+            });
+        },
+        play: function (){
+            $('.jp-current-time').removeClass('hide');
+            $('.jp-duration').addClass('hide');
+        },
+        ended: function(){
+            $('.jp-current-time').addClass('hide');
+            $('.jp-duration').removeClass('hide');
+        },
+        size: {
+            width: $w,
+            height: computePlayerHeight() + 'px' 
+        },
+        swfPath: 'js/lib',
+        supplied: 'm4v, webmv',
+        loop: false
+    });
+
+    $(window).resize(function() {
+        $('.jp-jplayer').jPlayer('option', { 'size': {
+            width: $w,
+            height: computePlayerHeight() + 'px'
+        }});
+    });
+};
+
+var startVideo = function() {
     var text = $(this).parents('.text');
     $(text).hide();
     $(text).parent().css('background-image', '');
     $(text).next().css('display', 'block');
-    var player = text.siblings('#player');
-    initPlayer(player);
-};
 
-var initPlayer = function(player) {
+    console.log('playing');
 
-    /*
-    * Setup JWPlayer.
-    */
-
-    var player = jwplayer('player').setup({
-        modes: [{
-            type: 'html5',
-            config: {
-                levels: [
-                    {
-                        file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
-                        // file: '../assets/img/junior/junior.webm',
-                        image: '../assets/img/junior/junior.jpg',
-                        skin: 'http://media.npr.org/templates/javascript/jwplayer/skins/mle/npr-video-archive/npr-video-archive.zip',
-                    }
-                ]
-            }
-        },{
-            type: 'flash',
-            src: 'http://www.npr.org/templates/javascript/jwplayer/player.swf',
-            config: {
-                file: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
-                image: '../assets/img/junior/junior.jpg',
-                'hd.file': 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4'
-            }
-        }],
-        bufferlength: '5',
-        controlbar: 'over',
-        icons: 'true',
-        autostart: false,
-        width: '100%',
-        height: $h - 70
-    });
-    player.play();
-
-    // $(window).resize(player.resize($w, $h));
-
-};
+    $('.jp-jplayer').jPlayer('play');
+}
 
 var onUpdateCounts = function(e) {
     /*
@@ -385,7 +388,7 @@ $(document).ready(function() {
 
     // handlers
 
-    $play_video.on('click', revealVideo);
+    $play_video.on('click', startVideo);
     $navButton.on('click', animateNav);
     $navItems.on('click', animateNav);
     $secondaryNav.on('click', animateNav);
@@ -394,5 +397,4 @@ $(document).ready(function() {
 
     // Redraw slides if the window resizes
     $(window).resize(resize);
-
 });
