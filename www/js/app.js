@@ -72,7 +72,7 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     getCurrentSection(slideIndex);
 
     // hide slide/section nav on titlecards
-    if (currentSection === '_') {
+    if ($slides.first().hasClass('active')) {
         $arrows.removeClass('active');
         $arrows.css('opacity', 0);
         var fade = _.debounce(fadeOutArrows, 500);
