@@ -33,9 +33,7 @@ var imageHeight;
 var $jplayer = null;
 
 var resize = function() {
-    /*
-    * break slides into multiple slides if the screen is too small
-    */
+
     $w = $(window).width();
     $h = $(window).height();
 
@@ -89,7 +87,8 @@ var onPageLoad = function() {
 };
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
-    if ($($slides[slideIndex]).find('img').length > 0) {
+    if ($($slides[slideIndex]).hasClass('image-split')) {
+
         setImages($($slides[slideIndex]).find('img')[0]);
     } else {
         getCurrentSection(slideIndex);
@@ -311,7 +310,7 @@ var setupVideoPlayer = function() {
         },
         size: {
             width: $w,
-            height: computePlayerHeight() + 'px' 
+            height: computePlayerHeight() + 'px'
         },
         swfPath: 'js/lib',
         supplied: 'm4v, webmv',
@@ -402,4 +401,9 @@ $(document).ready(function() {
 
     // Redraw slides if the window resizes
     $(window).resize(resize);
+    $(window).resize(function() {
+        if ($('.slide.active').hasClass('image-split')) {
+            setImages($('.slide.active').find('img')[0]);
+        }
+    });
 });
