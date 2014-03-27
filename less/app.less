@@ -120,13 +120,15 @@ h1 {
     }
 }
 
-// .primary-navigation {
-//     position: absolute;
-//     bottom: 0;
-//     background-color: #000;
-//     width: 100%;
-//     height: 40px;
-// }
+.primary-navigation {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    @media @screen-small {
+        background-color: #000;
+        height: 50px;
+    }
+}
 
 .primary-navigation-btn, .next-section {
     left: 0;
@@ -155,6 +157,12 @@ h1 {
     text-align: center;
     z-index: 20;
     line-height: 2.3;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
     @media @screen-small-above {
         width: 50px;
@@ -412,9 +420,9 @@ h1 {
 		@media @screen-small-above {
 			height: 100%;
 		}
-		
+
 	}
-	
+
 	.full-block-cell {
 		vertical-align: bottom;
 		padding-bottom: 100px;
@@ -432,14 +440,14 @@ h1 {
 			 background-color: rgba(0,0,0,.8);
 			max-width: 500px !important;
 			padding: 20px;
-			
+
 			@media @screen-small-above {
 				top: auto;
 				bottom: 60px;
 				right: 15px;
 				width: auto;
 			}
-			
+
 
 			p {
 				font-size: 20px;
