@@ -197,6 +197,10 @@ var initPlayer = function($player) {
     /*
     * Setup jPlayer.
     */
+    var computePlayerHeight = function() {
+        return ($h - ($('.jp-interface').height() + NAV_HEIGHT))
+    }
+
     $('.jp-jplayer').jPlayer({
         ready: function () {
             $(this).jPlayer('setMedia', {
@@ -207,7 +211,7 @@ var initPlayer = function($player) {
         },
         size: {
             width: $w,
-            height: ($h - ($('.jp-interface').height() + NAV_HEIGHT)) + 'px' 
+            height: computePlayerHeight() + 'px' 
         },
         swfPath: 'js/lib',
         supplied: 'm4v',
@@ -217,7 +221,7 @@ var initPlayer = function($player) {
     $(window).resize(function() {
         $('.jp-jplayer').jPlayer('option', { 'size': {
             width: $w,
-            height: ($h - ($('.jp-interface').height() + NAV_HEIGHT)) + 'px'
+            height: computePlayerHeight() + 'px'
         }});
     });
 
