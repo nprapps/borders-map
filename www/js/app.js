@@ -125,9 +125,9 @@ var setMobileSuffix = function(slides) {
 
         getBackgroundImage(slide);
                 
-        var bigQuoteImage = $(slide).find('.big-quote-image');
+        var containedImage = $(slide).find('.contained-image');
         
-       	getBackgroundImage(bigQuoteImage);        
+       	getBackgroundImage(containedImage);        
     });
 };
 
