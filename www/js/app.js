@@ -23,6 +23,12 @@ var player;
 var is_touch = Modernizr.touch;
 var active_counter = null;
 var begin = moment();
+var aspectWidth = 16;
+var aspectHeight = 9;
+var optimalWidth;
+var optimalHeight;
+var imageWidth;
+var imageHeight;
 
 var resize = function() {
     /*
@@ -32,6 +38,17 @@ var resize = function() {
     $h = $(window).height();
 
     $slides.width($w);
+
+    optimalWidth = ($h * aspectWidth) / aspectHeight;
+    optimalHeight = ($w * aspectHeight) / aspectWidth;
+
+    w = $w;
+    h = optimalHeight;
+
+    if (optimalWidth > $w) {
+        w = optimalWidth;
+        h = $h;
+    }
 };
 
 var setUpFullPage = function() {
@@ -69,7 +86,14 @@ var onPageLoad = function() {
 };
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
-    getCurrentSection(slideIndex);
+    if ($($slides[slideIndex]).find('img').length > 0) {
+
+        setImages($($slides[slideIndex]).find('img')[0]);
+    }
+
+    else {
+        getCurrentSection(slideIndex);
+    }
 
     // hide slide/section nav on titlecards
     if ($slides.first().hasClass('active')) {
@@ -90,6 +114,8 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     if (slideAnchor === 'dashboard') {
         onStartCounts();
     }
+
+
 };
 
 var getCurrentSection = function(slideIndex) {
@@ -154,7 +180,55 @@ var getBackgroundImage = function(container) {
         }
 
      }
-}
+};
+
+var setImages = function(image) {
+    // Grab Wes's properly sized width.
+    var imageWidth = w;
+
+    // Sometimes, this is wider than the window, shich is bad.
+    if (imageWidth > $w) {
+        imageWidth = $w;
+    }
+
+    // Set the hight as a proportion of the image width.
+    var imageHeight = ((imageWidth * aspectHeight) / aspectWidth);
+
+    // Sometimes the lightbox width is greater than the window height.
+    // Center it vertically.
+    if (imageWidth > $h) {
+        imageTop = (imageHeight - $h) / 2;
+    }
+
+    // Sometimes the lightbox height is greater than the window height.
+    // Resize the image to fit.
+    if (imageHeight > $h) {
+        imageWidth = ($h * aspectWidth) / aspectHeight;
+        imageHeight = $h;
+    }
+
+    // Sometimes the lightbox width is greater than the window width.
+    // Resize the image to fit.
+    if (imageWidth > $w) {
+        imageHeight = ($w * aspectHeight) / aspectWidth;
+        imageWidth = $w;
+    }
+
+    // Set the top and left offsets.
+    var imageTop = ($h - imageHeight) / 2;
+    var imageLeft = ($w - imageWidth) / 2;
+
+    // Set styles on the lightbox image.
+    $(image).css({
+        'width': imageWidth + 'px',
+        'height': imageHeight + 'px',
+        'opacity': 1,
+        'position': 'absolute',
+        'top': imageTop + 'px',
+        'left': imageLeft + 'px',
+    });
+
+};
 
 var goToNextSection = function() {
     $.fn.fullpage.moveTo(0, anchors[currentSectionIndex + 1]);
