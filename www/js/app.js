@@ -205,8 +205,8 @@ var initPlayer = function($player) {
         ready: function () {
             $(this).jPlayer('setMedia', {
                 poster: '../assets/img/junior/junior.jpg',
-                m4v: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140324_nprvid_juniorrough-n.mp4',
-                webmv: '..assets/img/junior/junior.webm'
+                m4v: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n.mp4',
+                webmv: '../assets/img/junior/junior.webm'
             }).jPlayer('play');
         },
         size: {
@@ -214,7 +214,7 @@ var initPlayer = function($player) {
             height: computePlayerHeight() + 'px' 
         },
         swfPath: 'js/lib',
-        supplied: 'm4v',
+        supplied: 'm4v, webmv',
         loop: false
     });
 
