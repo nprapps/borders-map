@@ -74,9 +74,10 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     // hide slide/section nav on titlecards
     if ($slides.first().hasClass('active')) {
         $arrows.removeClass('active');
-        $arrows.css('opacity', 0);
-        var fade = _.debounce(fadeOutArrows, 500);
-        fade();
+        $arrows.css({
+            'opacity': 0,
+            'display': 'none'
+        });
         $('.next-section').css('display', 'none');
     }
     else {
@@ -198,10 +199,6 @@ var fadeInArrows = function() {
 
 var fadeOutNav = function() {
     $nav.css('display', 'none');
-};
-
-var fadeOutArrows = function() {
-    $arrows.css('display', 'none');
 };
 
 
