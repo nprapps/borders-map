@@ -19,17 +19,11 @@
 </div>
 
 <div class="nav">
-<!--     <span class="close-nav"><i class="fa fa-times"></i> Close</span>
-        <div class="row">
-            <div class="col-md-12 nav-title">
-                <h3>Borderland Stories</h3>
-            </div>
-        </div> -->
     <div class="container-fluid">
         {% for row in nav %}
         <div class="row">
             {% for item in row %}
-            <a data-menuanchor="{{ item.data_panel }}" href="#/{{ item.data_panel }}">
+            <a data-menuanchor="{{ item.data_panel }}" href="#_/{{ item.data_panel }}">
                 <div class="section-tease col-md-3 col-sm-12">
                     <img src="assets/img/{{ item.menu_image }}">
                     <h4>{{ item.chapter_title }}</h4>
@@ -38,6 +32,13 @@
             {% endfor %}
         </div>
         {% endfor %}
+        <div class="row secondary-nav">
+            <div class="col-md-12">
+            <ul>
+                <a data-menuanchor="home" href="#_"><li class="secondary-nav-btn">Home</li></a>
+                <a data-menuanchor="about" href="#_/about"><li class="secondary-nav-btn">About</li></a>
+            </ul>
+        </div>
     </div>
 </div>
 

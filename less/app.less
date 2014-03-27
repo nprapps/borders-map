@@ -77,11 +77,11 @@ h1 {
 
 @media @screen-medium-above {
     h1 {
-    	font-size: 100px;
+        font-size: 100px;
     }
 
     h2 {
-    	font-size: 60px;
+        font-size: 60px;
     }
 
     h3 {
@@ -155,7 +155,6 @@ h1 {
     font-size: 18px;
     font-weight: bold;
     text-align: center;
-    z-index: 20;
     line-height: 2.3;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -163,6 +162,10 @@ h1 {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    display: none;
+    opacity: 0;
+    .transition(opacity 0.5s ease);
 
     @media @screen-small-above {
         width: 50px;
@@ -233,31 +236,51 @@ h1 {
             font-size: 24px;
         }
         margin-bottom: 20px;
-
     }
 
-    .close-nav {
-		text-transform: uppercase;
-		font-size: 14px;
-		font-weight: bold;
-		text-align: right;
-		display: block;
-		padding: 10px 20px;
-		cursor: pointer;
-        z-index: 20;
-	}
+    .secondary-nav {
+        ul {
+            list-style-type: none;
+            width: 100%;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            @media @screen-small-above {
+                text-align: right;
+                padding-right: 20px;
+            }
+            li {
+                background-color: #333;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
+                display: inline-block;
+                font-size: 14px;
+                padding: 15px;
+                color: #ccc;
+                &:first-child {
+                    margin-right: 10px;
+                }
+                &:hover {
+                    background-color: #ccc;
+                    color: #333;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
 }
 
 //credit
 
 .credit {
-	text-align: center;
-	margin-bottom: -20px;
-	color: #ccc;
-	font-size: 18px;
+    text-align: center;
+    margin-bottom: -20px;
+    color: #ccc;
+    font-size: 18px;
     a {
-	    color: #ccc;
-	    font-weight: bold;
+        color: #ccc;
+        font-weight: bold;
     }
 }
 
@@ -273,7 +296,7 @@ h1 {
     text-align: center;
     line-height: 30px;
     @media @screen-small-above {
-    	font-size: 18px;
+        font-size: 18px;
         padding: 0 22px;
         line-height: 44px;
     }
@@ -295,54 +318,54 @@ h1 {
 
 // 50/50 grid for slide (used for playlist and portraits)
 .first-block {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 50%;
-	height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
 }
 
 .second-block {
-	.background-size(cover);
-	background-repeat: no-repeat;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 50%;
-	height: 100%;
-	overflow: hidden;
+    .background-size(cover);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
 }
 
 // full width container within a section or slide
 .full-block {
-	display: table;
+    display: table;
     width: 100%;
     height: 100%;
 
 
     .full-block-cell {
-		display: table-cell;
-	    vertical-align: middle;
-	    text-align: center;
-	    width: 100%;
-	}
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        width: 100%;
+    }
 
 
-	.full-block-content {
-		max-width: 800px;
-		margin: 0 auto;
-		padding: 20px;
-	}
+    .full-block-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
-	//style title slides uniquely
+    //style title slides uniquely
     .titlecard & {
-	    background-color: rgba(0,0,0,.3);
+        background-color: rgba(0,0,0,.3);
 
-		.full-block-content {
-			width: 100%;
-			padding: 0;
-			.text-shadow(2px 2px 2px #000);
-		}
+        .full-block-content {
+            width: 100%;
+            padding: 0;
+            .text-shadow(2px 2px 2px #000);
+        }
     }
 
 }
@@ -351,11 +374,11 @@ h1 {
 
 //video template
 .video {
-	.player {
-	    display: none;
-	}
+    .player {
+        display: none;
+    }
 
-	#player-wrapper {top: 0;}
+    #player-wrapper {top: 0;}
 }
 
 .video > .full-block {
@@ -365,49 +388,48 @@ h1 {
 
 //portrait tempate
 .slide.photo-quote-vertical {
-	.second-block {
-		img {
-			height: 100%;
-			float: right;
-		}
-	}
+    .second-block {
+        img {
+            height: 100%;
+            float: right;
+        }
+    }
 
-	blockquote {
-		position: absolute;
-		top: 5%;
-		left: 0;
-		z-index: 20;
-		border: none;
-		margin: 0;
-		padding: 0 50px;
-		color: #444;
+    blockquote {
+        position: absolute;
+        top: 5%;
+        left: 0;
+        z-index: 20;
+        border: none;
+        margin: 0;
+        padding: 0 50px;
+        color: #444;
 
-		p {
-			font-size: 28px;
-			font-weight: bold;
-			line-height: 1.2;
-			padding: 0;
-		}
+        p {
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1.2;
+            padding: 0;
+        }
 
-		dl {
-			margin-top: 40px;
-			opacity: .8;
-			font-size: 15px;
-		}
+        dl {
+            margin-top: 40px;
+            opacity: .8;
+            font-size: 15px;
+        }
 
-		h6 {
-			font-size: 20px;
-			margin: 20px 0;
-			font-style: italic;
-			opacity: .6;
-			line-height: 1.5;
-		}
-	}
+        h6 {
+            font-size: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            opacity: .6;
+            line-height: 1.5;
+        }
+    }
 }
 
 //image-split
 .image-split {
-
 	.contained-image-wrapper {
 		position: absolute;
 		top: 0;
@@ -496,101 +518,102 @@ h1 {
 			}
 		}
 	}
+
 }
 
 //big quote
 
 .big-quote {
 
-	.contained-image {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 225px;
-		.background-size(cover);
-		background-position: top center;
-		@media @screen-small-above {
-			height: 100%;
-		}
+    .contained-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 225px;
+        .background-size(cover);
+        background-position: top center;
+        @media @screen-small-above {
+            height: 100%;
+        }
 
-	}
+    }
 
-	.full-block-cell {
-		vertical-align: bottom;
-		padding-bottom: 100px;
+    .full-block-cell {
+        vertical-align: bottom;
+        padding-bottom: 100px;
 
-		.full-block-content {margin: 0;}
+        .full-block-content {margin: 0;}
 
-		blockquote {
-			position: absolute;
-			top: 225px;
-			right: 0;
-			width: 100%;
-			border: 0;
-			text-align: left;
-			text-shadow: 2px 2px 5px #333;
-			 background-color: rgba(0,0,0,.8);
-			max-width: 500px !important;
-			padding: 20px;
+        blockquote {
+            position: absolute;
+            top: 225px;
+            right: 0;
+            width: 100%;
+            border: 0;
+            text-align: left;
+            text-shadow: 2px 2px 5px #333;
+             background-color: rgba(0,0,0,.8);
+            max-width: 500px !important;
+            padding: 20px;
 
-			@media @screen-small-above {
-				top: auto;
-				bottom: 60px;
-				right: 15px;
-				width: auto;
-			}
+            @media @screen-small-above {
+                top: auto;
+                bottom: 60px;
+                right: 15px;
+                width: auto;
+            }
 
 
-			p {
-				font-size: 20px;
-				font-weight: bold;
-				line-height: 1.2;
-				padding: 0;
-			}
+            p {
+                font-size: 20px;
+                font-weight: bold;
+                line-height: 1.2;
+                padding: 0;
+            }
 
-			dl {
-				margin-top: 10px;
-				font-size: 12px;
-			}
+            dl {
+                margin-top: 10px;
+                font-size: 12px;
+            }
 
-			h6 {
-				font-size: 13px;
-				margin: 0 0 20px 0;
-				opacity: .6;
-				line-height: 1.5;
-			}
-		}
-	}
+            h6 {
+                font-size: 13px;
+                margin: 0 0 20px 0;
+                opacity: .6;
+                line-height: 1.5;
+            }
+        }
+    }
 }
 
 .stand-alone-quote {
-	h6 {
-		font-size: 16px;
-		line-height: 1.6;
-		margin-bottom: 20px;
-		font-style: italic;
-	}
+    h6 {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
 
-	blockquote {
-		border: 0;
-		padding: 0;
-		text-align: left;
-		text-shadow: 2px 2px 5px #333;
+    blockquote {
+        border: 0;
+        padding: 0;
+        text-align: left;
+        text-shadow: 2px 2px 5px #333;
 
-		p {
-			font-size: 28px;
-			line-height: 1.2;
-		}
+        p {
+            font-size: 28px;
+            line-height: 1.2;
+        }
 
 
-	}
+    }
 
-	dl {
-	margin: 20px 0;
-	text-align: left;
-	font-size: 18px;
-	}
+    dl {
+    margin: 20px 0;
+    text-align: left;
+    font-size: 18px;
+    }
 }
 
 
@@ -646,14 +669,14 @@ h1 {
 /*essay*/
 
 .essay {
-	.full-block-content {
-		padding: 100px 0;
-	}
+    .full-block-content {
+        padding: 100px 0;
+    }
 }
 
 /*credits template */
 #credits {
-	background-color: #ccc;
+    background-color: #ccc;
 }
 
 // default slide styles
@@ -671,34 +694,34 @@ h1 {
     width: 100%;
 
     .slides {
-	    height: 100%;
-	    overflow: hidden;
-	    position: relative;
-	    -webkit-transition: all 0.3s ease-out;
-	    -moz-transition: all 0.3s ease-out;
-	    -o-transition: all 0.3s ease-out;
-	    transition: all 0.3s ease-out;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
 
-    	//transition between slides
-		.instant {
-		    .transition(all 0 ease-in);
-		}
+        //transition between slides
+        .instant {
+            .transition(all 0 ease-in);
+        }
 
-    	.slidesContainer {
-		    float: left;
-		    position: relative;
-		    height: 100%;
-		    display: block;
+        .slidesContainer {
+            float: left;
+            position: relative;
+            height: 100%;
+            display: block;
 
-		    .slide {
-			    float: left;
-			    height: 100%;
-			    display: block;
-			    overflow: auto;
-			}
+            .slide {
+                float: left;
+                height: 100%;
+                display: block;
+                overflow: auto;
+            }
 
-		}
-	}
+        }
+    }
 }
 
 //generic container for all content within a section or slide only use this class for JS hooks and global styles that will apply to all templates.
