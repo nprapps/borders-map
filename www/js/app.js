@@ -63,28 +63,13 @@ var setUpFullPage = function() {
 };
 
 var onPageLoad = function() {
+    getCurrentSection(0)
     // fade in
     $('body').css('opacity', 1);
 };
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
-
-    var thisSlide = $slides[slideIndex];
-
-    if ($(thisSlide).data('anchor')) {
-        currentSection = $(thisSlide).data('anchor');
-        findSlideIndex();
-    };
-
-    slides = [
-        $slides[slideIndex - 2],
-        $slides[slideIndex - 1],
-        thisSlide,
-        $slides[slideIndex + 1],
-        $slides[slideIndex + 2]
-    ];
-
-    setMobileSuffix(slides)
+    getCurrentSection(slideIndex);
 
     // hide slide/section nav on titlecards
     if (currentSection === '_') {
@@ -105,6 +90,25 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
         onStartCounts();
     }
 };
+
+var getCurrentSection = function(slideIndex) {
+    var thisSlide = $slides[slideIndex];
+
+    if ($(thisSlide).data('anchor')) {
+        currentSection = $(thisSlide).data('anchor');
+        findSlideIndex();
+    };
+
+    slides = [
+        $slides[slideIndex - 2],
+        $slides[slideIndex - 1],
+        thisSlide,
+        $slides[slideIndex + 1],
+        $slides[slideIndex + 2]
+    ];
+
+    setMobileSuffix(slides);
+}
 
 var findSlideIndex = function() {
     for (i=0; i < anchors.length; i++) {
