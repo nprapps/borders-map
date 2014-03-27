@@ -209,6 +209,14 @@ var initPlayer = function($player) {
                 webmv: '../assets/img/junior/junior.webm'
             }).jPlayer('play');
         },
+        play: function (){
+            $('.jp-current-time').removeClass('hide');
+            $('.jp-duration').addClass('hide');
+        },
+        ended: function(){
+            $('.jp-current-time').addClass('hide');
+            $('.jp-duration').removeClass('hide');
+        },
         size: {
             width: $w,
             height: computePlayerHeight() + 'px' 
