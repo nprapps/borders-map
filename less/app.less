@@ -409,11 +409,84 @@ h1 {
 	}
 }
 
+//image-split
+.image-split {
+
+	.contained-image {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 225px;
+		//.background-size(cover);
+		background-size: 100% auto;
+		background-position: top left;
+		background-repeat: no-repeat;
+		@media @screen-small-above {
+			height: 100%;
+		}
+
+	}
+
+	.full-block-cell {
+		vertical-align: bottom;
+		padding-bottom: 100px;
+
+		.full-block-content {margin: 0;}
+		
+		h4 {
+			position: absolute;
+			bottom: 225px;
+			right: 0;
+		}
+
+		blockquote {
+			position: absolute;
+			top: 225px;
+			right: 0;
+			width: 100%;
+			border: 0;
+			text-align: left;
+			text-shadow: 2px 2px 5px #333;
+			 background-color: rgba(0,0,0,.8);
+			max-width: 500px !important;
+			padding: 20px;
+
+			@media @screen-small-above {
+				top: auto;
+				bottom: 60px;
+				right: 15px;
+				width: auto;
+			}
+
+
+			p {
+				font-size: 20px;
+				font-weight: bold;
+				line-height: 1.2;
+				padding: 0;
+			}
+
+			dl {
+				margin-top: 10px;
+				font-size: 12px;
+			}
+
+			h6 {
+				font-size: 13px;
+				margin: 0 0 20px 0;
+				opacity: .6;
+				line-height: 1.5;
+			}
+		}
+	}
+}
+
 //big quote
 
 .big-quote {
 
-	.big-quote-image {
+	.contained-image {
 		position: absolute;
 		top: 0;
 		left: 0;
