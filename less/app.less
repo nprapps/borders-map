@@ -367,11 +367,31 @@ h1 {
     height: 75px;
     background-color: blue;
 
-    .jp-pause {
-        display: none;
+    .time {
+        float: left;
     }
-}
 
+    .playback {
+        float: left;
+
+        .jp-play {
+            padding: 0px;
+        }
+
+        .jp-pause {
+            padding: 0px;
+            display: none;
+        }
+
+        .fa {
+            font-size: 3em;
+        }
+    }
+
+    /*@media @screen-small {
+        height: 0px;
+    }*/
+}
 
 //portrait tempate
 .slide.photo-quote-vertical {
