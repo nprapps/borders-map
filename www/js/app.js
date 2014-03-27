@@ -331,6 +331,7 @@ var startVideo = function() {
     $(text).parent().css('background-image', '');
     $(text).next().css('display', 'block');
 
+    $('.jp-video').css('height', 'auto');
     $('.jp-jplayer').jPlayer('play');
 }
 
