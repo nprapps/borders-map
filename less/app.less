@@ -363,28 +363,82 @@ h1 {
 }
 
 .jp-interface {
+    position: relative;
     width: 100%;
     height: 75px;
-    background-color: blue;
+    background-color: #222;
 
     .time {
-        float: left;
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        margin-top: -10px;
+        height: 20px;
     }
 
     .playback {
-        float: left;
+        .square(75px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background: #6d8ac4;
+        color: #fff;
+        text-align: center;
+        line-height: 75px;
+
+        .jp-play,
+        .jp-pause {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            line-height: 75px;
+
+            .fa {
+                position: relative;
+                top: 10px;
+                left: -1px;
+            }
+        }
+
 
         .jp-play {
-            padding: 0px;
+
         }
 
         .jp-pause {
-            padding: 0px;
             display: none;
         }
 
         .fa {
             font-size: 3em;
+        }
+    }
+
+    .jp-progress {
+        background: #555;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 75px;
+        right: 0;
+
+        .jp-seek-bar,
+        .jp-play-bar {
+            height: 100%;
+        }
+
+        .jp-seek-bar {
+            background: #222;
+
+            .jp-play-bar {
+                background: #444;
+            }
         }
     }
 
