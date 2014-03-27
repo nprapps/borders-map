@@ -14,6 +14,7 @@ var $nav;
 var $navItems;
 var $navClose;
 var $nextSectionButtton;
+var $arrows;
 var currentSection = '_'
 var currentSectionIndex = 0;
 var anchors;
@@ -68,6 +69,7 @@ var onPageLoad = function() {
 };
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
+
     var thisSlide = $slides[slideIndex];
 
     if ($(thisSlide).data('anchor')) {
@@ -87,10 +89,11 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
 
     // hide slide/section nav on titlecards
     if ($slides.first().hasClass('active') === true) {
-        $slides.find('.controlArrow').hide();
+        $arrows.css('display', 'none');
         $('.next-section').css('display', 'none');
     }
     else {
+        $arrows.css('display', 'block');
         $('.next-section').css('display', 'block');
     }
 
@@ -120,19 +123,19 @@ var setMobileSuffix = function(slides) {
     if ($w < 769 && is_touch) {
         mobileSuffix = '-sq';
     }
-    
+
     _.each($(slides), function(slide) {
 
         getBackgroundImage(slide);
-                
+
         var bigQuoteImage = $(slide).find('.big-quote-image');
-        
-       	getBackgroundImage(bigQuoteImage);        
+
+       	getBackgroundImage(bigQuoteImage);
     });
 };
 
 var getBackgroundImage = function(container) {
-	
+
 	if ($(container).data('bgimage')) {
 
             var image_filename = $(container).data('bgimage').split('.')[0];
@@ -277,6 +280,7 @@ $(document).ready(function() {
     $navClose = $('.close-nav');
     $nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');
+    $arrows = $('.controlArrow');
 
     // init chapters
 
