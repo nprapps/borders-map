@@ -28,8 +28,8 @@ var aspectWidth = 16;
 var aspectHeight = 9;
 var optimalWidth;
 var optimalHeight;
-var imageWidth;
-var imageHeight;
+var w;
+var h;
 var $jplayer = null;
 
 var resize = function() {
@@ -91,11 +91,7 @@ var onPageLoad = function() {
 // after a new slide loads
 
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
-    if ($($slides[slideIndex]).hasClass('image-split')) {
-        setImages($($slides[slideIndex]).find('img')[0]);
-    } else {
-        setSlidesForLazyLoading(slideIndex);
-    }
+    setSlidesForLazyLoading(slideIndex);
 
     if (slideAnchor === 'dashboard') {
         onStartCounts();
@@ -106,6 +102,7 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
 
 var setSlidesForLazyLoading = function(slideIndex) {
     var thisSlide = $slides[slideIndex];
+    var nextSlide = $slides[slideIndex + 1]
 
     if ($(thisSlide).data('anchor')) {
         currentSection = $(thisSlide).data('anchor');
@@ -120,11 +117,12 @@ var setSlidesForLazyLoading = function(slideIndex) {
         $slides[slideIndex - 2],
         $slides[slideIndex - 1],
         thisSlide,
-        $slides[slideIndex + 1],
+        nextSlide,
         $slides[slideIndex + 2]
     ];
 
     findImages(slides);
+
 
     if (!$jplayer && $(thisSlide).hasClass('video')) {
         setupVideoPlayer();
@@ -148,7 +146,7 @@ var findImages = function(slides) {
     _.each($(slides), function(slide) {
 
         getBackgroundImage(slide);
-        var containedImage = $(slide).find('.contained-image');
+        var containedImage = $(slide).find('.contained-image-container');
         getBackgroundImage(containedImage);
     });
 };
@@ -163,6 +161,9 @@ var getBackgroundImage = function(container) {
 
         if ($(container).css('background-image') === 'none') {
             $(container).css('background-image', 'url(' + image_path + ')');
+        }
+        if ($(container).hasClass('contained-image-container')) {
+            setImages($(container));
         }
 
      }
@@ -201,7 +202,8 @@ var fadeInArrows = function() {
 };
 
 
-var setImages = function(image) {
+var setImages = function(container) {
+    console.log(container)
     // Grab Wes's properly sized width.
     var imageWidth = w;
 
@@ -238,13 +240,15 @@ var setImages = function(image) {
     var imageLeft = ($w - imageWidth) / 2;
 
     // Set styles on the lightbox image.
-    $(image).css({
+    $(container).css({
         'width': imageWidth + 'px',
         'height': imageHeight + 'px',
         'opacity': 1,
         'position': 'absolute',
         'top': imageTop + 'px',
         'left': imageLeft + 'px',
+        'background-size': '100%',
+        'background-repeat': 'no-repeat'
     });
 
 };
@@ -409,7 +413,7 @@ $(document).ready(function() {
     $(window).resize(resize);
     $(window).resize(function() {
         if ($('.slide.active').hasClass('image-split')) {
-            setImages($('.slide.active').find('img')[0]);
+            setImages($('.slide.active').find('.contained-image-container')[0]);
         }
     });
 });
