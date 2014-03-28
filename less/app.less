@@ -69,8 +69,9 @@ h1 {
     }
 
     p {
-        font-size: 22px;
+        font-size: 20px;
         line-height: 1.5;
+        margin-bottom: 20px;
     }
 
 }
@@ -81,15 +82,17 @@ h1 {
     }
 
     h2 {
-        font-size: 60px;
+        font-size: 70px;
     }
 
     h3 {
-        font-size: 36px;
+        font-size: 32px;
+        font-weight: normal;
+        text-transform: none;
     }
 
     p {
-        font-size: 26px;
+        font-size: 20px;
         line-height: 1.6;
         text-align: left;
     }
@@ -109,10 +112,18 @@ h1 {
     cursor: pointer;
     @media @screen-small-above {
         bottom: 10px;
+
+        &:hover {
+            background-color: #000;
+            color: #fff;
+        }
     }
-    &:hover {
-        background-color: #000;
-        color: #fff;
+
+    @media @screen-small {
+        &:active {
+            background-color: #000;
+            color: #fff;
+        }
     }
 }
 
@@ -532,7 +543,55 @@ h1 {
 }
 
 //image-split
+
+//orange #D8472B
+
 .image-split {
+	background-color: #222;
+
+	.contained-image-container {
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		
+		
+		@media @screen-small-above {
+			position: absolute;
+		}
+		
+		
+		.contained-image-text {
+		position: absolute;
+		bottom: 50px;
+		left: 0;
+		background-color: rgba(34,34,34,.3);
+		padding: 20px;
+		width: 100%;
+		border-bottom: 1px solid #444;
+		
+		@media @screen-small-above {
+			
+			bottom: 30px;
+			left: 30px;
+			width: 320px;
+			background-color: #222;
+		}
+		
+		
+			p {
+				font-size: 14px;
+				margin: 0;
+				margin-bottom: 10px;
+			}
+			
+			.source {
+				font-style: italic;
+				font-size: 11px;
+			}
+		
+		}
+	}
+	
+	
 	.contained-image-wrapper {
 		position: absolute;
 		top: 0;
@@ -685,6 +744,8 @@ h1 {
                 margin: 0 0 20px 0;
                 opacity: .6;
                 line-height: 1.5;
+                text-transform: none;
+                font-weight: normal;
             }
         }
     }
@@ -879,4 +940,79 @@ h1 {
     .background-size(cover);
     background-position: center center;
     position: relative;
+}
+
+// Dashboard
+div.dashboard {
+    color: #333;
+
+        div.dashboard-container {
+        margin: 0 auto;
+        width: 100%;
+        font-size: 15px;
+
+        div:after {
+            @media @screen-small {
+                content: ".";
+                text-indent: -99999px;
+                display: block;
+                width: 100%;
+                float: none;
+                clear: both;
+            }
+        }
+
+        div {
+            float: left;
+            width: 18%;
+            margin: 0 1%;
+
+            @media @screen-small {
+                text-align: center;
+                float: none;
+                width: 300px;
+                margin: 15px auto;
+            }
+
+            span.text {
+                @media @screen-small {
+                    float:left;
+                    width:120px;
+                    text-align: left;
+                    padding: 30px 0 0 0;
+                }
+            }
+
+            span.number {
+                background-color: #333;
+                color: #fff;
+                border-radius: 8px;
+                -moz-border-radius: 8px;
+                -webkit-border-radius: 8px;
+                font-size: 40px;
+                display:block;
+                margin: 0 0 15px 0;
+                padding: 2px;
+
+                @media @screen-small {
+                    padding: 0 20px 0 0;
+                    border-right: 1px solid #aaa;
+                    margin: 0 20px 0 0;
+                    width: 160px;
+                    display: block;
+                    float: left;
+                    font-size: 60px;
+                    line-height: 120px;
+                    background-color: rgb(200,200,200);
+                    color: #333;
+                    border-radius: 0;
+                    -moz-border-radius: 0;
+                    -webkit-border-radius: 0;
+                    text-align: center;
+                    height: 120px;
+                }
+
+            }
+        }
+    }
 }
