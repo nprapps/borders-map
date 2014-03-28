@@ -203,7 +203,8 @@ h1 {
     width: 100%;
     height: 100%;
     opacity: 0;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: none;
     .transition(opacity 0.5s ease);
     background-color: rgba(0,0,0, 1);
@@ -519,7 +520,7 @@ h1 {
 		top: 0;
 		left: 0;
 		width: 100%;
-		
+
 		overflow: auto;
 	}
 	.contained-image {
@@ -530,16 +531,16 @@ h1 {
 		//background-position: top left;
 		//background-repeat: no-repeat;
 		position: relative;
-		
+
 		.contained-image-wrapper {
 			width: 100%;
 			margin: 0 auto;
 		}
-		
+
 		img {
 		width: 100%;
 		}
-		
+
 		h4 {
 			position: absolute;
 			top: 0;
@@ -549,7 +550,7 @@ h1 {
 			background-color: #000;
 			z-index: 10;
 		}
-		
+
 		@media @screen-small-above {
 			//height: 100%;
 		}
