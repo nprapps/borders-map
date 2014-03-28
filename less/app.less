@@ -95,10 +95,6 @@ h1 {
     }
 }
 
-.slide.essay p {
-    font-size: 20px;
-}
-
 .titlecard p {
     text-align: center;
 }
@@ -756,11 +752,56 @@ h1 {
 }
 
 /*essay*/
-
 .essay {
-    .full-block-content {
-        padding: 100px 0;
+
+	color: #222;
+
+	.full-block-content {
+		padding: 20px 20px 80px 20px;
+	}
+	
+	h2 {
+	    font-size: 24px;
     }
+    
+    h4 {
+	    text-shadow: none;
+    }
+    
+    p {
+    	font-size: 13px;
+    	padding: 0;
+    	margin-bottom: 10px;
+    }
+    
+    img {
+	    max-width: 100%;
+	    margin: 30px 0;
+	    
+    }
+
+	@media @screen-small-above {
+	
+		.full-block-content {
+	        padding: 100px 0;
+	        max-width: 767px;
+	    }
+	    
+	    h2 {
+		    font-size: 40px;
+	    }
+	    
+	    p {
+	    	font-size: 20px;
+	    	margin-bottom: 20px;
+	    }
+	    
+	    img {
+		    margin: 50px 0;
+	    }
+	    
+	   
+	} 
 }
 
 /*credits template */
