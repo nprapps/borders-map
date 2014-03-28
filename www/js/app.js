@@ -100,6 +100,8 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     if (slideAnchor === 'dashboard') {
         onStartCounts();
     }
+
+    showNavigation();
 };
 
 var setSlidesForLazyLoading = function(slideIndex) {
