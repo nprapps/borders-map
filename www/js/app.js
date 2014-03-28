@@ -74,61 +74,46 @@ var setUpFullPage = function() {
         resize: false,
         css3: true,
         loopHorizontal: false,
-        afterSlideLoad: lazyLoad,
         afterRender: onPageLoad,
+        afterSlideLoad: lazyLoad,
         onSlideLeave: onSlideLeave
     });
 };
 
+// after the page loads
+
 var onPageLoad = function() {
-    getCurrentSection(0)
+    setSlidesForLazyLoading(0)
     // fade in
     $('body').css('opacity', 1);
 };
 
+// after a new slide loads
+
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     if ($($slides[slideIndex]).hasClass('image-split')) {
-
         setImages($($slides[slideIndex]).find('img')[0]);
     } else {
-        getCurrentSection(slideIndex);
-    }
-
-    // hide slide/section nav on titlecards
-    if ($slides.first().hasClass('active')) {
-        $arrows.removeClass('active');
-        $arrows.css({
-            'opacity': 0,
-            'display': 'none'
-        });
-        $('.next-section').css('display', 'none');
-    }
-    else {
-        if (!$arrows.hasClass('active')) {
-            animateArrows();
-        }
-        $('.next-section').css('display', 'block');
+        setSlidesForLazyLoading(slideIndex);
     }
 
     if (slideAnchor === 'dashboard') {
         onStartCounts();
     }
+
+    showNavigation();
 };
 
-var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
-    var thisSlide = $slides[slideIndex];
-
-    if ($jplayer && $(thisSlide).hasClass('video')) {
-        stopVideo();
-    }
-}
-
-var getCurrentSection = function(slideIndex) {
+var setSlidesForLazyLoading = function(slideIndex) {
     var thisSlide = $slides[slideIndex];
 
     if ($(thisSlide).data('anchor')) {
         currentSection = $(thisSlide).data('anchor');
-        findSlideIndex();
+        for (i=0; i < anchors.length; i++) {
+            if (anchors[i] === currentSection) {
+                currentSectionIndex = i;
+            }
+        }
     };
 
     slides = [
@@ -139,22 +124,14 @@ var getCurrentSection = function(slideIndex) {
         $slides[slideIndex + 2]
     ];
 
-    setMobileSuffix(slides);
+    findImages(slides);
 
     if (!$jplayer && $(thisSlide).hasClass('video')) {
         setupVideoPlayer();
     }
 }
 
-var findSlideIndex = function() {
-    for (i=0; i < anchors.length; i++) {
-        if (anchors[i] === currentSection) {
-            currentSectionIndex = i;
-        }
-    }
-}
-
-var setMobileSuffix = function(slides) {
+var findImages = function(slides) {
     /*
     * Set background images on slides.
     * Should get square images for mobile.
@@ -172,13 +149,13 @@ var setMobileSuffix = function(slides) {
 
         getBackgroundImage(slide);
         var containedImage = $(slide).find('.contained-image');
-       	getBackgroundImage(containedImage);
+        getBackgroundImage(containedImage);
     });
 };
 
 var getBackgroundImage = function(container) {
 
-	if ($(container).data('bgimage')) {
+    if ($(container).data('bgimage')) {
 
         var image_filename = $(container).data('bgimage').split('.')[0];
         var image_extension = '.' + $(container).data('bgimage').split('.')[1];
@@ -190,6 +167,39 @@ var getBackgroundImage = function(container) {
 
      }
 };
+
+var showNavigation = function() {
+    // hide slide/section nav on titlecards
+    if ($slides.first().hasClass('active')) {
+        $arrows.removeClass('active');
+        $arrows.css({
+            'opacity': 0,
+            'display': 'none'
+        });
+        $('.next-section').css('display', 'none');
+    }
+    else {
+        if (!$arrows.hasClass('active')) {
+            animateArrows();
+        }
+        $('.next-section').css('display', 'block');
+    }
+}
+
+var animateArrows = function() {
+    $arrows.addClass('active');
+
+    if ($arrows.hasClass('active')) {
+        $arrows.css('display', 'block');
+        var fade = _.debounce(fadeInArrows, 1);
+        fade();
+    }
+};
+
+var fadeInArrows = function() {
+    $arrows.css('opacity', 1)
+};
+
 
 var setImages = function(image) {
     // Grab Wes's properly sized width.
@@ -239,6 +249,18 @@ var setImages = function(image) {
 
 };
 
+// after you leave a slide
+
+var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
+    var thisSlide = $slides[slideIndex];
+
+    if ($jplayer && $(thisSlide).hasClass('video')) {
+
+        $(thisSlide).removeClass('video-playing');
+        stopVideo();
+    }
+}
+
 var goToNextSection = function() {
     $.fn.fullpage.moveTo(0, anchors[currentSectionIndex + 1]);
 }
@@ -262,22 +284,8 @@ var animateNav = function() {
     }
 }
 
-var animateArrows = function() {
-    $arrows.addClass('active');
-
-    if ($arrows.hasClass('active')) {
-        $arrows.css('display', 'block');
-        var fade = _.debounce(fadeInArrows, 1);
-        fade();
-    }
-};
-
 var fadeInNav = function() {
     $nav.css('opacity', 1);
-};
-
-var fadeInArrows = function() {
-    $arrows.css('opacity', 1)
 };
 
 var fadeOutNav = function() {
@@ -326,12 +334,9 @@ var setupVideoPlayer = function() {
 };
 
 var startVideo = function() {
-    var text = $(this).parents('.text');
-    $(text).hide();
-    $(text).parent().css('background-image', '');
-    $(text).next().css('display', 'block');
+    var $parent = $(this).parents('.slide.video');
 
-    $('.jp-video').css('height', 'auto');
+    $parent.addClass('video-playing');
     $('.jp-jplayer').jPlayer('play');
 }
 

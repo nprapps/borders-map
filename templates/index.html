@@ -24,9 +24,12 @@
         <div class="row">
             {% for item in row %}
             <a data-menuanchor="{{ item.data_panel }}" href="#_/{{ item.data_panel }}">
-                <div class="section-tease col-md-3 col-sm-12">
-                    <img src="assets/img/{{ item.menu_image }}">
-                    <h4>{{ item.chapter_title }}</h4>
+                <div class="section-tease col-md-3 col-sm-12" style="background-image: url('assets/img/{{item.menu_image}}');">
+                    <div class="row">
+                        <div class="mask col-md-12">
+                            <h4>{{ item.chapter_title }}</h4>
+                        </div>
+                    </div>
                 </div>
             </a>
             {% endfor %}
