@@ -69,8 +69,9 @@ h1 {
     }
 
     p {
-        font-size: 22px;
+        font-size: 20px;
         line-height: 1.5;
+        margin-bottom: 20px;
     }
 
 }
@@ -81,15 +82,17 @@ h1 {
     }
 
     h2 {
-        font-size: 60px;
+        font-size: 70px;
     }
 
     h3 {
-        font-size: 36px;
+        font-size: 32px;
+        font-weight: normal;
+        text-transform: none;
     }
 
     p {
-        font-size: 26px;
+        font-size: 20px;
         line-height: 1.6;
         text-align: left;
     }
@@ -533,6 +536,13 @@ h1 {
 
 //image-split
 .image-split {
+
+	.contained-image-container {
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		top: 0;
+		left: 0;
+	}
 	.contained-image-wrapper {
 		position: absolute;
 		top: 0;
@@ -685,6 +695,8 @@ h1 {
                 margin: 0 0 20px 0;
                 opacity: .6;
                 line-height: 1.5;
+                text-transform: none;
+                font-weight: normal;
             }
         }
     }

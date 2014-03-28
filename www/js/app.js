@@ -247,8 +247,8 @@ var setImages = function(container) {
         'position': 'absolute',
         'top': imageTop + 'px',
         'left': imageLeft + 'px',
-        'background-size': '100%',
-        'background-repeat': 'no-repeat'
+        //'background-size': '100%',
+        //'background-repeat': 'no-repeat'
     });
 
 };
