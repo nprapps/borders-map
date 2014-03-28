@@ -253,6 +253,8 @@ var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
     var thisSlide = $slides[slideIndex];
 
     if ($jplayer && $(thisSlide).hasClass('video')) {
+
+        $(thisSlide).removeClass('video-playing');
         stopVideo();
     }
 }
@@ -330,12 +332,9 @@ var setupVideoPlayer = function() {
 };
 
 var startVideo = function() {
-    var text = $(this).parents('.text');
-    $(text).hide();
-    $(text).parent().css('background-image', '');
-    $(text).next().css('display', 'block');
+    var $parent = $(this).parents('.slide.video');
 
-    $('.jp-video').css('height', 'auto');
+    $parent.addClass('video-playing');
     $('.jp-jplayer').jPlayer('play');
 }
 
