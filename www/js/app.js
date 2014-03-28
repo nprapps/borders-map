@@ -146,7 +146,7 @@ var findImages = function(slides) {
     _.each($(slides), function(slide) {
 
         getBackgroundImage(slide);
-        var containedImage = $(slide).find('.contained-image-container');
+        var containedImage = $(slide).find('.contained-image-container, .contained-image');
         getBackgroundImage(containedImage);
     });
 };
