@@ -109,10 +109,18 @@ h1 {
     cursor: pointer;
     @media @screen-small-above {
         bottom: 10px;
+
+        &:hover {
+            background-color: #000;
+            color: #fff;
+        }
     }
-    &:hover {
-        background-color: #000;
-        color: #fff;
+
+    @media @screen-small {
+        &:active {
+            background-color: #000;
+            color: #fff;
+        }
     }
 }
 
