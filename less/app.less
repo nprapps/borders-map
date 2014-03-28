@@ -535,14 +535,49 @@ h1 {
 }
 
 //image-split
+
+//orange #D8472B
+
 .image-split {
+	background-color: #222;
 
 	.contained-image-container {
 		background-size: 100% auto;
 		background-repeat: no-repeat;
-		top: 0;
+		
+		
+		@media @screen-small-above {
+			position: absolute;
+		}
+		
+		
+		.contained-image-text {
+		position: absolute;
+		bottom: 50px;
 		left: 0;
+		background-color: rgba(34,34,34,.3);
+		padding: 20px;
+		width: 100%;
+		border-bottom: 1px solid #444;
+		
+		@media @screen-small-above {
+			
+			bottom: 0;
+			width: 320px;
+			background-color: #222;
+		}
+		
+		
+			p {
+				font-size: 14px;
+				margin: 0;
+				margin-bottom: 10px;
+			}
+		
+		}
 	}
+	
+	
 	.contained-image-wrapper {
 		position: absolute;
 		top: 0;

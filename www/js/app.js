@@ -235,20 +235,17 @@ var setImages = function(container) {
         imageWidth = $w;
     }
 
-    // Set the top and left offsets.
-    var imageTop = ($h - imageHeight) / 2;
+    // Set the top and left offsets. Image bottom includes offset for navigation
+    var imageBottom = ($h - imageHeight) / 2 + 70;
     var imageLeft = ($w - imageWidth) / 2;
 
-    // Set styles on the lightbox image.
+    // Set styles on the map images.
     $(container).css({
         'width': imageWidth + 'px',
         'height': imageHeight + 'px',
         'opacity': 1,
-        'position': 'absolute',
-        'top': imageTop + 'px',
+        'bottom': imageBottom + 'px',
         'left': imageLeft + 'px',
-        //'background-size': '100%',
-        //'background-repeat': 'no-repeat'
     });
 
 };
