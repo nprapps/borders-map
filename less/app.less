@@ -69,8 +69,9 @@ h1 {
     }
 
     p {
-        font-size: 22px;
+        font-size: 20px;
         line-height: 1.5;
+        margin-bottom: 20px;
     }
 
 }
@@ -81,15 +82,17 @@ h1 {
     }
 
     h2 {
-        font-size: 60px;
+        font-size: 70px;
     }
 
     h3 {
-        font-size: 36px;
+        font-size: 32px;
+        font-weight: normal;
+        text-transform: none;
     }
 
     p {
-        font-size: 26px;
+        font-size: 20px;
         line-height: 1.6;
         text-align: left;
     }
@@ -540,7 +543,55 @@ h1 {
 }
 
 //image-split
+
+//orange #D8472B
+
 .image-split {
+	background-color: #222;
+
+	.contained-image-container {
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		
+		
+		@media @screen-small-above {
+			position: absolute;
+		}
+		
+		
+		.contained-image-text {
+		position: absolute;
+		bottom: 50px;
+		left: 0;
+		background-color: rgba(34,34,34,.3);
+		padding: 20px;
+		width: 100%;
+		border-bottom: 1px solid #444;
+		
+		@media @screen-small-above {
+			
+			bottom: 30px;
+			left: 30px;
+			width: 320px;
+			background-color: #222;
+		}
+		
+		
+			p {
+				font-size: 14px;
+				margin: 0;
+				margin-bottom: 10px;
+			}
+			
+			.source {
+				font-style: italic;
+				font-size: 11px;
+			}
+		
+		}
+	}
+	
+	
 	.contained-image-wrapper {
 		position: absolute;
 		top: 0;
@@ -693,6 +744,8 @@ h1 {
                 margin: 0 0 20px 0;
                 opacity: .6;
                 line-height: 1.5;
+                text-transform: none;
+                font-weight: normal;
             }
         }
     }
