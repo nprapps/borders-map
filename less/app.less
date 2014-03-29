@@ -372,7 +372,7 @@ h1 {
 
 
     .full-block-content {
-        max-width: 800px;
+        max-width: 700px;
         margin: 0 auto;
         padding: 20px;
     }
@@ -555,22 +555,15 @@ h1 {
 
 
 .image-split {
-	//background: url('../assets/img/maphistory/chalkboard.jpg') top left;
-	//background-color: #000;
 
 	.contained-image-container {
 		background-size: 100% auto;
 		background-repeat: no-repeat;
 		
 		
-		.map-history & {
-		    opacity: .7;
-        }
-		
-		
 		@media @screen-small-above {
 			position: absolute;
-			background-position-y: 80px;
+			background-position-y: 40px;
 		}
 		
 		
@@ -584,7 +577,7 @@ h1 {
 		border-bottom: 1px solid #444;
 		
 		@media @screen-small-above {
-			top: 90px;
+			top: 70px;
 			right: 10px;
 			bottom: auto;
 			left: auto;
@@ -608,52 +601,6 @@ h1 {
 			}
 		
 		}
-	}
-	
-		
-	
-	.contained-image-wrapper {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-
-		overflow: auto;
-	}
-	.contained-image {
-		//top: 50%;
-		//height: 225px;
-		//background: url('../assets/img/maphistory/chalkboard.jpg') top left;
-	//background-color: #000;
-		//.background-size(cover);
-		//background-size: 100% auto;
-		//background-position: top left;
-		//background-repeat: no-repeat;
-		position: relative;
-
-		.contained-image-wrapper {
-			width: 100%;
-			margin: 0 auto;
-		}
-
-		img {
-		width: 100%;
-		}
-
-		h4 {
-			position: absolute;
-			top: 0;
-			left: 0;
-			padding: 20px;
-			width: 300px;
-			background-color: #000;
-			z-index: 10;
-		}
-
-		@media @screen-small-above {
-			//height: 100%;
-		}
-
 	}
 
 	.full-block-cell {
@@ -710,14 +657,39 @@ h1 {
 	.background-size(cover);
 	background-position: top left;
 	background-repeat: no-repeat;
+	
+	
+    .contained-image-container {
+        opacity: .8;
+    }
+}
 
+//text-image 
+.text-image {
+
+    h4 {
+        
+    }
+}
+
+//map fence
+.map-fence {
+    
+	
 }
 
 //big quote
 
 .big-quote {
 
-    .contained-image {
+    .full-block-cell {
+        vertical-align: bottom;
+        padding-bottom: 100px;
+
+        .full-block-content {margin: 0;}
+    }
+
+    .quote-image {
         position: absolute;
         top: 0;
         left: 0;
@@ -728,40 +700,30 @@ h1 {
         @media @screen-small-above {
             height: 100%;
         }
-
     }
-
-    .full-block-cell {
-        vertical-align: bottom;
-        padding-bottom: 100px;
-
-        .full-block-content {margin: 0;}
-
+    
+    .quote-text {
+        position: absolute;
+        top: 225px;
+        right: 0;
+        padding: 20px;
+        color: #ddd;
+        
+        @media @screen-small-above {
+            top: auto;
+            bottom: 70px;
+            right: 15px;
+            max-width: 300px;
+            background-color: rgba(0,0,0,.8);
+        }
+    
         blockquote {
-            position: absolute;
-            top: 225px;
-            right: 0;
-            width: 100%;
             border: 0;
-            text-align: left;
-            text-shadow: 2px 2px 5px #333;
-             background-color: rgba(0,0,0,.8);
-            max-width: 500px !important;
-            padding: 20px;
-
-            @media @screen-small-above {
-                top: auto;
-                bottom: 60px;
-                right: 15px;
-                width: auto;
-            }
-
+            margin: 0;
+            padding: 0;
 
             p {
-                font-size: 20px;
-                font-weight: bold;
-                line-height: 1.2;
-                padding: 0;
+                font-size: 16px;
             }
 
             dl {
@@ -779,86 +741,10 @@ h1 {
             }
         }
     }
-}
 
-.stand-alone-quote {
-    h6 {
-        font-size: 16px;
-        line-height: 1.6;
-        margin-bottom: 20px;
-        font-style: italic;
-    }
-
-    blockquote {
-        border: 0;
-        padding: 0;
-        text-align: left;
-        text-shadow: 2px 2px 5px #333;
-
-        p {
-            font-size: 28px;
-            line-height: 1.2;
-        }
-
-
-    }
-
-    dl {
-    margin: 20px 0;
-    text-align: left;
-    font-size: 18px;
-    }
 }
 
 
-//pano tempate
-.slide.pano {
-
-    .location{
-        height: 9%;
-        color: #eee;
-    }
-
-    .pano-display {
-        @media @screen-small { display: none; }
-        background-color: rgba(0,0,0,.5);
-        height: 100%;
-        max-width: 100%;
-        button {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            -webkit-transform: translate(-50%,-50%);
-            -ms-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);
-            &.backward {
-                opacity: 0;
-            }
-        }
-    }
-
-    .top-location {
-        vertical-align: top;
-    }
-    .bottom-location {
-        vertical-align: bottom;
-    }
-
-    .pano-container {
-        height: 70%;
-        max-height: 800px;
-        background-position: 0,0;
-
-        background-size: cover;
-        .transition(background-position 8s linear);
-
-        @media @screen-small {
-            height: 20%;
-            background-size: 100% auto;
-            background-repeat: no-repeat;
-        }
-    }
-}
 
 /*introduction*/
 .introduction {
