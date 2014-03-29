@@ -14,7 +14,7 @@ var $navButton;
 var $nav;
 var $navItems;
 var $secondaryNav;
-var $nextSectionButtton;
+//var $nextSectionButtton;
 var $arrows;
 var currentSection = '_'
 var currentSectionIndex = 0;
@@ -388,7 +388,7 @@ $(document).ready(function() {
     $nav = $('.nav');
     $navItems = $('.nav .section-tease');
     $secondaryNav = $('.secondary-nav-btn');
-    $nextSectionButtton = $('.next-section');
+    //$nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
 
@@ -404,7 +404,7 @@ $(document).ready(function() {
     $navItems.on('click', animateNav);
     $secondaryNav.on('click', animateNav);
     $titleCardButton.on('click', goToNextSlide);
-    $nextSectionButtton.on('click', goToNextSection);
+    //$nextSectionButtton.on('click', goToNextSection);
 
     // Redraw slides if the window resizes
     $(window).resize(resize);
