@@ -177,13 +177,13 @@ var showNavigation = function() {
             'opacity': 0,
             'display': 'none'
         });
-        $('.next-section').css('display', 'none');
+        $navButton.css('opacity', '0');
     }
     else {
         if (!$arrows.hasClass('active')) {
             animateArrows();
         }
-        $('.next-section').css('display', 'block');
+        $navButton.css('opacity', '1');
     }
 }
 
@@ -271,7 +271,7 @@ var goToNextSlide = function() {
 }
 
 var animateNav = function() {
-    $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
+    $navButton.find('i').toggleClass('fa-th').toggleClass('fa-times');
     $nav.toggleClass('active');
     if ($nav.hasClass('active')) {
         $nav.css('display', 'block');
