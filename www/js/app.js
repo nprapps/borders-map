@@ -243,7 +243,6 @@ var setImages = function(container) {
     $(container).css({
         'width': imageWidth + 'px',
         'height': imageHeight + 'px',
-        'opacity': 1,
         'bottom': imageBottom + 'px',
         'left': imageLeft + 'px',
     });

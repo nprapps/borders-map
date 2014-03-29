@@ -21,7 +21,7 @@
 body {
     color: #fff;
     -webkit-font-smoothing: antialiased;
-    background-color: #000;
+    background-color: #191B1C;
     opacity: 0;
     .transition(opacity 3s ease);
 }
@@ -38,7 +38,7 @@ h1 {
     text-transform: uppercase;
  }
 
- h1, h4 {
+ h1 {
      text-shadow: 0px 2px 2px rgba(0,0,0,0.5);
  }
 
@@ -52,8 +52,6 @@ h1 {
  p {
     font-size: 16px;
     line-height: 1.5;
-    text-align: left;
-    padding: 0 10px;
  }
 
 @media @screen-small-above {
@@ -94,16 +92,13 @@ h1 {
     p {
         font-size: 20px;
         line-height: 1.6;
-        text-align: left;
     }
 }
 
-.titlecard p {
-    text-align: center;
-}
+
 
 .primary-navigation-btn, .controlArrow, .next-section {
-    background-color: #fff;
+    background-color: #eee;
     position: absolute;
     bottom: 0;
     color: #444;
@@ -114,7 +109,7 @@ h1 {
         bottom: 10px;
 
         &:hover {
-            background-color: #ddd;
+            background-color: #fff;
             color: #000;
         }
     }
@@ -329,6 +324,19 @@ h1 {
 */
 }
 
+//titlecard
+.titlecard {
+    .full-block-cell {
+        text-align: center;
+        color: #fff;
+    }
+}
+
+//text-only
+.text-only {
+    color: #ccc;
+}
+
 // 50/50 grid for slide (used for playlist and portraits)
 .first-block {
     position: absolute;
@@ -359,7 +367,6 @@ h1 {
     .full-block-cell {
         display: table-cell;
         vertical-align: middle;
-        text-align: center;
         width: 100%;
     }
 
@@ -540,62 +547,30 @@ h1 {
     }*/
 }
 
-//portrait tempate
-.slide.photo-quote-vertical {
-    .second-block {
-        img {
-            height: 100%;
-            float: right;
-        }
-    }
 
-    blockquote {
-        position: absolute;
-        top: 5%;
-        left: 0;
-        z-index: 20;
-        border: none;
-        margin: 0;
-        padding: 0 50px;
-        color: #444;
 
-        p {
-            font-size: 28px;
-            font-weight: bold;
-            line-height: 1.2;
-            padding: 0;
-        }
-
-        dl {
-            margin-top: 40px;
-            opacity: .8;
-            font-size: 15px;
-        }
-
-        h6 {
-            font-size: 20px;
-            margin: 20px 0;
-            font-style: italic;
-            opacity: .6;
-            line-height: 1.5;
-        }
-    }
-}
-
-//image-split
+//slide-image-split
 
 //orange #D8472B
 
+
 .image-split {
-	background-color: #222;
+	//background: url('../assets/img/maphistory/chalkboard.jpg') top left;
+	//background-color: #000;
 
 	.contained-image-container {
 		background-size: 100% auto;
 		background-repeat: no-repeat;
 		
 		
+		.map-history & {
+		    opacity: .7;
+        }
+		
+		
 		@media @screen-small-above {
 			position: absolute;
+			background-position-y: 80px;
 		}
 		
 		
@@ -609,14 +584,18 @@ h1 {
 		border-bottom: 1px solid #444;
 		
 		@media @screen-small-above {
-			
-			bottom: 30px;
-			left: 30px;
+			top: 90px;
+			right: 10px;
+			bottom: auto;
+			left: auto;
 			width: 320px;
-			background-color: #222;
+			background-color: rgba(34,34,34,.7);
 		}
 		
-		
+		    h4 {
+    		    font-size: 18px;
+    		    font-weight: bold;
+		    }
 			p {
 				font-size: 14px;
 				margin: 0;
@@ -631,6 +610,7 @@ h1 {
 		}
 	}
 	
+		
 	
 	.contained-image-wrapper {
 		position: absolute;
@@ -643,6 +623,8 @@ h1 {
 	.contained-image {
 		//top: 50%;
 		//height: 225px;
+		//background: url('../assets/img/maphistory/chalkboard.jpg') top left;
+	//background-color: #000;
 		//.background-size(cover);
 		//background-size: 100% auto;
 		//background-position: top left;
@@ -720,6 +702,14 @@ h1 {
 			}
 		}
 	}
+
+}
+
+.map-history {
+    background: url('../assets/img/maphistory/map-grayscale.jpg') top left;
+	.background-size(cover);
+	background-position: top left;
+	background-repeat: no-repeat;
 
 }
 
@@ -1062,3 +1052,48 @@ div.dashboard {
         }
     }
 }
+
+//portrait tempate
+
+/*
+.slide.photo-quote-vertical {
+    .second-block {
+        img {
+            height: 100%;
+            float: right;
+        }
+    }
+
+    blockquote {
+        position: absolute;
+        top: 5%;
+        left: 0;
+        z-index: 20;
+        border: none;
+        margin: 0;
+        padding: 0 50px;
+        color: #444;
+
+        p {
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1.2;
+            padding: 0;
+        }
+
+        dl {
+            margin-top: 40px;
+            opacity: .8;
+            font-size: 15px;
+        }
+
+        h6 {
+            font-size: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            opacity: .6;
+            line-height: 1.5;
+        }
+    }
+}
+*/
