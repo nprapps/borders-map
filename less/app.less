@@ -1,7 +1,6 @@
 @import "less/lib/bootstrap/bootstrap";
 @import "less/lib/font-awesome/font-awesome";
 @import "less/lib/prefixer";
-//@import "less/adhesion";
 
 // Global variables
 @img-root: "../assets/img";
@@ -95,105 +94,101 @@ h1 {
     }
 }
 
-
-
-.primary-navigation-btn, .controlArrow, .next-section {
-    background-color: #eee;
-    position: absolute;
-    bottom: 0;
-    color: #444;
-    text-transform: uppercase;
-    font-weight: bold;
-    cursor: pointer;
-    @media @screen-small-above {
-        bottom: 10px;
-
-        &:hover {
-            background-color: #fff;
-            color: #000;
-        }
-    }
-
-    @media @screen-small {
-        &:active {
-            background-color: #000;
-            color: #fff;
-        }
-    }
-}
-
 .primary-navigation {
     position: absolute;
     bottom: 0;
+    left: 0;
     width: 100%;
+    
     @media @screen-small {
         background-color: #000;
         height: 50px;
     }
-}
-
-.primary-navigation-btn, .next-section {
-    left: 0;
-    font-size: 12px;
-    padding: 10px;
-    display: inline-block;
-    max-width: 150px;
-
-    @media @screen-small-above {
-        left: 15px;
-        font-size: 14px;
-        padding: 15px;
+    
+    .primary-navigation-btn, .controlArrow {
+        background-color: #eee;
+        position: absolute;
+        bottom: 0;
+        color: #444;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor: pointer;
+        @media @screen-small-above {
+            bottom: 10px;
+    
+            &:hover {
+                background-color: #fff;
+                color: #000;
+            }
+        }
+    
+        @media @screen-small {
+            &:active {
+                background-color: #000;
+                color: #fff;
+            }
+        }
+    }
+    
+    .primary-navigation-btn {
+        left: 0;
+        font-size: 12px;
+        padding: 10px;
+        display: inline-block;
+        max-width: 150px;
+    
+        @media @screen-small-above {
+            left: 15px;
+            font-size: 14px;
+            padding: 15px;
+        }
+    }
+    
+    .controlArrow {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 2.3;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    
+        display: none;
+        opacity: 0;
+        .transition(opacity 0.5s ease);
+    
+        @media @screen-small-above {
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            line-height: 2.2;
+        }
+    }
+    .controlArrow.prev {
+        right: 60px;
+        @media @screen-small-above { right: 85px; }
+        &:before {
+            font-family: "FontAwesome";
+            content: '\f053';
+        }
+    }
+    .controlArrow.next {
+        right: 0px;
+        padding: 0 0 0 5px;
+        @media @screen-small-above { right: 15px; }
+        &:before {
+            font-family: "FontAwesome";
+            content: "\f054"
+        }
     }
 }
 
-.next-section {
-    left: 70px;
-}
-
-//slide navigation
-.controlArrow {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 2.3;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    display: none;
-    opacity: 0;
-    .transition(opacity 0.5s ease);
-
-    @media @screen-small-above {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-        line-height: 2.2;
-    }
-}
-.controlArrow.prev {
-    right: 60px;
-    @media @screen-small-above { right: 85px; }
-    &:before {
-        font-family: "FontAwesome";
-        content: '\f053';
-    }
-}
-.controlArrow.next {
-    right: 0px;
-    padding: 0 0 0 5px;
-    @media @screen-small-above { right: 15px; }
-    &:before {
-        font-family: "FontAwesome";
-        content: "\f054"
-    }
-}
-
+//all stories modal
 .nav {
     position: fixed;
     top: 0;
@@ -279,21 +274,18 @@ h1 {
     }
 }
 
-//credit
-
-.credit {
-    text-align: center;
-    margin-bottom: -20px;
-    color: #ccc;
-    font-size: 18px;
-    a {
-        color: #ccc;
-        font-weight: bold;
+//titlecard
+.titlecard {
+    .full-block-cell {
+        text-align: center;
+        color: #fff;
     }
+    
+    
 }
 
 //titlecard play buttons
-.btn.btn-play, .btn.btn-video, .btn.btn-pano {
+.btn.btn-play, .btn.btn-video {
     border-radius: 0;
     background-color: #fff;
     text-transform: uppercase;
@@ -315,21 +307,6 @@ h1 {
         cursor: pointer;
     }
 
-/*
-    &:after {
-        font-family: "FontAwesome";
-        content: '\f054';
-        padding-left: 10px;
-    }
-*/
-}
-
-//titlecard
-.titlecard {
-    .full-block-cell {
-        text-align: center;
-        color: #fff;
-    }
 }
 
 //text-only
@@ -337,25 +314,7 @@ h1 {
     color: #ccc;
 }
 
-// 50/50 grid for slide (used for playlist and portraits)
-.first-block {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-}
 
-.second-block {
-    .background-size(cover);
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-}
 
 // full width container within a section or slide
 .full-block {
@@ -426,6 +385,7 @@ h1 {
 		
 		p {
 			font-size: 17px;
+			color: #ccc;
 		}
 	}
 	
@@ -549,7 +509,7 @@ h1 {
 
 
 
-//slide-image-split
+//slide-image-split- used for fence and history maps
 
 //orange #D8472B
 
@@ -678,8 +638,7 @@ h1 {
 	
 }
 
-//big quote
-
+//big quote template
 .big-quote {
 
     .full-block-cell {
@@ -745,13 +704,6 @@ h1 {
 }
 
 
-
-/*introduction*/
-.introduction {
-    
-}
-
-
 /*essay*/
 .essay {
     background-color: #eee;
@@ -810,6 +762,19 @@ h1 {
     background-color: #ccc;
 }
 
+//credit
+
+.credit {
+    text-align: center;
+    margin-bottom: -20px;
+    color: #ccc;
+    font-size: 18px;
+    a {
+        color: #ccc;
+        font-weight: bold;
+    }
+}
+
 // default slide styles
 #superContainer {
     height: 100%;
@@ -854,8 +819,6 @@ h1 {
         }
     }
 }
-
-//generic container for all content within a section or slide only use this class for JS hooks and global styles that will apply to all templates.
 
 //full-bleed background images on sections and slides
 .section, .slide {
@@ -982,4 +945,26 @@ div.dashboard {
         }
     }
 }
+*/
+
+/* 50/50 grid for slide (used for playlist and portraits)
+.first-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+}
+
+.second-block {
+    .background-size(cover);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
 */
