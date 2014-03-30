@@ -29,7 +29,7 @@ body {
 
  h1 {
      font-size: 24px;
-     text-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+     .text-shadow(0px 2px 2px rgba(0,0,0,0.5));
      text-transform: uppercase;
      font-weight: bold;
  }
@@ -309,6 +309,13 @@ body {
 //text-only
 .text-only {
     color: #ccc;
+    
+    .location {
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
 }
 
 
@@ -390,15 +397,19 @@ body {
 
 
 //video template
-.video {
+.slide.video {
     .player {
         display: none;
     }
-
+    
     #player-wrapper {top: 0;}
 
     &.video-playing {
         background-image: none !important;
+        
+        .jp-jplayer {
+            background-color: #000;
+        }
 
         .text {
             display: none;
@@ -573,7 +584,7 @@ body {
 			width: 100%;
 			border: 0;
 			text-align: left;
-			text-shadow: 2px 2px 5px #333;
+			.text-shadow(2px 2px 5px #333);
 			 background-color: rgba(0,0,0,.8);
 			max-width: 500px !important;
 			padding: 20px;
@@ -697,6 +708,33 @@ body {
 
 }
 
+
+/*snacktime*/
+
+.snacktime {
+    text-align: center;
+    
+    h4 {
+        font-weight: bold;
+        text-transform: uppercase;
+        display: inline-block;
+        background-color: #000;
+        font-size: 28px;
+        padding: 20px;
+            em {
+                display: block;
+                margin-top: 10px;
+                font-size: 16px;
+            }
+    }
+    
+    h3 {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 120px;
+        .text-shadow(2px 2px 2px #000);
+    }
+}
 
 /*essay*/
 .essay {
