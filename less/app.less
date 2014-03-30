@@ -126,7 +126,7 @@ body {
         background-color: #eee;
         bottom: 20px;
         right: auto;
-        left: 25px;
+        left: 10px;
         font-size: 14px;
         padding: 15px;
        
@@ -145,7 +145,7 @@ body {
         @media @screen-small-above {
             bottom: 20px;
             right: auto;
-            left: 25px;
+            left: 10px;
             font-size: 14px;
             padding: 15px;
             background-color: #eee;
@@ -258,7 +258,7 @@ body {
         min-height: 200px; // for my own sanity right now
         background-size: cover;
         background-position: center top;
-        margin-bottom: 20px;
+        border: 5px solid #000;
         .mask {
             background-color: rgba(0,0,0,.3);
             height: 200px;
@@ -276,6 +276,9 @@ body {
 
             color: #fff;
             font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            .text-shadow(2px 2px 2px #000);
 
             @media @screen-large-above {
                 font-size: 18px;
@@ -691,6 +694,7 @@ body {
 
 }
 
+/*
 .map-history {
     background: url('../assets/img/maphistory/map-grayscale.jpg') top left;
 	.background-size(cover);
@@ -701,7 +705,7 @@ body {
     .contained-image-container {
         opacity: .8;
     }
-}
+}*/
 
 //map fence
 .map-fence {
@@ -741,8 +745,8 @@ body {
         
         @media @screen-small-above {
             top: auto;
-            bottom: 70px;
-            right: 15px;
+            bottom: 90px;
+            right: 25px;
             max-width: 300px;
             padding: 20px;
             background-color: rgba(0,0,0,.8);
@@ -832,8 +836,16 @@ body {
     }
 
     h3 {
+        font-size: 22px;
 	    text-align: center;
 	    text-transform: uppercase;
+    }
+    
+    h5 {
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
     }
 
     p {
@@ -852,11 +864,15 @@ body {
 
 		.full-block-content {
 	        padding: 100px 0;
-	        max-width: 767px;
+	        max-width: 630px;
 	    }
 
 	    h2 {
 	        font-size: 50px;
+        }
+        
+        h3 {
+            font-size: 22px;
         }
 
 	    p {
