@@ -91,20 +91,20 @@ body {
     width: 100%;
     
     @media @screen-small {
-        background-color: #000;
-        height: 50px;
+        .touch & {
+            background-color: #000;
+            height: 60px;
+        }
     }
     
     .primary-navigation-btn, .controlArrow {
-        background-color: #eee;
         position: absolute;
-        bottom: 0;
         color: #444;
         text-transform: uppercase;
         font-weight: bold;
         cursor: pointer;
         @media @screen-small-above {
-            bottom: 10px;
+            
     
             &:hover {
                 background-color: #fff;
@@ -121,38 +121,58 @@ body {
     }
     
     .primary-navigation-btn {
-        left: 0;
-        font-size: 12px;
-        padding: 10px;
         display: inline-block;
         max-width: 150px;
+        background-color: #eee;
+        bottom: 20px;
+        right: auto;
+        left: 25px;
+        font-size: 14px;
+        padding: 15px;
+       
+        .touch & {
+            bottom: 5px;
+            right: 10px;
+            left: auto;
+            width: 50px;
+            height: 50px;
+            font-size: 22px;
+            padding: 10px 10px 10px 15px;
+             background-color: #bbb;
+             span {display: none;}
+    	}
     
         @media @screen-small-above {
-            left: 15px;
+            bottom: 20px;
+            right: auto;
+            left: 25px;
             font-size: 14px;
             padding: 15px;
+            background-color: #eee;
         }
     }
     
     .controlArrow {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
         font-weight: bold;
         text-align: center;
-        line-height: 2.3;
+        line-height: 2.2;
+        background-color: #eee;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -khtml-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-    
+        bottom: 20px;
         display: none;
         opacity: 0;
         .transition(opacity 0.5s ease);
     
         @media @screen-small-above {
+            bottom: 20px;
             width: 50px;
             height: 50px;
             font-size: 24px;
@@ -160,17 +180,44 @@ body {
         }
     }
     .controlArrow.prev {
-        right: 60px;
-        @media @screen-small-above { right: 85px; }
+        
+        .touch & {
+            left: 10px;
+            bottom: 5px;
+            background-color: #999;
+    	}
+    	
+    	left: auto;
+        right: 105px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        
+        @media @screen-small-above { 
+            left: auto;
+            right: 105px;
+            width: 50px;
+            height: 50px;
+            font-size: 24px; 
+        }
+        
         &:before {
             font-family: "FontAwesome";
             content: '\f053';
         }
     }
     .controlArrow.next {
-        right: 0px;
+    	left: auto;
+        right: 25px; 
         padding: 0 0 0 5px;
-        @media @screen-small-above { right: 15px; }
+        .touch & {
+            bottom: 5px;
+            left: 130px;
+    	}
+        @media @screen-small-above { 
+            left: auto;
+            right: 25px; 
+        }
         &:before {
             font-family: "FontAwesome";
             content: "\f054"
@@ -192,6 +239,12 @@ body {
     opacity: 0;
     overflow-x: hidden;
     overflow-y: auto;
+    
+    .touch & {
+		overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+	}
+    
     display: none;
     .transition(opacity 0.5s ease);
     background-color: rgba(0,0,0, 1);
@@ -326,6 +379,7 @@ body {
 //text-only
 .text-only {
     color: #ccc;
+    padding-bottom: 70px;
     
     .location {
         font-size: 20px;
@@ -682,7 +736,7 @@ body {
         position: absolute;
         top: 225px;
         right: 0;
-        padding: 20px;
+        padding: 20px 20px 70px 20px;
         color: #ddd;
         
         @media @screen-small-above {
@@ -690,6 +744,7 @@ body {
             bottom: 70px;
             right: 15px;
             max-width: 300px;
+            padding: 20px;
             background-color: rgba(0,0,0,.8);
         }
         
@@ -759,6 +814,11 @@ body {
 .essay {
     background-color: #fff;
 	color: #222;
+	
+	.touch & {
+		overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+	}
 
 	.full-block-content {
 		padding: 20px 20px 80px 20px;

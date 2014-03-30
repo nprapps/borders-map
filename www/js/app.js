@@ -10,6 +10,7 @@ var $components;
 var $portraits;
 var $play;
 var $video;
+var $primaryNav;
 var $navButton;
 var $nav;
 var $navItems;
@@ -177,13 +178,15 @@ var showNavigation = function() {
             'opacity': 0,
             'display': 'none'
         });
-        $navButton.css('opacity', '0');
+        //$navButton.css('opacity', '0');
+        $primaryNav.css('opacity', '0');
     }
     else {
         if (!$arrows.hasClass('active')) {
             animateArrows();
         }
-        $navButton.css('opacity', '1');
+        //$navButton.css('opacity', '1');
+        $primaryNav.css('opacity', '1');
     }
 }
 
@@ -384,6 +387,7 @@ $(document).ready(function() {
     $components = $('.component');
     $portraits = $('.section[data-anchor="people"] .slide')
     $navButton = $('.primary-navigation-btn');
+    $primaryNav = $('.primary-navigation');
     $nav = $('.nav');
     $navItems = $('.nav .section-tease');
     $secondaryNav = $('.secondary-nav-btn');
