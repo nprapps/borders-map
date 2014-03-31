@@ -349,12 +349,16 @@ var setupVideoPlayer = function() {
             });
         },
         play: function (){
-            $('.jp-current-time').removeClass('hide');
-            $('.jp-duration').addClass('hide');
+            if (!is_touch) {
+                $('.jp-current-time').removeClass('hide');
+                $('.jp-duration').addClass('hide');
+            }
         },
         ended: function(){
-            $('.jp-current-time').addClass('hide');
-            $('.jp-duration').removeClass('hide');
+            if (!is_touch) {
+                $('.jp-current-time').addClass('hide');
+                $('.jp-duration').removeClass('hide');
+            }
         },
         size: {
             width: $w,
@@ -374,9 +378,9 @@ var setupVideoPlayer = function() {
 };
 
 var startVideo = function() {
-    var $parent = $(this).parents('.slide.video');
-
-    $parent.addClass('video-playing');
+    if (!is_touch) {
+        $(this).parents('.slide.video').addClass('video-playing');
+    }
     $('.jp-jplayer').jPlayer('play');
 }
 
