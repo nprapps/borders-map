@@ -29,7 +29,6 @@ body {
 
  h1 {
      font-size: 24px;
-     .text-shadow(0px 2px 2px rgba(0,0,0,0.5));
      text-transform: uppercase;
      font-weight: bold;
  }
@@ -313,9 +312,16 @@ body {
     }
 }
 
+//npr logo
+
+.npr-logo {
+    img {
+        max-width: 130px;
+    }
+}
+
 //titlecard
 .titlecard {
-
 
     .full-block-cell {
         text-align: center;
@@ -323,51 +329,34 @@ body {
 
          h1 {
              font-size: 30px;
-             .text-shadow(0px 2px 2px rgba(0,0,0,0.5));
              text-transform: uppercase;
              font-weight: bold;
+             @media @screen-small-above {
+                font-size: 90px;
+            }
          }
 
          h2 {
             font-size: 30px;
             font-weight: bold;
             text-transform: uppercase;
+                @media @screen-small-above {
+                    font-size: 70px;
+                }
         }
 
          h3 {
             font-size: 14px;
             margin-top: 0;
-         }
-
-
-         p, li {
-            font-size: 13px;
-            line-height: 1.5;
-         }
-
-        @media @screen-small-above {
-            h1 {
-                font-size: 90px;
-            }
-            h2 {
-                font-size: 70px;
-            }
-
-            h3 {
+            max-width: 250px;
+            margin: 0 auto;
+            @media @screen-small-above {
                 font-size: 26px;
-                margin-top: 20px;
+                max-width: none;
             }
 
-            p, li {
-                font-size: 20px;
-                line-height: 1.5;
-                margin-bottom: 20px;
-            }
-
-        }
+         }
     }
-
-
 }
 
 //titlecard play buttons
@@ -378,7 +367,7 @@ body {
     font-weight: bold;
     font-size: 14px;
     padding: 0 10px;
-    margin: 15px auto 0 auto;
+    margin: 35px auto 0 auto;
     text-align: center;
     line-height: 30px;
     @media @screen-small-above {
@@ -387,12 +376,13 @@ body {
         line-height: 44px;
     }
 
-    // &:hover {
-    //     background-color: #000;
-    //     color: #fff;
-    //     cursor: pointer;
-    // }
-
+    &:hover {
+        .no-touch & {
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
 }
 
 //section attribution
@@ -494,12 +484,18 @@ body {
 
     //style title slides uniquely
     .titlecard & {
-        background-color: rgba(0,0,0,.3);
+        background-color: rgba(0,0,0,.5);
+        @media @screen-small-above {
+             background-color: rgba(0,0,0,.3);
+        }
 
         .full-block-content {
             width: 100%;
             padding: 0;
-            .text-shadow(2px 2px 2px #000);
+
+            @media @screen-small-above {
+                 .text-shadow(2px 2px 2px #000);
+            }
         }
     }
 
@@ -826,9 +822,10 @@ body {
         width: 100%;
         height: 225px;
         .background-size(cover);
-        background-position: center center;
+        background-position: top left;
         @media @screen-small-above {
             height: 100%;
+            background-position: center center;
         }
     }
 
@@ -859,23 +856,32 @@ body {
             padding: 0;
 
             p {
-                font-size: 18px;
+                font-size: 13px;
+                @media @screen-small-above {
+                    font-size: 18px;
+                }
             }
 
             dt {font-weight: normal;}
 
             dl {
                 margin-top: 10px;
-                font-size: 13px;
+                font-size: 10px;
+                @media @screen-small-above {
+                    font-size: 13px;
+                }
             }
 
             h6 {
-                font-size: 13px;
                 margin: 0 0 20px 0;
                 opacity: .6;
                 line-height: 1.2;
                 text-transform: none;
                 font-weight: normal;
+                font-size: 10px;
+                @media @screen-small-above {
+                    font-size: 13px;
+                }
             }
         }
     }
