@@ -501,10 +501,10 @@ body {
 
     //style title slides uniquely
     .titlecard & {
-        background-color: rgba(0,0,0,.5);
-        @media @screen-small-above {
-             background-color: rgba(0,0,0,.3);
-        }
+    background-color: rgba(0,0,0,.5);
+    @media @screen-small-above {
+         background-color: rgba(0,0,0,.3);
+    }
 
         .full-block-content {
             width: 100%;
@@ -1160,11 +1160,41 @@ body {
 // Dashboard
 div.dashboard {
     color: #fff;
+    
+    .full-block-cell {
+        background-color: rgba(0,0,0,.5);
+    
+        @media @screen-small-above {
+             .text-shadow(2px 2px 2px #000);
+        }
+    }
+    
+    h2 {
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+            @media @screen-small-above {
+                font-size: 40px;
+            }
+    }
+
+     h3 {
+        font-size: 14px;
+        margin-top: 0;
+        max-width: 250px;
+        margin: 0 auto;
+        @media @screen-small-above {
+            font-size: 26px;
+            max-width: none;
+        }
+
+     }
+    
 
         div.dashboard-container {
-        margin: 0 auto;
+        margin-top: 40px;
         width: 100%;
-        font-size: 15px;
+        line-height: 1.3;
 
         div:after {
             @media @screen-small {
@@ -1179,8 +1209,9 @@ div.dashboard {
 
         div {
             float: left;
-            width: 18%;
-            margin: 0 1%;
+            width: 115px;
+            overflow: hidden;
+            margin-right: 15px;
 
             @media @screen-small {
                 text-align: center;
@@ -1192,9 +1223,10 @@ div.dashboard {
             span.text {
                 @media @screen-small {
                     float:left;
-                    width:120px;
                     text-align: left;
-                    padding: 30px 0 0 0;
+                    padding: 30px 0 0 3px;
+                    font-size: 13px;
+                    
                 }
             }
 
@@ -1204,10 +1236,11 @@ div.dashboard {
                 border-radius: 8px;
                 -moz-border-radius: 8px;
                 -webkit-border-radius: 8px;
-                font-size: 40px;
+                font-size: 30px;
                 display:block;
                 margin: 0 0 15px 0;
                 padding: 2px;
+                text-align: center;
 
                 @media @screen-small {
                     padding: 0 20px 0 0;
