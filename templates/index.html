@@ -12,14 +12,23 @@
 {% endfor %}
 </div>
 <div class="primary-navigation">
-    <div class="primary-navigation-btn"><i class="fa fa-bars"></i></div>
-    <div class="next-section">Next Section</div>
+    <div class="primary-navigation-btn"><i class="fa fa-th"></i> <span>All Stories</span></div>
     <div class="controlArrow prev"></div>
     <div class="controlArrow next"></div>
 </div>
 
 <div class="nav">
     <div class="container-fluid">
+        <div class="row secondary-nav">
+            <div class="col-md-12">
+                <ul>
+                    <a data-menuanchor="home" href="#_"><li class="secondary-nav-btn">Home</li></a>
+                    <a data-menuanchor="about" href="#_/about"><li class="secondary-nav-btn">About</li></a>
+                    <a href="#"><li class="secondary-nav-btn">Statistics</li></a>
+                    <a href="#"><li class="secondary-nav-btn">Listen</li></a>
+                </ul>
+            </div>
+        </div>
         {% for row in nav %}
         <div class="row">
             {% for item in row %}
@@ -35,13 +44,6 @@
             {% endfor %}
         </div>
         {% endfor %}
-        <div class="row secondary-nav">
-            <div class="col-md-12">
-            <ul>
-                <a data-menuanchor="home" href="#_"><li class="secondary-nav-btn">Home</li></a>
-                <a data-menuanchor="about" href="#_/about"><li class="secondary-nav-btn">About</li></a>
-            </ul>
-        </div>
     </div>
 </div>
 

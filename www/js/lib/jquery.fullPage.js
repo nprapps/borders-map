@@ -825,6 +825,7 @@
                 destiny = currentSlide.next('.slide');
             }
 
+
             //is there isn't a next slide in the secuence?
             if (!destiny.length) {
                 //respect loopHorizontal setting
@@ -836,7 +837,6 @@
                     destiny = currentSlide.siblings(':first');
                 }
             }
-
             slideMoving = true;
             landscapeScroll(slides, destiny);
         }
@@ -845,7 +845,6 @@
          * Scrolling horizontally when clicking on the slider controls.
          */
         $('.controlArrow').on('click', function() {
-            console.log(this);
             if ($(this).hasClass('prev')) {
                 $.fn.fullpage.moveSlideLeft();
             }

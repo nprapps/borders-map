@@ -3,8 +3,10 @@
     <div class="text full-block">
         <div class="full-block-cell">
             <div class="full-block-content">
-            	<div class="contained-image" {% if row.image %} data-bgimage="{{ row.image }}" {% endif %}></div>
-                {{ row.text }}
+            	<div class="quote-image contained-image" {% if row.image %} data-bgimage="{{ row.image }}" {% endif %}></div>
+                <div class="quote-text">
+                    {{ row.text }}
+                </div><!--big-quote-text-->
             </div><!--full-block-content-->
         </div><!--full-block-cell-->
     </div><!--full-block-->

@@ -10,11 +10,12 @@ var $components;
 var $portraits;
 var $play;
 var $video;
+var $primaryNav;
 var $navButton;
 var $nav;
 var $navItems;
 var $secondaryNav;
-var $nextSectionButtton;
+//var $nextSectionButtton;
 var $arrows;
 var currentSection = '_'
 var currentSectionIndex = 0;
@@ -177,13 +178,15 @@ var showNavigation = function() {
             'opacity': 0,
             'display': 'none'
         });
-        $('.next-section').css('display', 'none');
+        //$navButton.css('opacity', '0');
+        $primaryNav.css('opacity', '0');
     }
     else {
         if (!$arrows.hasClass('active')) {
             animateArrows();
         }
-        $('.next-section').css('display', 'block');
+        //$navButton.css('opacity', '1');
+        $primaryNav.css('opacity', '1');
     }
 }
 
@@ -243,7 +246,6 @@ var setImages = function(container) {
     $(container).css({
         'width': imageWidth + 'px',
         'height': imageHeight + 'px',
-        'opacity': 1,
         'bottom': imageBottom + 'px',
         'left': imageLeft + 'px',
     });
@@ -271,7 +273,7 @@ var goToNextSlide = function() {
 }
 
 var animateNav = function() {
-    $navButton.find('i').toggleClass('fa-bars').toggleClass('fa-times');
+    $navButton.find('i').toggleClass('fa-th').toggleClass('fa-times');
     $nav.toggleClass('active');
     if ($nav.hasClass('active')) {
         $nav.css('display', 'block');
@@ -385,10 +387,11 @@ $(document).ready(function() {
     $components = $('.component');
     $portraits = $('.section[data-anchor="people"] .slide')
     $navButton = $('.primary-navigation-btn');
+    $primaryNav = $('.primary-navigation');
     $nav = $('.nav');
     $navItems = $('.nav .section-tease');
     $secondaryNav = $('.secondary-nav-btn');
-    $nextSectionButtton = $('.next-section');
+    //$nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
 
@@ -404,7 +407,7 @@ $(document).ready(function() {
     $navItems.on('click', animateNav);
     $secondaryNav.on('click', animateNav);
     $titleCardButton.on('click', goToNextSlide);
-    $nextSectionButtton.on('click', goToNextSection);
+    //$nextSectionButtton.on('click', goToNextSection);
 
     // Redraw slides if the window resizes
     $(window).resize(resize);
