@@ -297,7 +297,7 @@ body {
     font-style: italic;
     letter-spacing: 8px;
     display: inline-block;
-    
+    font-weight: normal;
     padding-bottom: 10px;
     
     @media @screen-small-above {
@@ -316,9 +316,15 @@ body {
 
 .npr-logo {
     img {
-        max-width: 130px;
+        max-width: 60px;
+        @media @screen-small-above {
+            max-width: 130px;
+        }
     }
 }
+
+//tombstone
+.tombstone {font-size: 12px;}
 
 //titlecard
 .titlecard {
@@ -387,7 +393,7 @@ body {
 //section attribution
 
 .section-attribution {
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 10px;
     
     
@@ -401,7 +407,7 @@ body {
     }
     
     @media @screen-small-above {
-        margin-top: 30px;
+        margin-top: 40px;
         font-size: 14px;
     
         img {
@@ -414,7 +420,7 @@ body {
 
 //text-only
 .text-only {
-    color: #ccc;
+    opacity: .8;
     padding-bottom: 70px;
 
     h3, .location {
@@ -894,27 +900,54 @@ body {
     text-align: center;
 
     h4 {
+        position: absolute;
+        top: -10px;
+        right: 0;
+        width: 100%;
         font-weight: bold;
         text-transform: uppercase;
         display: inline-block;
-        background-color: #000;
-        font-size: 28px;
-        padding: 20px;
-        position: absolute;
-        top: 10%;
-        right: 25px;
+        font-size: 15px;
+        padding: 10px 20px;
+        background-color: rgba(0,0,0,.5);
+        
+        @media @screen-small-above {
+            top: 10%;
+            right: 25px;
+            width: auto;
+            font-size: 28px;
+            padding: 20px;
+            background-color: rgba(0,0,0,1);
+            
+        }
+        
             em {
                 display: block;
-                margin-top: 10px;
-                font-size: 16px;
+                margin-top: 5px;
+                font-size: 10px;
+                @media @screen-small-above {
+                    margin-top: 10px;
+                    font-size: 16px;
+                }
             }
     }
 
     h3 {
         text-transform: uppercase;
         font-weight: bold;
-        font-size: 120px;
+        font-size: 55px;
+        position: absolute;
+        top: 40%;
+        left: 0;
+        width: 100%;
         .text-shadow(2px 2px 2px #000);
+        @media @screen-small-above {
+            font-size: 120px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+        }
     }
 }
 
@@ -1058,19 +1091,6 @@ body {
 
 
 
-}
-
-//credit
-
-.credit {
-    text-align: center;
-    margin-bottom: -20px;
-    color: #ccc;
-    font-size: 18px;
-    a {
-        color: #ccc;
-        font-weight: bold;
-    }
 }
 
 // default slide styles
