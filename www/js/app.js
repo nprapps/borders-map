@@ -345,7 +345,7 @@ var setupVideoPlayer = function() {
         ready: function () {
             $(this).jPlayer('setMedia', {
                 poster: '../assets/img/junior/junior.jpg',
-                m4v: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140327_nprvid_junior-n-600000.mp4',
+                m4v: 'http://pd.npr.org/npr-mp4/npr/nprvid/2014/03/20140328_nprvid_junior-n-600000.mp4'
                 webmv: '../assets/img/junior/junior-final.webm'
             });
         },
