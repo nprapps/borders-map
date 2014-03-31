@@ -181,16 +181,30 @@ var showNavigation = function() {
     * This function loads it up.
     */
 
-    // hide slide/section nav on titlecards
     if ($slides.first().hasClass('active')) {
+        /*
+        * Title card gets no arrows and no nav.
+        */
         $arrows.removeClass('active');
         $arrows.css({
             'opacity': 0,
             'display': 'none'
         });
         $primaryNav.css('opacity', '0');
-    }
-    else {
+    } else if ($slides.last().hasClass('active')) {
+        /*
+        * Last card gets no arrows but does have the nav.
+        */
+        $arrows.removeClass('active');
+        $arrows.css({
+            'opacity': 0,
+            'display': 'none'
+        });
+        $primaryNav.css('opacity', '1');
+    } else {
+        /*
+        * All of the other cards? Arrows and navs.
+        */
         if (!$arrows.hasClass('active')) {
             animateArrows();
         }
