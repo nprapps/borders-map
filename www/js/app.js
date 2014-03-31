@@ -305,7 +305,6 @@ var goToNextSlide = function() {
 }
 
 var animateNav = function() {
-    $navButton.find('i').toggleClass('fa-th').toggleClass('fa-times');
     $nav.toggleClass('active');
     if ($nav.hasClass('active')) {
         $nav.css('display', 'block');
