@@ -69,11 +69,13 @@ body {
     left: 0;
     width: 100%;
     
-    @media @screen-small {
-        .touch & {
+    .touch & {
             background-color: #000;
             height: 60px;
         }
+    
+    @media @screen-small {
+        
     }
     
     .primary-navigation-btn, .controlArrow {
@@ -103,36 +105,35 @@ body {
         max-width: 150px;
         background-color: #eee;
         bottom: 20px;
-        right: auto;
         left: 10px;
         font-size: 14px;
         padding: 15px;
+        
        
         .touch & {
             bottom: 5px;
-            right: 10px;
             left: auto;
+            right: 10px;
             width: 50px;
             height: 50px;
             font-size: 22px;
-            padding: 10px 10px 10px 15px;
+            padding: 10px 7px 10px 15px;
              background-color: #bbb;
              span {display: none;}
+             
+             @media @screen-small-above {
+                bottom: 5px;
+                background-color: #eee;
+                right: auto;
+                left: 10px;
+            }
     	}
-    
-        @media @screen-small-above {
-            bottom: 20px;
-            right: auto;
-            left: 10px;
-            font-size: 14px;
-            padding: 15px;
-            background-color: #eee;
-        }
     }
     
     .controlArrow {
         width: 50px;
         height: 50px;
+        bottom: 20px;
         font-size: 30px;
         font-weight: bold;
         text-align: center;
@@ -144,57 +145,50 @@ body {
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-        bottom: 20px;
         display: none;
         opacity: 0;
         .transition(opacity 0.5s ease);
-    
-        @media @screen-small-above {
-            bottom: 20px;
-            width: 50px;
-            height: 50px;
-            font-size: 30px;
-        }
     }
+    
     .controlArrow.prev {
-        
-        .touch & {
-            left: 10px;
-            bottom: 5px;
-            background-color: #999;
-    	}
-    	
-    	left: auto;
         right: 105px;
-        width: 50px;
-        height: 50px;
-        
-        @media @screen-small-above { 
-            left: auto;
-            right: 105px;;
-        }
         
         &:before {
             font-family: "FontAwesome";
             content: '\f104';
         }
+        
+        .touch & {
+            left: 10px;
+            bottom: 5px;
+            background-color: #999;
+            
+            @media @screen-small-above { 
+                background-color: #fff;
+                left: auto;
+                right: 105px;
+            }
+    	}
     }
     .controlArrow.next {
-    	left: auto;
         right: 25px; 
         padding: 0 0 0 5px;
-        .touch & {
-            bottom: 5px;
-            left: 130px;
-    	}
-        @media @screen-small-above { 
-            left: auto;
-            right: 25px; 
-        }
+        
         &:before {
             font-family: "FontAwesome";
             content: "\f105"
         }
+        
+        .touch & {
+            bottom: 5px;
+            left: 130px;
+            
+            @media @screen-small-above { 
+                background-color: #fff;
+                left: auto;
+                right: 25px;
+            }
+    	}
     }
 }
 
@@ -732,7 +726,7 @@ body {
         width: 100%;
         height: 225px;
         .background-size(cover);
-        background-position: top center;
+        background-position: center center;
         @media @screen-small-above {
             height: 100%;
         }
