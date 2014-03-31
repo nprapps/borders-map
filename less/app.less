@@ -126,7 +126,7 @@ body {
                 right: auto;
                 left: 10px;
             }
-        }
+    	}
     }
 
     .controlArrow {
@@ -167,7 +167,7 @@ body {
                 left: auto;
                 right: 105px;
             }
-        }
+    	}
     }
     .controlArrow.next {
         right: 25px;
@@ -187,7 +187,7 @@ body {
                 left: auto;
                 right: 25px;
             }
-        }
+    	}
     }
 }
 
@@ -207,9 +207,9 @@ body {
     overflow-y: auto;
 
     .touch & {
-        overflow-y: scroll;
+		overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
-    }
+	}
 
     display: none;
     .transition(opacity 0.5s ease);
@@ -297,7 +297,7 @@ body {
     font-style: italic;
     letter-spacing: 8px;
     display: inline-block;
-
+    font-weight: normal;
     padding-bottom: 10px;
 
     @media @screen-small-above {
@@ -316,9 +316,15 @@ body {
 
 .npr-logo {
     img {
-        max-width: 130px;
+        max-width: 60px;
+        @media @screen-small-above {
+            max-width: 130px;
+        }
     }
 }
+
+//tombstone
+.tombstone {font-size: 12px;}
 
 //titlecard
 .titlecard {
@@ -383,12 +389,13 @@ body {
             cursor: pointer;
         }
     }
+
 }
 
 //section attribution
 
 .section-attribution {
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 10px;
 
 
@@ -402,7 +409,7 @@ body {
     }
 
     @media @screen-small-above {
-        margin-top: 30px;
+        margin-top: 40px;
         font-size: 14px;
 
         img {
@@ -415,7 +422,7 @@ body {
 
 //text-only
 .text-only {
-    color: #ccc;
+    opacity: .8;
     padding-bottom: 70px;
 
     h3, .location {
@@ -505,20 +512,20 @@ body {
 .introduction {
 
 .full-block {
-        background-color: rgba(0,0,0,.7);
-    }
+		background-color: rgba(0,0,0,.7);
+	}
 
-    .full-block-content{
-        max-width: 800px;
-        padding: 20px;
+	.full-block-content{
+		max-width: 800px;
+		padding: 20px;
 
-        h2 {font-size: 28px;}
+		h2 {font-size: 28px;}
 
 
 
-        p {
-            font-size: 17px;
-        }
+		p {
+			font-size: 17px;
+		}
     }
 
 }
@@ -527,19 +534,19 @@ body {
 
 .fence-intro {
 
-    .full-block {
-        background-color: rgba(0,0,0,.7);
-    }
+	.full-block {
+		background-color: rgba(0,0,0,.7);
+	}
 
-    .full-block-content{
-        max-width: 700px;
-        padding: 20px;
+	.full-block-content{
+		max-width: 700px;
+		padding: 20px;
 
-        p {
-            font-size: 17px;
-            color: #ccc;
-        }
-    }
+		p {
+			font-size: 17px;
+			color: #ccc;
+		}
+	}
 
 }
 
@@ -690,108 +697,108 @@ body {
 
 .image-split {
 
-    .contained-image-container {
-        background-size: 100% auto;
-        background-repeat: no-repeat;
+	.contained-image-container {
+		background-size: 100% auto;
+		background-repeat: no-repeat;
 
 
-        @media @screen-small-above {
-            position: absolute;
-            background-position-y: 40px;
-        }
+		@media @screen-small-above {
+			position: absolute;
+			background-position-y: 40px;
+		}
 
 
-        .contained-image-text {
-        position: absolute;
-        bottom: 50px;
-        left: 0;
-        background-color: rgba(34,34,34,.3);
-        padding: 20px;
-        width: 100%;
-        border-bottom: 1px solid #444;
+		.contained-image-text {
+		position: absolute;
+		bottom: 50px;
+		left: 0;
+		background-color: rgba(34,34,34,.3);
+		padding: 20px;
+		width: 100%;
+		border-bottom: 1px solid #444;
 
-        @media @screen-small-above {
-            top: 70px;
-            right: 10px;
-            bottom: auto;
-            left: auto;
-            width: 320px;
-            background-color: rgba(34,34,34,.7);
-        }
+		@media @screen-small-above {
+			top: 70px;
+			right: 10px;
+			bottom: auto;
+			left: auto;
+			width: 320px;
+			background-color: rgba(34,34,34,.7);
+		}
 
-            h4 {
-                font-size: 18px;
-                font-weight: bold;
-            }
-            p {
-                font-size: 14px;
-                margin: 0;
-                margin-bottom: 10px;
-            }
+		    h4 {
+    		    font-size: 18px;
+    		    font-weight: bold;
+		    }
+			p {
+				font-size: 14px;
+				margin: 0;
+				margin-bottom: 10px;
+			}
 
-            .source {
-                font-style: italic;
-                font-size: 11px;
-            }
+			.source {
+				font-style: italic;
+				font-size: 11px;
+			}
 
-        }
-    }
+		}
+	}
 
-    .full-block-cell {
-        vertical-align: bottom;
-        padding-bottom: 100px;
+	.full-block-cell {
+		vertical-align: bottom;
+		padding-bottom: 100px;
 
-        .full-block-content {margin: 0;}
+		.full-block-content {margin: 0;}
 
-        blockquote {
-            position: absolute;
-            top: 225px;
-            right: 0;
-            width: 100%;
-            border: 0;
-            text-align: left;
-            .text-shadow(2px 2px 5px #333);
-             background-color: rgba(0,0,0,.8);
-            max-width: 500px !important;
-            padding: 20px;
+		blockquote {
+			position: absolute;
+			top: 225px;
+			right: 0;
+			width: 100%;
+			border: 0;
+			text-align: left;
+			.text-shadow(2px 2px 5px #333);
+			 background-color: rgba(0,0,0,.8);
+			max-width: 500px !important;
+			padding: 20px;
 
-            @media @screen-small-above {
-                top: auto;
-                bottom: 60px;
-                right: 15px;
-                width: auto;
-            }
+			@media @screen-small-above {
+				top: auto;
+				bottom: 60px;
+				right: 15px;
+				width: auto;
+			}
 
 
-            p {
-                font-size: 20px;
-                font-weight: bold;
-                line-height: 1.2;
-                padding: 0;
-            }
+			p {
+				font-size: 20px;
+				font-weight: bold;
+				line-height: 1.2;
+				padding: 0;
+			}
 
-            dl {
-                margin-top: 10px;
-                font-size: 12px;
-            }
+			dl {
+				margin-top: 10px;
+				font-size: 12px;
+			}
 
-            h6 {
-                font-size: 13px;
-                margin: 0 0 20px 0;
-                opacity: .6;
-                line-height: 1.5;
-            }
-        }
-    }
+			h6 {
+				font-size: 13px;
+				margin: 0 0 20px 0;
+				opacity: .6;
+				line-height: 1.5;
+			}
+		}
+	}
 
 }
 
 /*
 .map-history {
     background: url('../assets/img/maphistory/map-grayscale.jpg') top left;
-    .background-size(cover);
-    background-position: top left;
-    background-repeat: no-repeat;
+	.background-size(cover);
+	background-position: top left;
+	background-repeat: no-repeat;
 
 
     .contained-image-container {
@@ -895,27 +902,54 @@ body {
     text-align: center;
 
     h4 {
+        position: absolute;
+        top: -10px;
+        right: 0;
+        width: 100%;
         font-weight: bold;
         text-transform: uppercase;
         display: inline-block;
-        background-color: #000;
-        font-size: 28px;
-        padding: 20px;
-        position: absolute;
-        top: 10%;
-        right: 25px;
+        font-size: 15px;
+        padding: 10px 20px;
+        background-color: rgba(0,0,0,.5);
+
+        @media @screen-small-above {
+            top: 10%;
+            right: 25px;
+            width: auto;
+            font-size: 28px;
+            padding: 20px;
+            background-color: rgba(0,0,0,1);
+
+        }
+
             em {
                 display: block;
-                margin-top: 10px;
-                font-size: 16px;
+                margin-top: 5px;
+                font-size: 10px;
+                @media @screen-small-above {
+                    margin-top: 10px;
+                    font-size: 16px;
+                }
             }
     }
 
     h3 {
         text-transform: uppercase;
         font-weight: bold;
-        font-size: 120px;
+        font-size: 55px;
+        position: absolute;
+        top: 40%;
+        left: 0;
+        width: 100%;
         .text-shadow(2px 2px 2px #000);
+        @media @screen-small-above {
+            font-size: 120px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+        }
     }
 }
 
@@ -924,28 +958,28 @@ body {
 /*essay*/
 .essay {
     background-color: #fff;
-    color: #222;
+	color: #222;
 
-    .touch & {
-        overflow-y: scroll;
+	.touch & {
+		overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
-    }
+	}
 
-    .full-block-content {
-        padding: 20px 20px 80px 20px;
-    }
+	.full-block-content {
+		padding: 20px 20px 80px 20px;
+	}
 
-    h2 {
-        font-size: 30px;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-align: center;
+	h2 {
+	    font-size: 30px;
+	    font-weight: bold;
+	    text-transform: uppercase;
+	    text-align: center;
     }
 
     h3 {
         font-size: 18px;
-        text-align: center;
-        text-transform: uppercase;
+	    text-align: center;
+	    text-transform: uppercase;
     }
 
     h5 {
@@ -956,43 +990,43 @@ body {
     }
 
     p {
-        font-size: 13px;
-        padding: 0;
-        margin-bottom: 10px;
+    	font-size: 13px;
+    	padding: 0;
+    	margin-bottom: 10px;
     }
 
     img {
-        max-width: 100%;
-        margin: 30px 0;
+	    max-width: 100%;
+	    margin: 30px 0;
 
     }
 
-    @media @screen-small-above {
+	@media @screen-small-above {
 
-        .full-block-content {
-            padding: 100px 0;
-            max-width: 630px;
-        }
+		.full-block-content {
+	        padding: 100px 0;
+	        max-width: 630px;
+	    }
 
-        h2 {
-            font-size: 50px;
+	    h2 {
+	        font-size: 50px;
         }
 
         h3 {
             font-size: 22px;
         }
 
-        p {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
+	    p {
+	    	font-size: 20px;
+	    	margin-bottom: 20px;
+	    }
 
-        img {
-            margin: 50px 0;
-        }
+	    img {
+		    margin: 50px 0;
+	    }
 
 
-    }
+	}
 }
 
 //words
@@ -1059,19 +1093,6 @@ body {
 
 
 
-}
-
-//credit
-
-.credit {
-    text-align: center;
-    margin-bottom: -20px;
-    color: #ccc;
-    font-size: 18px;
-    a {
-        color: #ccc;
-        font-weight: bold;
-    }
 }
 
 // default slide styles
