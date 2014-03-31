@@ -93,8 +93,8 @@ var onPageLoad = function() {
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     setSlidesForLazyLoading(slideIndex);
 
-    if (slideAnchor === 'dashboard') {
-        onStartCounts();
+    if (slideAnchor == 'dashboard'){
+        setTimeOnSite();
     }
 
     showNavigation();
@@ -388,6 +388,20 @@ var stopVideo = function() {
     $('.jp-jplayer').jPlayer('stop');
 }
 
+var setTimeOnSite = function(e) {
+    /*
+    * Differrence between now and when you loaded the page, formatted all nice.
+    */
+    var now = moment();
+    var miliseconds = (now - begin);
+
+    var minutes = Math.round(parseInt(miliseconds/1000/60));
+    var seconds = Math.round(parseInt((miliseconds/1000) % 60));
+
+    $('div.dashboard h3 span.minutes').html(minutes);
+    $('div.dashboard h3 span.seconds').html(seconds);
+}
+
 var onUpdateCounts = function(e) {
     /*
     * Updates the count based on elapsed time and known rates.
@@ -411,13 +425,6 @@ var onUpdateCounts = function(e) {
     });
 
 };
-
-var onStartCounts = function(e) {
-    /*
-    * Starts the counting machinery.
-    */
-    active_counter = setInterval(onUpdateCounts,500);
-}
 
 var onResize = function(e) {
     if ($('.slide.active').hasClass('image-split')) {
@@ -447,6 +454,8 @@ $(document).ready(function() {
     $navItems.on('click', animateNav);
     $secondaryNav.on('click', animateNav);
     $titleCardButton.on('click', goToNextSlide);
+
+    active_counter = setInterval(onUpdateCounts,500);
 
     // Redraw slides if the window resizes
     $(window).resize(resize);
