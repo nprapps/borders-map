@@ -68,16 +68,16 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    
+
     .touch & {
             background-color: #000;
             height: 60px;
         }
-    
+
     @media @screen-small {
-        
+
     }
-    
+
     .primary-navigation-btn, .controlArrow {
         position: absolute;
         color: #444;
@@ -91,7 +91,7 @@ body {
                 color: #000;
             }
         }
-    
+
         @media @screen-small {
             &:active {
                 background-color: #000;
@@ -99,7 +99,7 @@ body {
             }
         }
     }
-    
+
     .primary-navigation-btn {
         display: inline-block;
         max-width: 150px;
@@ -108,8 +108,8 @@ body {
         left: 10px;
         font-size: 14px;
         padding: 15px;
-        
-       
+
+
         .touch & {
             bottom: 5px;
             left: auto;
@@ -120,7 +120,7 @@ body {
             padding: 10px 7px 10px 15px;
              background-color: #bbb;
              span {display: none;}
-             
+
              @media @screen-small-above {
                 bottom: 5px;
                 background-color: #eee;
@@ -129,7 +129,7 @@ body {
             }
     	}
     }
-    
+
     .controlArrow {
         width: 50px;
         height: 50px;
@@ -149,21 +149,21 @@ body {
         opacity: 0;
         .transition(opacity 0.5s ease);
     }
-    
+
     .controlArrow.prev {
         right: 105px;
-        
+
         &:before {
             font-family: "FontAwesome";
             content: '\f104';
         }
-        
+
         .touch & {
             left: 10px;
             bottom: 5px;
             background-color: #999;
-            
-            @media @screen-small-above { 
+
+            @media @screen-small-above {
                 background-color: #fff;
                 left: auto;
                 right: 105px;
@@ -171,19 +171,19 @@ body {
     	}
     }
     .controlArrow.next {
-        right: 25px; 
+        right: 25px;
         padding: 0 0 0 5px;
-        
+
         &:before {
             font-family: "FontAwesome";
             content: "\f105"
         }
-        
+
         .touch & {
             bottom: 5px;
             left: 130px;
-            
-            @media @screen-small-above { 
+
+            @media @screen-small-above {
                 background-color: #fff;
                 left: auto;
                 right: 25px;
@@ -206,12 +206,12 @@ body {
     opacity: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    
+
     .touch & {
 		overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
 	}
-    
+
     display: none;
     .transition(opacity 0.5s ease);
 
@@ -313,8 +313,8 @@ body {
 
 //titlecard
 .titlecard {
-    
-    
+
+
     .full-block-cell {
         text-align: center;
         color: #fff;
@@ -360,8 +360,8 @@ body {
         
         }
     }
-    
-    
+
+
 }
 
 //titlecard play buttons
@@ -410,32 +410,32 @@ body {
 .text-only {
     color: #ccc;
     padding-bottom: 70px;
-    
+
     h3, .location {
         font-size: 15px;
         margin-bottom: 10px;
         text-transform: uppercase;
         font-weight: bold;
         line-height: 1.5;
-        
+
         @media @screen-small-above {
             font-size: 20px;
             margin-bottom: 40px;
         }
-        
+
     }
-    
+
     ul {
         margin-bottom: 20px;
         list-style-type: none;
         padding: 0;
-        
+
         li {
             font-size: 13px;
             margin: 5px 0 0 0;
             padding: 0 0 5px 0;
             border-bottom: 1px solid #444;
-            
+
             @media @screen-small-above {
                 font-size: 16px;
                 margin: 10px 0 0 0;
@@ -486,20 +486,20 @@ body {
 .full-block {
 		background-color: rgba(0,0,0,.7);
 	}
-	
+
 	.full-block-content{
 		max-width: 800px;
 		padding: 20px;
-		
+
 		h2 {font-size: 28px;}
-		
-		
-		
+
+
+
 		p {
 			font-size: 17px;
 		}
     }
-    
+
 }
 
 //fence intro
@@ -509,17 +509,17 @@ body {
 	.full-block {
 		background-color: rgba(0,0,0,.7);
 	}
-	
+
 	.full-block-content{
 		max-width: 700px;
 		padding: 20px;
-		
+
 		p {
 			font-size: 17px;
 			color: #ccc;
 		}
 	}
-	
+
 }
 
 
@@ -528,12 +528,12 @@ body {
     .player {
         display: none;
     }
-    
+
     #player-wrapper {top: 0;}
 
     &.video-playing {
         background-image: none !important;
-        
+
         .jp-jplayer {
             background-color: #000;
         }
@@ -560,8 +560,11 @@ body {
 .jp-interface {
     position: relative;
     width: 100%;
-    height: 75px;
+    height: 30px;
     background-color: #222;
+    @media @screen-small {
+        height: 50px;
+    }
 
     .time {
         position: absolute;
@@ -572,7 +575,7 @@ body {
     }
 
     .playback {
-        .square(75px);
+        .square(30px);
         position: absolute;
         top: 0;
         left: 0;
@@ -580,7 +583,11 @@ body {
         background: #6d8ac4;
         color: #fff;
         text-align: center;
-        line-height: 75px;
+        line-height: 30px;
+        @media @screen-small {
+            .square(50px);
+            line-height: 50px;
+        }
 
         .jp-play,
         .jp-pause {
@@ -592,12 +599,17 @@ body {
             padding: 0;
             color: #fff;
             text-align: center;
-            line-height: 75px;
-
+            line-height: 30px;
+            @media @screen-small {
+                line-height: 50px;
+            }
             .fa {
                 position: relative;
-                top: 10px;
+                top: 1px;
                 left: -1px;
+                @media @screen-small {
+                    top: 5px;
+                }
             }
         }
 
@@ -611,7 +623,10 @@ body {
         }
 
         .fa {
-            font-size: 3em;
+            font-size: 1.2em;
+            @media @screen-small {
+                font-size: 2em;
+            }
         }
     }
 
@@ -620,8 +635,11 @@ body {
         position: absolute;
         top: 0;
         bottom: 0;
-        left: 75px;
+        left: 30px;
         right: 0;
+        @media @screen-small {
+            left: 50px;
+        }
 
         .jp-seek-bar,
         .jp-play-bar {
@@ -654,14 +672,14 @@ body {
 	.contained-image-container {
 		background-size: 100% auto;
 		background-repeat: no-repeat;
-		
-		
+
+
 		@media @screen-small-above {
 			position: absolute;
 			background-position-y: 40px;
 		}
-		
-		
+
+
 		.contained-image-text {
 		position: absolute;
 		bottom: 50px;
@@ -670,7 +688,7 @@ body {
 		padding: 20px;
 		width: 100%;
 		border-bottom: 1px solid #444;
-		
+
 		@media @screen-small-above {
 			top: 70px;
 			right: 10px;
@@ -679,7 +697,7 @@ body {
 			width: 320px;
 			background-color: rgba(34,34,34,.7);
 		}
-		
+
 		    h4 {
     		    font-size: 18px;
     		    font-weight: bold;
@@ -689,12 +707,12 @@ body {
 				margin: 0;
 				margin-bottom: 10px;
 			}
-			
+
 			.source {
 				font-style: italic;
 				font-size: 11px;
 			}
-		
+
 		}
 	}
 
@@ -753,8 +771,8 @@ body {
 	.background-size(cover);
 	background-position: top left;
 	background-repeat: no-repeat;
-	
-	
+
+
     .contained-image-container {
         opacity: .8;
     }
@@ -762,8 +780,8 @@ body {
 
 //map fence
 .map-fence {
-    
-	
+
+
 }
 
 //big quote template
@@ -788,14 +806,14 @@ body {
             height: 100%;
         }
     }
-    
+
     .quote-text {
         position: absolute;
         top: 225px;
         right: 0;
         padding: 20px 20px 70px 20px;
         color: #ddd;
-        
+
         @media @screen-small-above {
             top: auto;
             bottom: 90px;
@@ -804,12 +822,12 @@ body {
             padding: 20px;
             background-color: rgba(0,0,0,.8);
         }
-        
+
         h4 {
             font-size: 14px;
             line-height: 1.6;
         }
-    
+
         blockquote {
             border: 0;
             margin: 0;
@@ -845,7 +863,7 @@ body {
 
 .snacktime {
     text-align: center;
-    
+
     h4 {
         font-weight: bold;
         text-transform: uppercase;
@@ -859,7 +877,7 @@ body {
                 font-size: 16px;
             }
     }
-    
+
     h3 {
         text-transform: uppercase;
         font-weight: bold;
@@ -874,7 +892,7 @@ body {
 .essay {
     background-color: #fff;
 	color: #222;
-	
+
 	.touch & {
 		overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
@@ -896,7 +914,7 @@ body {
 	    text-align: center;
 	    text-transform: uppercase;
     }
-    
+
     h5 {
         font-size: 15px;
         font-weight: bold;
@@ -926,7 +944,7 @@ body {
 	    h2 {
 	        font-size: 50px;
         }
-        
+
         h3 {
             font-size: 22px;
         }
@@ -951,7 +969,7 @@ body {
     ul {
         list-style-type: none;
         padding: 0;
-        
+
         li {
             position: absolute;
             text-align: center;
@@ -967,7 +985,7 @@ body {
                 opacity: .8;
             }
         }
-        
+
         & :first-child {
             top: 0;
             left: 5%;
@@ -981,12 +999,12 @@ body {
                 top: 0;
             }
         }
-            
+
         & :last-child {
             bottom: 0;
             left: 5%;
             padding-bottom: 100px;
-  
+
             @media @screen-small-above {
                 top: 53%;
                 bottom: auto;
@@ -1004,10 +1022,10 @@ body {
             bottom: 27%;
         }
     }
-    
-    
 
-    
+
+
+
 }
 
 //credit
