@@ -15,7 +15,6 @@ var $navButton;
 var $nav;
 var $navItems;
 var $secondaryNav;
-//var $nextSectionButtton;
 var $arrows;
 var currentSection = '_'
 var currentSectionIndex = 0;
@@ -102,6 +101,10 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
 };
 
 var setSlidesForLazyLoading = function(slideIndex) {
+    /*
+    * Sets up a list of slides based on your position in the deck.
+    * Lazy-loads images in future slides because of reasons.
+    */
     var thisSlide = $slides[slideIndex];
     var nextSlide = $slides[slideIndex + 1]
 
@@ -114,7 +117,7 @@ var setSlidesForLazyLoading = function(slideIndex) {
         }
     };
 
-    slides = [
+    var slides = [
         $slides[slideIndex - 2],
         $slides[slideIndex - 1],
         thisSlide,
@@ -123,7 +126,6 @@ var setSlidesForLazyLoading = function(slideIndex) {
     ];
 
     findImages(slides);
-
 
     if (!$jplayer && $(thisSlide).hasClass('video')) {
         setupVideoPlayer();
@@ -153,6 +155,9 @@ var findImages = function(slides) {
 };
 
 var getBackgroundImage = function(container) {
+    /*
+    * Sets the background image on a div for our fancy slides.
+    */
 
     if ($(container).data('bgimage')) {
 
@@ -171,26 +176,46 @@ var getBackgroundImage = function(container) {
 };
 
 var showNavigation = function() {
-    // hide slide/section nav on titlecards
+    /*
+    * Nav doesn't exist by default.
+    * This function loads it up.
+    */
+
     if ($slides.first().hasClass('active')) {
+        /*
+        * Title card gets no arrows and no nav.
+        */
         $arrows.removeClass('active');
         $arrows.css({
             'opacity': 0,
             'display': 'none'
         });
-        //$navButton.css('opacity', '0');
         $primaryNav.css('opacity', '0');
-    }
-    else {
+    } else if ($slides.last().hasClass('active')) {
+        /*
+        * Last card gets no arrows but does have the nav.
+        */
+        $arrows.removeClass('active');
+        $arrows.css({
+            'opacity': 0,
+            'display': 'none'
+        });
+        $primaryNav.css('opacity', '1');
+    } else {
+        /*
+        * All of the other cards? Arrows and navs.
+        */
         if (!$arrows.hasClass('active')) {
             animateArrows();
         }
-        //$navButton.css('opacity', '1');
         $primaryNav.css('opacity', '1');
     }
 }
 
 var animateArrows = function() {
+    /*
+    * Everything looks better faded. Hair; jeans; arrows.
+    */
     $arrows.addClass('active');
 
     if ($arrows.hasClass('active')) {
@@ -201,12 +226,18 @@ var animateArrows = function() {
 };
 
 var fadeInArrows = function() {
+    /*
+    * Debounce makes you do crazy things.
+    */
     $arrows.css('opacity', 1)
 };
 
 
 var setImages = function(container) {
-    console.log(container)
+    /*
+    * Image resizer from the Wolves lightbox + sets background image on a div.
+    */
+
     // Grab Wes's properly sized width.
     var imageWidth = w;
 
@@ -252,9 +283,10 @@ var setImages = function(container) {
 
 };
 
-// after you leave a slide
-
 var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
+    /*
+    * Called when leaving a slide.
+    */
     var thisSlide = $slides[slideIndex];
 
     if ($jplayer && $(thisSlide).hasClass('video')) {
@@ -288,10 +320,16 @@ var animateNav = function() {
 }
 
 var fadeInNav = function() {
+    /*
+    * Separate function because you can't pass an argument to a debounced function.
+    */
     $nav.css('opacity', 1);
 };
 
 var fadeOutNav = function() {
+    /*
+    * Separate function because you can't pass an argument to a debounced function.
+    */
     $nav.css('display', 'none');
 };
 
@@ -372,15 +410,19 @@ var onUpdateCounts = function(e) {
 };
 
 var onStartCounts = function(e) {
+    /*
+    * Starts the counting machinery.
+    */
     active_counter = setInterval(onUpdateCounts,500);
 }
 
+var onResize = function(e) {
+    if ($('.slide.active').hasClass('image-split')) {
+        setImages($('.slide.active').find('.contained-image-container')[0]);
+    }
+}
+
 $(document).ready(function() {
-
-    /*
-    * Define vars
-    */
-
     $slides = $('.slide');
     $play_video = $('.btn-video');
     $video = $('.video');
@@ -391,29 +433,19 @@ $(document).ready(function() {
     $nav = $('.nav');
     $navItems = $('.nav .section-tease');
     $secondaryNav = $('.secondary-nav-btn');
-    //$nextSectionButtton = $('.next-section');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
 
-    // init chapters
-
     setUpFullPage();
     resize();
-
-    // handlers
 
     $play_video.on('click', startVideo);
     $navButton.on('click', animateNav);
     $navItems.on('click', animateNav);
     $secondaryNav.on('click', animateNav);
     $titleCardButton.on('click', goToNextSlide);
-    //$nextSectionButtton.on('click', goToNextSection);
 
     // Redraw slides if the window resizes
     $(window).resize(resize);
-    $(window).resize(function() {
-        if ($('.slide.active').hasClass('image-split')) {
-            setImages($('.slide.active').find('.contained-image-container')[0]);
-        }
-    });
+    $(window).resize(onResize);
 });
