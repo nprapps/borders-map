@@ -294,13 +294,17 @@ body {
 
 .story-number {
     font-family: georgia, sans-serif;
-    font-size: 24px;
+    font-size: 18px;
     font-style: italic;
     letter-spacing: 8px;
     display: inline-block;
     border-bottom: 1px solid #fff;
     padding-bottom: 10px;
-
+    
+    @media @screen-small-above {
+        font-size: 24px;
+    }
+    
     .essay & {
         text-align: center;
         display: block;
@@ -315,9 +319,45 @@ body {
         text-align: center;
         color: #fff;
 
-        h2 {
+         h1 {
+             font-size: 30px;
+             .text-shadow(0px 2px 2px rgba(0,0,0,0.5));
+             text-transform: uppercase;
+             font-weight: bold;
+         }
+         
+         h2 {
+            font-size: 50px;
             font-weight: bold;
             text-transform: uppercase;
+        }
+        
+         h3 { font-size: 16px; }
+        
+        
+         p, li {
+            font-size: 13px;
+            line-height: 1.5;
+         }
+        
+        @media @screen-small-above {
+            h1 {
+                font-size: 90px;
+            }
+            h2 {
+                font-size: 70px;
+            }
+        
+            h3 {
+                font-size: 26px;
+            }
+        
+            p, li {
+                font-size: 20px;
+                line-height: 1.5;
+                margin-bottom: 20px;
+            }
+        
         }
     }
 
@@ -347,6 +387,23 @@ body {
         cursor: pointer;
     }
 
+}
+
+//section attribution
+
+.section-attribution {
+    margin-top: 30px;
+    font-size: 14px;
+    
+    
+    img {
+        display: block;
+        max-width: 220px;
+        margin: 0 auto;
+        padding-top: 10px;
+        opacity: .8;
+    }
+    
 }
 
 //text-only
@@ -777,19 +834,22 @@ body {
             padding: 0;
 
             p {
-                font-size: 16px;
+                font-size: 18px;
+                text-indent: -10px;
             }
+            
+            dt {font-weight: normal;}
 
             dl {
                 margin-top: 10px;
-                font-size: 12px;
+                font-size: 13px;
             }
 
             h6 {
-                font-size: 14px;
+                font-size: 13px;
                 margin: 0 0 20px 0;
                 opacity: .6;
-                line-height: 1.6;
+                line-height: 1.2;
                 text-transform: none;
                 font-weight: normal;
             }
@@ -843,14 +903,14 @@ body {
 	}
 
 	h2 {
-	    font-size: 24px;
+	    font-size: 40px;
 	    font-weight: bold;
 	    text-transform: uppercase;
 	    text-align: center;
     }
 
     h3 {
-        font-size: 22px;
+        font-size: 18px;
 	    text-align: center;
 	    text-transform: uppercase;
     }
