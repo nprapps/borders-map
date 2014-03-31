@@ -52,17 +52,27 @@ var resize = function() {
 };
 
 var setUpFullPage = function() {
-    // clear all anchors
     anchors = [];
+    var anchor_count = 0;
 
-    // get the anchors
-
-   _.each($slides, function(section) {
+   _.each($slides, function(section, index, list) {
+        /*
+        * Sets up the anchor list, used elsewhere for navigation and such.
+        */
         var anchor = $(section).data('anchor');
         if (anchor === undefined) {
             return false;
         }
         anchors.push(anchor);
+
+        /*
+        * Numbers the stories according to their position.
+        * Automates the appearance of the story numbers in the HTML.
+        */
+        var story_number = 'Story ' + anchor_count;
+        $($(section).find('h4.story-number')[0]).html(story_number);
+        $($('div.nav div.' + anchor + ' h4 em')[0]).html(story_number);
+        anchor_count = anchor_count + 1;
     });
 
     $.fn.fullpage({
@@ -80,11 +90,9 @@ var setUpFullPage = function() {
     });
 };
 
-// after the page loads
 
 var onPageLoad = function() {
     setSlidesForLazyLoading(0)
-    // fade in
     $('body').css('opacity', 1);
 };
 
