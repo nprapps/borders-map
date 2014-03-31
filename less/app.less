@@ -309,12 +309,12 @@ body {
     display: inline-block;
     font-weight: normal;
     padding-bottom: 10px;
-    
+
     @media @screen-small-above {
         font-size: 24px;
         border-bottom: 1px solid #fff;
     }
-    
+
     .essay & {
         text-align: center;
         display: block;
@@ -351,7 +351,7 @@ body {
                 font-size: 90px;
             }
          }
-         
+
          h2 {
             font-size: 30px;
             font-weight: bold;
@@ -360,9 +360,9 @@ body {
                     font-size: 70px;
                 }
         }
-        
-         h3 { 
-            font-size: 14px; 
+
+         h3 {
+            font-size: 14px;
             margin-top: 0;
             max-width: 250px;
             margin: 0 auto;
@@ -370,7 +370,7 @@ body {
                 font-size: 26px;
                 max-width: none;
             }
-            
+
          }
     }
 }
@@ -393,9 +393,11 @@ body {
     }
 
     &:hover {
-        background-color: #000;
-        color: #fff;
-        cursor: pointer;
+        .no-touch & {
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
     }
 
 }
@@ -405,27 +407,27 @@ body {
 .section-attribution {
     margin-top: 20px;
     font-size: 10px;
-    
-    
+
+
     img {
         display: block;
         margin: 0 auto;
         padding-top: 10px;
         opacity: .8;
         max-width: 90px;
-        
+
     }
-    
+
     @media @screen-small-above {
         margin-top: 40px;
         font-size: 14px;
-    
+
         img {
            max-width: 220px;
         }
-       
+
     }
-    
+
 }
 
 //text-only
@@ -507,7 +509,7 @@ body {
         .full-block-content {
             width: 100%;
             padding: 0;
-            
+
             @media @screen-small-above {
                  .text-shadow(2px 2px 2px #000);
             }
@@ -876,7 +878,7 @@ body {
                     font-size: 18px;
                 }
             }
-            
+
             dt {font-weight: normal;}
 
             dl {
@@ -920,7 +922,7 @@ body {
         font-size: 15px;
         padding: 10px 20px;
         background-color: rgba(0,0,0,.5);
-        
+
         @media @screen-small-above {
             top: 10%;
             right: 25px;
@@ -928,9 +930,9 @@ body {
             font-size: 28px;
             padding: 20px;
             background-color: rgba(0,0,0,1);
-            
+
         }
-        
+
             em {
                 display: block;
                 margin-top: 5px;
