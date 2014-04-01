@@ -1158,16 +1158,19 @@ body {
 }
 
 // Dashboard
-div.dashboard {
+div.stats {
     color: #fff;
     
     .full-block-cell {
         background-color: rgba(0,0,0,.6);
         padding-bottom: 80px;
         @media @screen-small-above {
-            background-color: rgba(0,0,0,.3);
+            background-color: rgba(0,0,0,.4);
              .text-shadow(2px 2px 2px #000);
              padding-bottom: 0;
+        }
+        .full-block-content {
+           
         }
     }
     
@@ -1178,6 +1181,7 @@ div.dashboard {
         text-align: center;
             @media @screen-small-above {
                 font-size: 40px;
+                text-align: left;
             }
     }
 
@@ -1185,41 +1189,66 @@ div.dashboard {
         font-size: 12px;
         margin-top: 0;
         text-align: center;
+        
         @media @screen-small-above {
-            font-size: 26px;
-            
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            padding-top: 10px;
+            text-align: left;
         }
 
      }
+     
+     h4 {
+        font-size:16px;
+        line-height: 1.5;
+        margin: 0 0 30px 0;
+     }
+     
+    h5 {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    }
+     
+     a {
+        color: #fff; 
+        font-weight: bold;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     
 
         div.dashboard-container {
-        margin-top: 20px;
+        margin-top: 0;
         width: 100%;
         line-height: 1.3;
         
         @media @screen-small-above {
-            margin-top: 40px;
-            
+
         }
 
         div {
-            float: left;
-            width: 115px;
-            overflow: hidden;
-            margin-right: 15px;
-
-            @media @screen-small {
-                text-align: center;
-                float: none;
-                width: 150px;
-                margin: 15px auto;
+            text-align: center;
+            width: 100px;
+            margin: 15px auto;
+            font-size: 13px;
+            @media @screen-small-above {
+                width: 115px;
+                float: left;
+                overflow: hidden;
+                font-size: 13px;
+                margin: 15px 10px 15px 0;
             }
+            
+            
 
             span.text {
                 text-align: center;
-                font-weight: bold;
-                opacity: .7;
                 display: block;
             }
 
@@ -1229,11 +1258,14 @@ div.dashboard {
                 border-radius: 8px;
                 -moz-border-radius: 8px;
                 -webkit-border-radius: 8px;
-                font-size: 30px;
+                font-size: 20px;
                 display:block;
                 margin: 0 0 5px 0;
                 padding: 12px 2px;
                 text-align: center;
+                @media @screen-small-above {
+                    font-size: 30px;
+                }
             }
         }
     }
