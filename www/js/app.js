@@ -8,7 +8,6 @@ var $h;
 var $slides;
 var $components;
 var $portraits;
-var $play;
 var $video;
 var $primaryNav;
 var $navButton;
@@ -16,6 +15,7 @@ var $nav;
 var $navItems;
 var $secondaryNav;
 var $arrows;
+var $sectionNav;
 var currentSection = '_'
 var currentSectionIndex = 0;
 var anchors;
@@ -31,6 +31,15 @@ var optimalHeight;
 var w;
 var h;
 var $jplayer = null;
+var hasTrackedKeyboardNav = false;
+var hasTrackedSlideNav = false;
+var hasTrackedSectionNav = false;
+
+var onTitleCardButtonClick = function() {
+    $.fn.fullpage.moveSlideRight();
+
+    _gaq.push(['_trackEvent', 'Borderlands', 'Slideshow - Clicked Go']);
+}
 
 var resize = function() {
 
@@ -106,6 +115,10 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     }
 
     showNavigation();
+
+    if ($slides.last().hasClass('active')) {
+        _gaq.push(['_trackEvent', 'Borderlands', 'Slideshow - Reached Last Slide']);
+    }
 };
 
 var setSlidesForLazyLoading = function(slideIndex) {
@@ -304,14 +317,6 @@ var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
     }
 }
 
-var goToNextSection = function() {
-    $.fn.fullpage.moveTo(0, anchors[currentSectionIndex + 1]);
-}
-
-var goToNextSlide = function() {
-    $.fn.fullpage.moveSlideRight();
-}
-
 var animateNav = function() {
     $nav.toggleClass('active');
     if ($nav.hasClass('active')) {
@@ -361,12 +366,16 @@ var setupVideoPlayer = function() {
                 $('.jp-current-time').removeClass('hide');
                 $('.jp-duration').addClass('hide');
             }
+
+            _gaq.push(['_trackEvent', 'Borderlands', 'Video - Play']);
         },
         ended: function(){
             if (!is_touch) {
                 $('.jp-current-time').addClass('hide');
                 $('.jp-duration').removeClass('hide');
             }
+            
+            _gaq.push(['_trackEvent', 'Borderlands', 'Video - Ended']);
         },
         size: {
             width: $w,
@@ -440,9 +449,47 @@ var onResize = function(e) {
     }
 }
 
+var onDocumentKeyDown = function(e) {
+    if (hasTrackedKeyboardNav) {
+        return true;
+    }
+
+    switch (e.which) {
+        //left
+        case 37:
+        //right
+        case 39:
+            _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Keyboard']);
+            hasTrackedKeyboardNav = true;
+            break;
+    }
+
+    // jquery.fullpage handles actual scrolling
+    return true;
+}
+
+var onSectionNavClick = function(e) {
+    if (!hasTrackedSectionNav) {
+        _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Section Nav']);
+        hasTrackedSectionNav = true;
+    }
+
+    return true;
+}
+
+var onControlArrowClick = function(e) {
+    if (!hasTrackedSlideNav) {
+        _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Slide Controls']);
+        hasTrackedSlideNav = true;
+    }
+
+    return true;
+}
+
+
 $(document).ready(function() {
     $slides = $('.slide');
-    $play_video = $('.btn-video');
+    $playVideo = $('.btn-video');
     $video = $('.video');
     $components = $('.component');
     $portraits = $('.section[data-anchor="people"] .slide')
@@ -451,21 +498,25 @@ $(document).ready(function() {
     $nav = $('.nav');
     $navItems = $('.nav .section-tease');
     $secondaryNav = $('.secondary-nav-btn');
+    $sectionNav = $('.section-nav');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
 
     setUpFullPage();
     resize();
 
-    $play_video.on('click', startVideo);
+    $playVideo.on('click', startVideo);
     $navButton.on('click', animateNav);
     $navItems.on('click', animateNav);
     $secondaryNav.on('click', animateNav);
-    $titleCardButton.on('click', goToNextSlide);
+    $sectionNav.on('click', onSectionNavClick);
+    $titleCardButton.on('click', onTitleCardButtonClick);
+    $arrows.on('click', onControlArrowClick);
 
     active_counter = setInterval(onUpdateCounts,500);
 
     // Redraw slides if the window resizes
     $(window).resize(resize);
     $(window).resize(onResize);
+    $(document).keydown(onDocumentKeyDown);
 });

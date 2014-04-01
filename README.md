@@ -20,10 +20,7 @@ borders-map
 * [Compile static assets](#compile-static-assets)
 * [Test the rendered app](#test-the-rendered-app)
 * [Deploy to S3](#deploy-to-s3)
-* [Deploy to EC2](#deploy-to-ec2)
-* [Install cron jobs](#install-cron-jobs)
-* [Install web services](#install-web-services)
-* [Run a remote fab command](#run-a-remote-fab-command)
+* [Google Analytics](#google-analytics)
 
 What is this?
 -------------
@@ -228,11 +225,6 @@ You can pass the class many keyword arguments if you'd like; here's what you can
 
 See `etc/gdocs.py` for more documentation.
 
-Run Python tests
-----------------
-
-Python unit tests are stored in the ``tests`` directory. Run them with ``fab tests``.
-
 Run Javascript tests
 --------------------
 
@@ -267,68 +259,22 @@ Deploy to S3
 fab staging master deploy
 ```
 
-Deploy to EC2
--------------
+Google Analytics
+----------------
 
-You can deploy to EC2 for a variety of reasons. We cover two cases: Running a dynamic web application (`public_app.py`) and executing cron jobs (`crontab`).
+The following events are tracked in Google Analytics:
 
-Servers capable of running the app can be setup using our [servers](https://github.com/nprapps/servers) project.
+|Category|Action|Label|Value|Custom 1|Custom 2|
+|--------|------|-----|-----|--------|--------|
+|Borderlands|Slideshow - Clicked Go|||||
+|Borderlands|Slideshow - Reached Last Slide||||
+|Borderlands|Video - Play||||
+|Borderlands|Video - Ended||||
+|Borderlands|Navigation - Used Keyboard||||
+|Borderlands|Navigation - Used Slide Controls||||
+|Borderlands|Navigation - Used Section Nav||||
 
-For running a Web application:
+**Notes**
 
-* In ``app_config.py`` set ``DEPLOY_TO_SERVERS`` to ``True``.
-* Also in ``app_config.py`` set ``DEPLOY_WEB_SERVICES`` to ``True``.
-* Run ``fab staging master setup_server`` to configure the server.
-* Run ``fab staging master deploy`` to deploy the app.
+* The *Navigation* events functions as booleans. They are only tracked once per session.
 
-For running cron jobs:
-
-* In ``app_config.py`` set ``DEPLOY_TO_SERVERS`` to ``True``.
-* Also in ``app_config.py``, set ``INSTALL_CRONTAB`` to ``True``
-* Run ``fab staging master setup_server`` to configure the server.
-* Run ``fab staging master deploy`` to deploy the app.
-
-You can configure your EC2 instance to both run Web services and execute cron jobs; just set both environment variables in the fabfile.
-
-Install cron jobs
------------------
-
-Cron jobs are defined in the file `crontab`. Each task should use the `cron.sh` shim to ensure the project's virtualenv is properly activated prior to execution. For example:
-
-```
-* * * * * ubuntu bash /home/ubuntu/apps/$PROJECT_NAME/repository/cron.sh fab $DEPLOYMENT_TARGET cron_test
-```
-
-**Note:** In this example you will need to replace `$PROJECT_NAME` with your actual deployed project name.
-
-To install your crontab set `INSTALL_CRONTAB` to `True` in `app_config.py`. Cron jobs will be automatically installed each time you deploy to EC2.
-
-Install web services
----------------------
-
-Web services are configured in the `confs/` folder.
-
-Running ``fab setup_server`` will deploy your confs if you have set ``DEPLOY_TO_SERVERS`` and ``DEPLOY_WEB_SERVICES`` both to ``True`` at the top of ``app_config.py``.
-
-To check that these files are being properly rendered, you can render them locally and see the results in the `confs/rendered/` directory.
-
-```
-fab render_confs
-```
-
-You can also deploy the configuration files independently of the setup command by running:
-
-```
-fab deploy_confs
-```
-
-Run a  remote fab command
--------------------------
-
-Sometimes it makes sense to run a fabric command on the server, for instance, when you need to render using a production database. You can do this with the `fabcast` fabric command. For example:
-
-```
-fab staging master fabcast:deploy
-```
-
-If any of the commands you run themselves require executing on the server, the server will SSH into itself to run them.
