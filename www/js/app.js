@@ -112,10 +112,6 @@ var onPageLoad = function() {
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     setSlidesForLazyLoading(slideIndex);
 
-    if (slideAnchor == 'dashboard'){
-        setTimeOnSite();
-    }
-
     showNavigation();
 
     slideStartTime = moment();
@@ -323,7 +319,7 @@ var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
     var timeOnSlide = (now - slideStartTime);
 
     var hash = window.location.hash;
-    
+
     if (hash[0] == '#') {
         hash = hash.substring(1);
     }
@@ -388,7 +384,7 @@ var setupVideoPlayer = function() {
                 $('.jp-current-time').addClass('hide');
                 $('.jp-duration').removeClass('hide');
             }
-            
+
             _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Video - Ended']);
         },
         size: {
@@ -429,8 +425,8 @@ var setTimeOnSite = function(e) {
     var minutes = Math.round(parseInt(miliseconds/1000/60));
     var seconds = Math.round(parseInt((miliseconds/1000) % 60));
 
-    $('div.dashboard h3 span.minutes').html(minutes);
-    $('div.dashboard h3 span.seconds').html(seconds);
+    $('div.stats h3 span.minutes').html(minutes);
+    $('div.stats h3 span.seconds').html(seconds);
 }
 
 var onUpdateCounts = function(e) {
@@ -455,6 +451,7 @@ var onUpdateCounts = function(e) {
         $('#' + count_category + ' span.number').html(Math.round(count_number * elapsed_seconds));
     });
 
+    setTimeOnSite();
 };
 
 var onResize = function(e) {
@@ -515,9 +512,9 @@ $(document).ready(function() {
     $sectionNav = $('.section-nav');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
-    
+
     var hash = window.location.hash;
-    
+
     if (hash) {
         if (hash[0] == '#') {
             hash = hash.substring(1);
