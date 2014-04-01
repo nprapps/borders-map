@@ -430,6 +430,15 @@ body {
 .text-only {
     opacity: .8;
     padding-bottom: 70px;
+    
+    h2 {
+    font-weight: bold;
+    font-size: 30px;
+	    @media @screen-small-above {
+            font-size: 40px;
+            line-height: 1.5;
+        }
+    }
 
     h3, .location {
         font-size: 15px;
@@ -522,6 +531,16 @@ body {
 	}
 
 	.full-block-content{
+	    
+
+	    h2 {
+        font-weight: bold;
+        font-size: 20px;
+    	    @media @screen-small-above {
+                font-size: 40px;
+                line-height: 1.5;
+            }
+        }
 
 		h3 {
             font-size: 15px;
@@ -531,10 +550,17 @@ body {
             line-height: 1.5;
     
             @media @screen-small-above {
-                font-size: 20px;
+                font-size: 30px;
                 margin-bottom: 40px;
             }
     
+        }
+        
+        p {
+            font-size: 16px;
+            @media @screen-small-above {
+                font-size: 24px;
+            }
         }
 		
 		ul {
