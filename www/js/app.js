@@ -30,10 +30,11 @@ var optimalHeight;
 var w;
 var h;
 var $jplayer = null;
-var trackedKeyboardNav = false;
+var hasTrackedKeyboardNav = false;
+var hasTrackedOnScreenNav = false;
 
 var onTitleCardButtonClick = function() {
-    goToNextSlide();
+    $.fn.fullpage.moveSlideRight();
 
     _gaq.push(['_trackEvent', 'Borderlands', 'Slideshow - Clicked Go']);
 }
@@ -314,12 +315,13 @@ var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
     }
 }
 
-var goToNextSection = function() {
-    $.fn.fullpage.moveTo(0, anchors[currentSectionIndex + 1]);
-}
-
 var goToNextSlide = function() {
     $.fn.fullpage.moveSlideRight();
+
+    if (!hasTrackedOnScreenNav) {
+        _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Slide Controls']);
+        hasTrackedOnScreenNav = true;
+    }
 }
 
 var animateNav = function() {
@@ -455,7 +457,7 @@ var onResize = function(e) {
 }
 
 var onDocumentKeyDown = function(e) {
-    if (trackedKeyboardNav) {
+    if (hasTrackedKeyboardNav) {
         return true;
     }
 
@@ -465,7 +467,7 @@ var onDocumentKeyDown = function(e) {
         //right
         case 39:
             _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Keyboard']);
-            trackedKeyboardNav = true;
+            hasTrackedKeyboardNav = true;
             break;
     }
 

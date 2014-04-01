@@ -271,8 +271,9 @@ The following events are tracked in Google Analytics:
 |Borderlands|Video - Play||||
 |Borderlands|Video - Ended||||
 |Borderlands|Navigation - Used Keyboard||||
+|Borderlands|Navigation - Used Slide Controls||||
 
 **Notes**
 
-* The *Navigation - Used Keyboard* event functions as a boolean. It is only tracked once per session.
+* The *Navigation* events functions as booleans. They are only tracked once per session.
 
