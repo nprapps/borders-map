@@ -273,6 +273,7 @@ The following events are tracked in Google Analytics:
 |Borderlands|Navigation - Used Keyboard||||
 |Borderlands|Navigation - Used Slide Controls||||
 |Borderlands|Navigation - Used Section Nav||||
+|Borderlands|Arrived via Deep Link||||
 
 **Notes**
 

@@ -501,6 +501,18 @@ $(document).ready(function() {
     $sectionNav = $('.section-nav');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
+    
+    var hash = window.location.hash;
+    
+    if (hash) {
+        if (hash[0] == '#') {
+            hash = hash.substring(1);
+        }
+
+        if (hash && hash != '_' && hash != '_/') {
+            _gaq.push(['_trackEvent', 'Borderlands', 'Arrived via Deep Link', hash]);
+        }
+    }
 
     setUpFullPage();
     resize();
