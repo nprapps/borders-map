@@ -30,6 +30,7 @@ var optimalHeight;
 var w;
 var h;
 var $jplayer = null;
+var trackedKeyboardNav = false;
 
 var onTitleCardButtonClick = function() {
     goToNextSlide();
@@ -453,6 +454,25 @@ var onResize = function(e) {
     }
 }
 
+var onDocumentKeyDown = function(e) {
+    if (trackedKeyboardNav) {
+        return true;
+    }
+
+    switch (e.which) {
+        //left
+        case 37:
+        //right
+        case 39:
+            _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Keyboard']);
+            trackedKeyboardNav = true;
+            break;
+    }
+
+    // jquery.fullpage handles actual scrolling
+    return true;
+}
+
 $(document).ready(function() {
     $slides = $('.slide');
     $playVideo = $('.btn-video');
@@ -481,4 +501,5 @@ $(document).ready(function() {
     // Redraw slides if the window resizes
     $(window).resize(resize);
     $(window).resize(onResize);
+    $(document).keydown(onDocumentKeyDown);
 });

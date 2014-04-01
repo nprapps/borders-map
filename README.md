@@ -270,4 +270,9 @@ The following events are tracked in Google Analytics:
 |Borderlands|Slideshow - Reached Last Slide||||
 |Borderlands|Video - Play||||
 |Borderlands|Video - Ended||||
+|Borderlands|Navigation - Used Keyboard||||
+
+**Notes**
+
+* The *Navigation - Used Keyboard* event functions as a boolean. It is only tracked once per session.
 
