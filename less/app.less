@@ -514,24 +514,47 @@ body {
 
 }
 
-/*introduction*/
-.introduction {
+/*asylum*/
+.asylum {
 
 .full-block {
-		background-color: rgba(0,0,0,.7);
+		background-color: rgba(0,0,0,.5);
 	}
 
 	.full-block-content{
-		max-width: 800px;
-		padding: 20px;
 
-		h2 {font-size: 28px;}
-
-
-
-		p {
-			font-size: 17px;
-		}
+		h3 {
+            font-size: 15px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            line-height: 1.5;
+    
+            @media @screen-small-above {
+                font-size: 20px;
+                margin-bottom: 40px;
+            }
+    
+        }
+		
+		ul {
+            margin-bottom: 20px;
+            list-style-type: none;
+            padding: 0;
+    
+            li {
+                font-size: 13px;
+                margin: 5px 0 0 0;
+                padding: 0 0 5px 0;
+                border-bottom: 1px solid #ddd;
+    
+                @media @screen-small-above {
+                    font-size: 16px;
+                    margin: 10px 0 0 0;
+                    padding: 0 0 10px 0;
+                }
+            }
+        }
     }
 
 }
