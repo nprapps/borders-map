@@ -8,7 +8,6 @@ var $h;
 var $slides;
 var $components;
 var $portraits;
-var $play;
 var $video;
 var $primaryNav;
 var $navButton;
@@ -31,6 +30,12 @@ var optimalHeight;
 var w;
 var h;
 var $jplayer = null;
+
+var onTitleCardButtonClick = function() {
+    goToNextSlide();
+
+    _gaq.push(['_trackEvent', 'Slideshow', 'Clicked Go']);
+}
 
 var resize = function() {
 
@@ -106,6 +111,10 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     }
 
     showNavigation();
+
+    if ($slides.last().hasClass('active')) {
+        _gaq.push(['_trackEvent', 'Slideshow', 'Reached Last Slide']);
+    }
 };
 
 var setSlidesForLazyLoading = function(slideIndex) {
@@ -446,7 +455,7 @@ var onResize = function(e) {
 
 $(document).ready(function() {
     $slides = $('.slide');
-    $play_video = $('.btn-video');
+    $playVideo = $('.btn-video');
     $video = $('.video');
     $components = $('.component');
     $portraits = $('.section[data-anchor="people"] .slide')
@@ -461,11 +470,11 @@ $(document).ready(function() {
     setUpFullPage();
     resize();
 
-    $play_video.on('click', startVideo);
+    $playVideo.on('click', startVideo);
     $navButton.on('click', animateNav);
     $navItems.on('click', animateNav);
     $secondaryNav.on('click', animateNav);
-    $titleCardButton.on('click', goToNextSlide);
+    $titleCardButton.on('click', onTitleCardButtonClick);
 
     active_counter = setInterval(onUpdateCounts,500);
 
