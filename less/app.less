@@ -381,16 +381,12 @@ body {
     background-color: #fff;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 14px;
-    padding: 0 10px;
     margin: 35px auto 0 auto;
     text-align: center;
-    line-height: 30px;
-    @media @screen-small-above {
-        font-size: 18px;
-        padding: 0 22px;
-        line-height: 44px;
-    }
+     font-size: 18px;
+    padding: 0 22px;
+    line-height: 44px;
+    
 
     &:hover {
         .no-touch & {
@@ -1175,43 +1171,51 @@ div.stats {
     }
     
     h2 {
-        font-size: 16px;
+        font-size: 24px;
         font-weight: bold;
         text-transform: uppercase;
-        text-align: center;
-            @media @screen-small-above {
-                font-size: 40px;
-                text-align: left;
-            }
+        margin-top: 0;
+        @media @screen-small-above {
+            font-size: 40px;
+        }
     }
 
      h3 {
-        font-size: 12px;
+        font-size: 16px;
         margin-top: 0;
-        text-align: center;
-        
+        font-weight: bold;
         @media @screen-small-above {
             font-size: 24px;
             margin-bottom: 30px;
-            font-weight: bold;
             padding-top: 10px;
-            text-align: left;
         }
 
      }
      
      h4 {
-        font-size:16px;
+        font-size:12px;
         line-height: 1.5;
-        margin: 0 0 30px 0;
+        margin: 0 0 10px 0;
+        @media @screen-small-above {
+            font-size:16px;
+            margin-bottom: 30px;
+        }
      }
      
     h5 {
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 13px;
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.5;
+        @media @screen-small-above {
+            padding-top: 20px;
+            font-size: 20px;
+            text-align: left;
+        }
     }
      
      a {
@@ -1253,7 +1257,7 @@ div.stats {
             }
 
             .number {
-                background-color: rgba(0,0,0,.5);
+                background-color: rgba(0,0,0,.7);
                 color: #fff;
                 border-radius: 8px;
                 -moz-border-radius: 8px;
