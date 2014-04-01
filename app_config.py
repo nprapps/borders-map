@@ -18,7 +18,7 @@ PROJECT_NAME = 'borders-map'
 
 # Project name in urls
 # Use dashes, not underscores!
-PROJECT_SLUG = 'borders-map'
+PROJECT_SLUG = 'borderland'
 
 # The name of the repository containing the source
 REPOSITORY_NAME = 'borders-map'
