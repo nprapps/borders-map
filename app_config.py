@@ -14,7 +14,7 @@ import os
 NAMES
 """
 # Project name used for display
-PROJECT_NAME = 'borders-map'
+PROJECT_NAME = 'Borderland'
 
 # Project name in urls
 # Use dashes, not underscores!
