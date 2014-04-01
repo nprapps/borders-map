@@ -26,7 +26,8 @@ REPOSITORY_URL = 'git@github.com:nprapps/%s.git' % REPOSITORY_NAME
 REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
 
 # The name to be used in paths on the server
-PROJECT_FILENAME = 'borders_map'
+# NOTE: This has been hacked to include a dash, so it can be used for assets in this project. It normally would be an underscore!
+PROJECT_FILENAME = 'borders-map'
 
 """
 DEPLOYMENT
