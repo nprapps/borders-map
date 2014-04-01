@@ -361,12 +361,16 @@ var setupVideoPlayer = function() {
                 $('.jp-current-time').removeClass('hide');
                 $('.jp-duration').addClass('hide');
             }
+
+            _gaq.push(['_trackEvent', 'Video', 'Play']);
         },
         ended: function(){
             if (!is_touch) {
                 $('.jp-current-time').addClass('hide');
                 $('.jp-duration').removeClass('hide');
             }
+            
+            _gaq.push(['_trackEvent', 'Video', 'Ended']);
         },
         size: {
             width: $w,
