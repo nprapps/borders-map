@@ -273,8 +273,10 @@ The following events are tracked in Google Analytics:
 |Borderlands|Navigation - Used Keyboard||||
 |Borderlands|Navigation - Used Slide Controls||||
 |Borderlands|Navigation - Used Section Nav||||
+|Borderlands|Arrived via Deep Link|`hash`|||
+|Borderlands|Time on Slide|`hash`|`timeOnSlide`||
 
 **Notes**
 
 * The *Navigation* events functions as booleans. They are only tracked once per session.
-
+* The *Time on Slide* event fires on slide exit. Due to weirdness in jquery.fullpage this fires extra time if deep-linking into a slide. It will never fire for the last slide the user viewed. Times are tracked in *milliseconds*. (Because GA doesn't support fractional values.)
