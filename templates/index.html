@@ -33,7 +33,7 @@
         <div class="row">
             {% for item in row %}
             <a class="section-nav" data-menuanchor="{{ item.data_panel.lower() }}" href="#_/{{ item.data_panel.lower() }}">
-                <div class="section-tease col-md-3 col-sm-12" style="background-image: url('assets/img/{{item.menu_image}}');">
+                <div class="section-tease col-md-3 col-sm-12" data-menu-image-small="{{ item.menu_image_small }}" data-menu-image-large="{{ item.menu_image_large }}">
                     <div class="row">
                         <div class="mask col-md-12 {{ item.data_panel.lower().replace('_', '') }}">
                             {{ item.chapter_title|safe }}

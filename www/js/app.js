@@ -500,6 +500,27 @@ var onControlArrowClick = function(e) {
     return true;
 }
 
+var loadSectionNavImages = function() {
+    $('.section-tease').each(function(i, el) {
+        var $el = $(el);
+        var small = $el.data('menu-image-small');
+        var large = $el.data('menu-image-large');
+
+        
+        var css = "url('assets/img/";
+
+        // Tablets get larger images
+        if ($w <= 991 && $w >= 768) {
+            css += large;
+        } else {
+            css += small;
+        }
+
+        css += "')";
+
+        $el.css('background-image', css);
+    });
+}
 
 $(document).ready(function() {
     $slides = $('.slide');
@@ -545,4 +566,6 @@ $(document).ready(function() {
     $(window).resize(resize);
     $(window).resize(onResize);
     $(document).keydown(onDocumentKeyDown);
+
+    loadSectionNavImages();
 });
