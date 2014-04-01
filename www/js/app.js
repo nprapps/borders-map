@@ -34,7 +34,7 @@ var $jplayer = null;
 var onTitleCardButtonClick = function() {
     goToNextSlide();
 
-    _gaq.push(['_trackEvent', 'Slideshow', 'Clicked Go']);
+    _gaq.push(['_trackEvent', 'Borderlands', 'Slideshow - Clicked Go']);
 }
 
 var resize = function() {
@@ -113,7 +113,7 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     showNavigation();
 
     if ($slides.last().hasClass('active')) {
-        _gaq.push(['_trackEvent', 'Slideshow', 'Reached Last Slide']);
+        _gaq.push(['_trackEvent', 'Borderlands', 'Slideshow - Reached Last Slide']);
     }
 };
 
@@ -371,7 +371,7 @@ var setupVideoPlayer = function() {
                 $('.jp-duration').addClass('hide');
             }
 
-            _gaq.push(['_trackEvent', 'Video', 'Play']);
+            _gaq.push(['_trackEvent', 'Borderlands', 'Video - Play']);
         },
         ended: function(){
             if (!is_touch) {
@@ -379,7 +379,7 @@ var setupVideoPlayer = function() {
                 $('.jp-duration').removeClass('hide');
             }
             
-            _gaq.push(['_trackEvent', 'Video', 'Ended']);
+            _gaq.push(['_trackEvent', 'Borderlands', 'Video - Ended']);
         },
         size: {
             width: $w,
