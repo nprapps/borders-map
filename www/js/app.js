@@ -34,6 +34,7 @@ var $jplayer = null;
 var hasTrackedKeyboardNav = false;
 var hasTrackedSlideNav = false;
 var hasTrackedSectionNav = false;
+var slideStartTime = moment();
 
 var onTitleCardButtonClick = function() {
     $.fn.fullpage.moveSlideRight();
@@ -115,6 +116,8 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     }
 
     showNavigation();
+
+    slideStartTime = moment();
 
     if ($slides.last().hasClass('active')) {
         _gaq.push(['_trackEvent', 'Borderlands', 'Slideshow - Reached Last Slide']);
@@ -311,10 +314,20 @@ var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
     var thisSlide = $slides[slideIndex];
 
     if ($jplayer && $(thisSlide).hasClass('video')) {
-
         $(thisSlide).removeClass('video-playing');
         stopVideo();
     }
+
+    var now = moment();
+    var timeOnSlide = (now - slideStartTime);
+
+    var hash = window.location.hash;
+    
+    if (hash[0] == '#') {
+        hash = hash.substring(1);
+    }
+
+    _gaq.push(['_trackEvent', 'Borderlands', 'Time on Slide', hash, timeOnSlide]);
 }
 
 var animateNav = function() {
