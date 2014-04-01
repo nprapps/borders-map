@@ -272,6 +272,7 @@ The following events are tracked in Google Analytics:
 |Borderlands|Video - Ended||||
 |Borderlands|Navigation - Used Keyboard||||
 |Borderlands|Navigation - Used Slide Controls||||
+|Borderlands|Navigation - Used Section Nav||||
 
 **Notes**
 

@@ -15,6 +15,7 @@ var $nav;
 var $navItems;
 var $secondaryNav;
 var $arrows;
+var $sectionNav;
 var currentSection = '_'
 var currentSectionIndex = 0;
 var anchors;
@@ -31,7 +32,8 @@ var w;
 var h;
 var $jplayer = null;
 var hasTrackedKeyboardNav = false;
-var hasTrackedOnScreenNav = false;
+var hasTrackedSlideNav = false;
+var hasTrackedSectionNav = false;
 
 var onTitleCardButtonClick = function() {
     $.fn.fullpage.moveSlideRight();
@@ -315,15 +317,6 @@ var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
     }
 }
 
-var goToNextSlide = function() {
-    $.fn.fullpage.moveSlideRight();
-
-    if (!hasTrackedOnScreenNav) {
-        _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Slide Controls']);
-        hasTrackedOnScreenNav = true;
-    }
-}
-
 var animateNav = function() {
     $nav.toggleClass('active');
     if ($nav.hasClass('active')) {
@@ -475,6 +468,25 @@ var onDocumentKeyDown = function(e) {
     return true;
 }
 
+var onSectionNavClick = function(e) {
+    if (!hasTrackedSectionNav) {
+        _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Section Nav']);
+        hasTrackedSectionNav = true;
+    }
+
+    return true;
+}
+
+var onControlArrowClick = function(e) {
+    if (!hasTrackedSlideNav) {
+        _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Slide Controls']);
+        hasTrackedSlideNav = true;
+    }
+
+    return true;
+}
+
+
 $(document).ready(function() {
     $slides = $('.slide');
     $playVideo = $('.btn-video');
@@ -486,6 +498,7 @@ $(document).ready(function() {
     $nav = $('.nav');
     $navItems = $('.nav .section-tease');
     $secondaryNav = $('.secondary-nav-btn');
+    $sectionNav = $('.section-nav');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
 
@@ -496,7 +509,9 @@ $(document).ready(function() {
     $navButton.on('click', animateNav);
     $navItems.on('click', animateNav);
     $secondaryNav.on('click', animateNav);
+    $sectionNav.on('click', onSectionNavClick);
     $titleCardButton.on('click', onTitleCardButtonClick);
+    $arrows.on('click', onControlArrowClick);
 
     active_counter = setInterval(onUpdateCounts,500);
 
