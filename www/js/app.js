@@ -2,6 +2,7 @@
 * Global vars
 */
 var NAV_HEIGHT = 75;
+var EVENT_CATEGORY = 'Borderland';
 
 var $w;
 var $h;
@@ -39,7 +40,7 @@ var slideStartTime = moment();
 var onTitleCardButtonClick = function() {
     $.fn.fullpage.moveSlideRight();
 
-    _gaq.push(['_trackEvent', 'Borderlands', 'Slideshow - Clicked Go']);
+    _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Slideshow - Clicked Go']);
 }
 
 var resize = function() {
@@ -120,7 +121,7 @@ var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     slideStartTime = moment();
 
     if ($slides.last().hasClass('active')) {
-        _gaq.push(['_trackEvent', 'Borderlands', 'Slideshow - Reached Last Slide']);
+        _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Slideshow - Reached Last Slide']);
     }
 };
 
@@ -327,7 +328,7 @@ var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
         hash = hash.substring(1);
     }
 
-    _gaq.push(['_trackEvent', 'Borderlands', 'Time on Slide', hash, timeOnSlide]);
+    _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Time on Slide', hash, timeOnSlide]);
 }
 
 var animateNav = function() {
@@ -380,7 +381,7 @@ var setupVideoPlayer = function() {
                 $('.jp-duration').addClass('hide');
             }
 
-            _gaq.push(['_trackEvent', 'Borderlands', 'Video - Play']);
+            _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Video - Play']);
         },
         ended: function(){
             if (!is_touch) {
@@ -388,7 +389,7 @@ var setupVideoPlayer = function() {
                 $('.jp-duration').removeClass('hide');
             }
             
-            _gaq.push(['_trackEvent', 'Borderlands', 'Video - Ended']);
+            _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Video - Ended']);
         },
         size: {
             width: $w,
@@ -472,7 +473,7 @@ var onDocumentKeyDown = function(e) {
         case 37:
         //right
         case 39:
-            _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Keyboard']);
+            _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Navigation - Used Keyboard']);
             hasTrackedKeyboardNav = true;
             break;
     }
@@ -483,7 +484,7 @@ var onDocumentKeyDown = function(e) {
 
 var onSectionNavClick = function(e) {
     if (!hasTrackedSectionNav) {
-        _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Section Nav']);
+        _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Navigation - Used Section Nav']);
         hasTrackedSectionNav = true;
     }
 
@@ -492,7 +493,7 @@ var onSectionNavClick = function(e) {
 
 var onControlArrowClick = function(e) {
     if (!hasTrackedSlideNav) {
-        _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Slide Controls']);
+        _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Navigation - Used Slide Controls']);
         hasTrackedSlideNav = true;
     }
 
@@ -523,7 +524,7 @@ $(document).ready(function() {
         }
 
         if (hash && hash != '_' && hash != '_/') {
-            _gaq.push(['_trackEvent', 'Borderlands', 'Arrived via Deep Link', hash]);
+            _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Arrived via Deep Link', hash]);
         }
     }
 
