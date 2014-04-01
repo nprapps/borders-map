@@ -2,6 +2,7 @@
 * Global vars
 */
 var NAV_HEIGHT = 75;
+var EVENT_CATEGORY = 'Borderland';
 
 var $w;
 var $h;
@@ -39,7 +40,7 @@ var slideStartTime = moment();
 var onTitleCardButtonClick = function() {
     $.fn.fullpage.moveSlideRight();
 
-    _gaq.push(['_trackEvent', 'Borderlands', 'Slideshow - Clicked Go']);
+    _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Slideshow - Clicked Go']);
 }
 
 var resize = function() {
@@ -111,16 +112,12 @@ var onPageLoad = function() {
 var lazyLoad = function(anchorLink, index, slideAnchor, slideIndex) {
     setSlidesForLazyLoading(slideIndex);
 
-    if (slideAnchor == 'dashboard'){
-        setTimeOnSite();
-    }
-
     showNavigation();
 
     slideStartTime = moment();
 
     if ($slides.last().hasClass('active')) {
-        _gaq.push(['_trackEvent', 'Borderlands', 'Slideshow - Reached Last Slide']);
+        _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Slideshow - Reached Last Slide']);
     }
 };
 
@@ -322,12 +319,12 @@ var onSlideLeave = function(anchorLink, index, slideIndex, direction) {
     var timeOnSlide = (now - slideStartTime);
 
     var hash = window.location.hash;
-    
+
     if (hash[0] == '#') {
         hash = hash.substring(1);
     }
 
-    _gaq.push(['_trackEvent', 'Borderlands', 'Time on Slide', hash, timeOnSlide]);
+    _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Time on Slide', hash, timeOnSlide]);
 }
 
 var animateNav = function() {
@@ -380,15 +377,15 @@ var setupVideoPlayer = function() {
                 $('.jp-duration').addClass('hide');
             }
 
-            _gaq.push(['_trackEvent', 'Borderlands', 'Video - Play']);
+            _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Video - Play']);
         },
         ended: function(){
             if (!is_touch) {
                 $('.jp-current-time').addClass('hide');
                 $('.jp-duration').removeClass('hide');
             }
-            
-            _gaq.push(['_trackEvent', 'Borderlands', 'Video - Ended']);
+
+            _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Video - Ended']);
         },
         size: {
             width: $w,
@@ -428,8 +425,8 @@ var setTimeOnSite = function(e) {
     var minutes = Math.round(parseInt(miliseconds/1000/60));
     var seconds = Math.round(parseInt((miliseconds/1000) % 60));
 
-    $('div.dashboard h3 span.minutes').html(minutes);
-    $('div.dashboard h3 span.seconds').html(seconds);
+    $('div.stats h3 span.minutes').html(minutes);
+    $('div.stats h3 span.seconds').html(seconds);
 }
 
 var onUpdateCounts = function(e) {
@@ -454,6 +451,7 @@ var onUpdateCounts = function(e) {
         $('#' + count_category + ' span.number').html(Math.round(count_number * elapsed_seconds));
     });
 
+    setTimeOnSite();
 };
 
 var onResize = function(e) {
@@ -472,7 +470,7 @@ var onDocumentKeyDown = function(e) {
         case 37:
         //right
         case 39:
-            _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Keyboard']);
+            _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Navigation - Used Keyboard']);
             hasTrackedKeyboardNav = true;
             break;
     }
@@ -483,7 +481,7 @@ var onDocumentKeyDown = function(e) {
 
 var onSectionNavClick = function(e) {
     if (!hasTrackedSectionNav) {
-        _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Section Nav']);
+        _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Navigation - Used Section Nav']);
         hasTrackedSectionNav = true;
     }
 
@@ -492,13 +490,34 @@ var onSectionNavClick = function(e) {
 
 var onControlArrowClick = function(e) {
     if (!hasTrackedSlideNav) {
-        _gaq.push(['_trackEvent', 'Borderlands', 'Navigation - Used Slide Controls']);
+        _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Navigation - Used Slide Controls']);
         hasTrackedSlideNav = true;
     }
 
     return true;
 }
 
+var loadSectionNavImages = function() {
+    $('.section-tease').each(function(i, el) {
+        var $el = $(el);
+        var small = $el.data('menu-image-small');
+        var large = $el.data('menu-image-large');
+
+        
+        var css = "url('assets/img/";
+
+        // Tablets get larger images
+        if ($w <= 991 && $w >= 768) {
+            css += large;
+        } else {
+            css += small;
+        }
+
+        css += "')";
+
+        $el.css('background-image', css);
+    });
+}
 
 $(document).ready(function() {
     $slides = $('.slide');
@@ -514,16 +533,16 @@ $(document).ready(function() {
     $sectionNav = $('.section-nav');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
-    
+
     var hash = window.location.hash;
-    
+
     if (hash) {
         if (hash[0] == '#') {
             hash = hash.substring(1);
         }
 
         if (hash && hash != '_' && hash != '_/') {
-            _gaq.push(['_trackEvent', 'Borderlands', 'Arrived via Deep Link', hash]);
+            _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Arrived via Deep Link', hash]);
         }
     }
 
@@ -544,4 +563,6 @@ $(document).ready(function() {
     $(window).resize(resize);
     $(window).resize(onResize);
     $(document).keydown(onDocumentKeyDown);
+
+    loadSectionNavImages();
 });
