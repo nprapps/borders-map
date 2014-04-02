@@ -405,7 +405,7 @@ def _deploy_to_s3(path='.gzip'):
         local(sync_assets % ('www/assets/', 's3://%s/%s/assets/' % (bucket, app_config.PROJECT_SLUG)))
 
     os.system('rm -rf www/js/*.min.*.js')
-    os.system('rm -rf www/cs/*.min.*.css')
+    os.system('rm -rf www/css/*.min.*.css')
 
 
 def _gzip(in_path='www', out_path='.gzip'):
