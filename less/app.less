@@ -1454,6 +1454,18 @@ body {
     position: relative;
 }
 
+//house crop
+.house-crop {
+    @media @screen-small {
+        .touch & {
+            .background-size(100%);
+            background-repeat: no-repeat;
+        }
+    }
+    
+}
+
+
 // Dashboard
 div.stats {
     color: #fff;
@@ -1576,70 +1588,3 @@ div.stats {
         }
     }
 }
-
-//portrait tempate
-
-/*
-.slide.photo-quote-vertical {
-    .second-block {
-        img {
-            height: 100%;
-            float: right;
-        }
-    }
-
-    blockquote {
-        position: absolute;
-        top: 5%;
-        left: 0;
-        z-index: 20;
-        border: none;
-        margin: 0;
-        padding: 0 50px;
-        color: #444;
-
-        p {
-            font-size: 28px;
-            font-weight: bold;
-            line-height: 1.2;
-            padding: 0;
-        }
-
-        dl {
-            margin-top: 40px;
-            opacity: .8;
-            font-size: 15px;
-        }
-
-        h6 {
-            font-size: 20px;
-            margin: 20px 0;
-            font-style: italic;
-            opacity: .6;
-            line-height: 1.5;
-        }
-    }
-}
-*/
-
-/* 50/50 grid for slide (used for playlist and portraits)
-.first-block {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-}
-
-.second-block {
-    .background-size(cover);
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-}
-
-*/
