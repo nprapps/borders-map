@@ -4,7 +4,7 @@ import copy
 from glob import glob
 import os
 
-from fabric.api import local, put, require, run, settings, sudo, task 
+from fabric.api import local, put, require, run, settings, sudo, task
 from fabric.state import env
 from jinja2 import Template
 
@@ -404,6 +404,10 @@ def _deploy_to_s3(path='.gzip'):
         local(sync_gzip % (path, 's3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
         local(sync_assets % ('www/assets/', 's3://%s/%s/assets/' % (bucket, app_config.PROJECT_SLUG)))
 
+    os.system('rm -rf www/js/*.min.*.js')
+    os.system('rm -rf www/cs/*.min.*.css')
+
+
 def _gzip(in_path='www', out_path='.gzip'):
     """
     Gzips everything in www and puts it all in gzip
@@ -517,7 +521,7 @@ def deploy(remote='origin'):
 
     if app_config.DEPLOY_TO_SERVERS:
         checkout_latest(remote)
-        
+
         fabcast('update_copy')
         fabcast('assets_sync')
         fabcast('update_data')
