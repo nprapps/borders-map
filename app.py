@@ -31,8 +31,6 @@ def index():
         row_title = row.get('data_panel', None)
 
         if row_title:
-            print row_title
-
             if row_title not in ['_', 'introduction', 'data_panel', 'about']:
                 not_yet_four.append(row)
 
