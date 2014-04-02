@@ -1,4 +1,3 @@
-
 (function() {
 
   // Baseline setup
@@ -454,11 +453,11 @@
 
   /**
    * Truncates a string if it is longer than the specified number of characters.
-   * Truncated strings will end with a translatable ellipsis sequence ('…').
+   * Truncated strings will end with a translatable ellipsis sequence ('').
    */
   humanize.truncatechars = function(string, length) {
     if (string.length <= length) { return string; }
-    return string.substr(0, length) + '…';
+    return string.substr(0, length) + '';
   };
 
   /**
@@ -468,7 +467,7 @@
   humanize.truncatewords = function(string, numWords) {
     var words = string.split(' ');
     if (words.length < numWords) { return string; }
-    return words.slice(0, numWords).join(' ') + '…';
+    return words.slice(0, numWords).join(' ') + '';
   };
 
 }).call(this);
