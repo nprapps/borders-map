@@ -66,13 +66,14 @@ var resize = function() {
 var setUpFullPage = function() {
     anchors = [];
     var anchor_count = 0;
+    var bad_sections = [undefined, 'introduction'];
 
    _.each($slides, function(section, index, list) {
         /*
         * Sets up the anchor list, used elsewhere for navigation and such.
         */
         var anchor = $(section).data('anchor');
-        if (anchor === undefined) {
+        if (bad_sections.indexOf(anchor) > -1) {
             return false;
         }
         anchors.push(anchor);
@@ -222,7 +223,7 @@ var showNavigation = function() {
         }
 
         var $nextArrow = $arrows.filter('.next');
-        
+
         $nextArrow.removeClass('active');
         $nextArrow.css({
             'opacity': 0,
