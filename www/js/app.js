@@ -422,8 +422,8 @@ var setTimeOnSite = function(e) {
     var now = moment();
     var miliseconds = (now - begin);
 
-    var minutes = Math.round(parseInt(miliseconds/1000/60));
-    var seconds = Math.round(parseInt((miliseconds/1000) % 60));
+    var minutes = humanize.numberFormat(miliseconds/1000/60, decimals=0);
+    var seconds = humanize.numberFormat((miliseconds/1000) % 60, decimals=0);
 
     $('div.stats h3 span.minutes').html(minutes);
     $('div.stats h3 span.seconds').html(seconds);
@@ -447,8 +447,8 @@ var onUpdateCounts = function(e) {
         var count_category = count[0];
         var count_number = count[1];
         var count_unit = count[2];
-
-        $('#' + count_category + ' span.number').html(Math.round(count_number * elapsed_seconds));
+        var number = humanize.numberFormat(count_number * elapsed_seconds, decimals=0, thousandsSep = ',');
+        $('#' + count_category + ' span.number').html(number);
     });
 
     setTimeOnSite();
@@ -503,7 +503,7 @@ var loadSectionNavImages = function() {
         var small = $el.data('menu-image-small');
         var large = $el.data('menu-image-large');
 
-        
+
         var css = "url('assets/img/";
 
         // Tablets get larger images
