@@ -17,6 +17,7 @@ var $navItems;
 var $secondaryNav;
 var $arrows;
 var $sectionNav;
+var $closeNavButton;
 var currentSection = '_'
 var currentSectionIndex = 0;
 var anchors;
@@ -551,6 +552,7 @@ $(document).ready(function() {
     $sectionNav = $('.section-nav');
     $titleCardButton = $('.btn-play');
     $arrows = $('.controlArrow');
+    $closeNavButton = $nav.find('.back');
 
     var hash = window.location.hash;
 
@@ -579,6 +581,7 @@ $(document).ready(function() {
     $sectionNav.on('click', onSectionNavClick);
     $titleCardButton.on('click', onTitleCardButtonClick);
     $arrows.on('click', onControlArrowClick);
+    $closeNavButton.on('click', animateNav);
 
     active_counter = setInterval(onUpdateCounts,500);
 
