@@ -1,13 +1,12 @@
-
 (function() {
 
   // Baseline setup
   // --------------
 
-  // Establish the root object, `window` in the browser, or `global` on the server.
+  // Establish the root object, 'window' in the browser, or 'global' on the server.
   var root = this;
 
-  // Save the previous value of the `humanize` variable.
+  // Save the previous value of the 'humanize' variable.
   var previousHumanize = root.humanize;
 
   var humanize = {};
@@ -232,7 +231,7 @@
 
       // Seconds since UNIX epoch
       U: function () { return jsdate.getTime() / 1000 || 0; }
-    };    
+    };
 
     return format.replace(formatChr, formatChrCb);
   };
@@ -425,7 +424,7 @@
   /**
    * Replaces line breaks in plain text with appropriate HTML
    * A single newline becomes an HTML line break (<br />) and a new line followed by a blank line becomes a paragraph break (</p>).
-   * 
+   *
    * For example:
    * If value is Joel\nis a\n\nslug, the output will be <p>Joel<br />is a</p><p>slug</p>
    */
@@ -454,11 +453,11 @@
 
   /**
    * Truncates a string if it is longer than the specified number of characters.
-   * Truncated strings will end with a translatable ellipsis sequence ('…').
+   * Truncated strings will end with a translatable ellipsis sequence ('').
    */
   humanize.truncatechars = function(string, length) {
     if (string.length <= length) { return string; }
-    return string.substr(0, length) + '…';
+    return string.substr(0, length) + '';
   };
 
   /**
@@ -468,7 +467,7 @@
   humanize.truncatewords = function(string, numWords) {
     var words = string.split(' ');
     if (words.length < numWords) { return string; }
-    return words.slice(0, numWords).join(' ') + '…';
+    return words.slice(0, numWords).join(' ') + '';
   };
 
 }).call(this);

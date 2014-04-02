@@ -28,10 +28,10 @@ def index():
 
     for idx, row in enumerate(contents):
         row = dict(zip(row.__dict__['_columns'], row.__dict__['_row']))
-        row_title = row.get('chapter_title', None)
+        row_title = row.get('data_panel', None)
 
         if row_title:
-            if row_title not in [u'chapter_title']:
+            if row_title not in ['_', 'introduction', 'data_panel', 'about']:
                 not_yet_four.append(row)
 
                 if len(not_yet_four) == 4:
