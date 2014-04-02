@@ -356,9 +356,15 @@ body {
             font-size: 30px;
             font-weight: bold;
             text-transform: uppercase;
-                @media @screen-small-above {
+            @media @screen-small-above {
                     font-size: 70px;
+            }
+            &.words-title {
+            font-size: 26px;
+                @media @screen-small-above {
+                    font-size: 60px;
                 }
+            }
         }
 
          h3 {
@@ -371,6 +377,15 @@ body {
                 max-width: none;
             }
 
+         }
+         
+         h5 {
+             font-size: 10px;
+             margin-top: 10px;
+            @media @screen-small-above {
+                font-size: 14px;
+                margin-top: 20px;
+            }
          }
     }
 }
