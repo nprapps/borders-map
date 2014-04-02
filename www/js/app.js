@@ -476,13 +476,21 @@ var onDocumentKeyDown = function(e) {
     }
 
     switch (e.which) {
+
         //left
         case 37:
+
         //right
         case 39:
             _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Navigation - Used Keyboard']);
             hasTrackedKeyboardNav = true;
             break;
+
+        // escape
+        case 27:
+            window.location = '#_';
+            break;
+
     }
 
     // jquery.fullpage handles actual scrolling
