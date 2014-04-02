@@ -821,53 +821,61 @@ body {
 
 }
 
-/*
-.map-history {
-    background: url('../assets/img/maphistory/map-grayscale.jpg') top left;
-	.background-size(cover);
-	background-position: top left;
-	background-repeat: no-repeat;
-
-
-    .contained-image-container {
-        opacity: .8;
-    }
-}*/
-
 //map fence
 .map-fence {
     .full-block-cell {
-		vertical-align: top;
+    
+        @media @screen-small-above {
+		    vertical-align: top;
+        }
 		
          .full-block-content {
-            margin-top: 10%;
+            max-width: 300px;
             background-color: rgba(34,34,34,.5);
-            padding: 30px;
             .text-shadow(2px 2px 2px rgba(0,0,0,.4));
             
+             @media @screen-small-above {
+                max-width: 700px;
+    		    margin-top: 10%;
+    		    padding: 30px;
+            }
+            
             p {
-                font-size: 40px;
+                font-size: 20px;
                 line-height: 1.2;
-                margin-bottom: 20px;
+                @media @screen-small-above {
+        		    font-size: 40px;
+                    margin-bottom: 20px;
+                }
             }
             
             h6 {
-                font-size: 18px;
                 text-transform: uppercase;
                 font-weight: bold;
+                @media @screen-small-above {
+                    font-size: 18px;
+                }
             }
             
             .source {
                 position: absolute;
-                bottom: 80px;
-                right: 20px;
+                bottom: 60px;
+                right: 5px;
+                @media @screen-small-above {
+                    bottom: 80px;
+                    right: 20px;
+                }
                 
                 p {
                     background-color: #000;
-                    padding: 10px;
-                    font-size: 12px;
+                    font-size: 10px;
+                    padding: 5px;
                     font-weight: bold;
                     text-transform: uppercase;
+                    @media @screen-small-above {
+                        font-size: 12px;
+                        padding: 10px;
+                    }
                 }
             }
         
