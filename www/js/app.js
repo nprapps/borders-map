@@ -215,21 +215,29 @@ var showNavigation = function() {
         $primaryNav.css('opacity', '0');
     } else if ($slides.last().hasClass('active')) {
         /*
-        * Last card gets no arrows but does have the nav.
+        * Last card gets no next arrow but does have the nav.
         */
-        $arrows.removeClass('active');
-        $arrows.css({
+        if (!$arrows.hasClass('active')) {
+            animateArrows();
+        }
+
+        var $nextArrow = $arrows.filter('.next');
+        
+        $nextArrow.removeClass('active');
+        $nextArrow.css({
             'opacity': 0,
             'display': 'none'
         });
+
         $primaryNav.css('opacity', '1');
     } else {
         /*
         * All of the other cards? Arrows and navs.
         */
-        if (!$arrows.hasClass('active')) {
+        if ($arrows.filter('active').length != $arrows.length) {
             animateArrows();
         }
+
         $primaryNav.css('opacity', '1');
     }
 }
