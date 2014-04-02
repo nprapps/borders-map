@@ -4,7 +4,7 @@ import copy
 from glob import glob
 import os
 
-from fabric.api import local, put, require, run, settings, sudo, task 
+from fabric.api import local, put, require, run, settings, sudo, task
 from fabric.state import env
 from jinja2 import Template
 
@@ -517,7 +517,7 @@ def deploy(remote='origin'):
 
     if app_config.DEPLOY_TO_SERVERS:
         checkout_latest(remote)
-        
+
         fabcast('update_copy')
         fabcast('assets_sync')
         fabcast('update_data')
@@ -531,6 +531,8 @@ def deploy(remote='origin'):
     render()
     _gzip('www', '.gzip')
     _deploy_to_s3()
+
+    os.system('rm -rf www/js/*.min.*.js')
 
 """
 Cron jobs
