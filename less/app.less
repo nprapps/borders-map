@@ -842,18 +842,24 @@ body {
 
 }
 
-/*
+
 .map-history {
-    background: url('../assets/img/maphistory/map-grayscale.jpg') top left;
-	.background-size(cover);
-	background-position: top left;
-	background-repeat: no-repeat;
+    // background: url('../assets/img/maphistory/map-grayscale.jpg') top left;
+	// .background-size(cover);
+	// background-position: top left;
+	// background-repeat: no-repeat;
 
 
-    .contained-image-container {
-        opacity: .8;
+    // .contained-image-container {
+    //     opacity: .8;
+    // }
+
+    @media @screen-tiny {
+        .contained-image-container .contained-image-text {
+            padding: 10px 20px 20px;
+        }
     }
-}*/
+}
 
 //map fence
 .map-fence {
