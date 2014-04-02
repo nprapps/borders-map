@@ -22,7 +22,8 @@ var currentSectionIndex = 0;
 var anchors;
 var mobileSuffix;
 var player;
-var is_touch = Modernizr.touch;
+var isTouch = Modernizr.touch;
+var isIPhone = false;
 var active_counter = null;
 var begin = moment();
 var aspectWidth = 16;
@@ -163,7 +164,7 @@ var findImages = function(slides) {
     mobileSuffix = '';
 
     //
-    if ($w < 769 && is_touch) {
+    if ($w < 769 && isTouch) {
         mobileSuffix = '-sq';
     }
 
@@ -214,21 +215,29 @@ var showNavigation = function() {
         $primaryNav.css('opacity', '0');
     } else if ($slides.last().hasClass('active')) {
         /*
-        * Last card gets no arrows but does have the nav.
+        * Last card gets no next arrow but does have the nav.
         */
-        $arrows.removeClass('active');
-        $arrows.css({
+        if (!$arrows.hasClass('active')) {
+            animateArrows();
+        }
+
+        var $nextArrow = $arrows.filter('.next');
+        
+        $nextArrow.removeClass('active');
+        $nextArrow.css({
             'opacity': 0,
             'display': 'none'
         });
+
         $primaryNav.css('opacity', '1');
     } else {
         /*
         * All of the other cards? Arrows and navs.
         */
-        if (!$arrows.hasClass('active')) {
+        if ($arrows.filter('active').length != $arrows.length) {
             animateArrows();
         }
+
         $primaryNav.css('opacity', '1');
     }
 }
@@ -372,7 +381,7 @@ var setupVideoPlayer = function() {
             });
         },
         play: function (){
-            if (!is_touch) {
+            if (!isIPhone) {
                 $('.jp-current-time').removeClass('hide');
                 $('.jp-duration').addClass('hide');
             }
@@ -380,7 +389,7 @@ var setupVideoPlayer = function() {
             _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Video - Play']);
         },
         ended: function(){
-            if (!is_touch) {
+            if (!isIPhone) {
                 $('.jp-current-time').addClass('hide');
                 $('.jp-duration').removeClass('hide');
             }
@@ -405,7 +414,7 @@ var setupVideoPlayer = function() {
 };
 
 var startVideo = function() {
-    if (!is_touch) {
+    if (!isIPhone) {
         $(this).parents('.slide.video').addClass('video-playing');
     }
     $('.jp-jplayer').jPlayer('play');
@@ -544,6 +553,11 @@ $(document).ready(function() {
         if (hash && hash != '_' && hash != '_/') {
             _gaq.push(['_trackEvent', EVENT_CATEGORY, 'Arrived via Deep Link', hash]);
         }
+    }
+
+    // Special case iphone for handling video
+    if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+        isIPhone = true;
     }
 
     setUpFullPage();
