@@ -404,6 +404,10 @@ def _deploy_to_s3(path='.gzip'):
         local(sync_gzip % (path, 's3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
         local(sync_assets % ('www/assets/', 's3://%s/%s/assets/' % (bucket, app_config.PROJECT_SLUG)))
 
+    os.system('rm -rf www/js/*.min.*.js')
+    os.system('rm -rf www/cs/*.min.*.css')
+
+
 def _gzip(in_path='www', out_path='.gzip'):
     """
     Gzips everything in www and puts it all in gzip
@@ -531,8 +535,6 @@ def deploy(remote='origin'):
     render()
     _gzip('www', '.gzip')
     _deploy_to_s3()
-
-    os.system('rm -rf www/js/*.min.*.js')
 
 """
 Cron jobs
