@@ -14,7 +14,7 @@ import os
 NAMES
 """
 # Project name used for display
-PROJECT_NAME = 'Borderland'
+PROJECT_NAME = 'BORDERLAND : NPR'
 
 # Project name in urls
 # Use dashes, not underscores!
