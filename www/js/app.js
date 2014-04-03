@@ -489,7 +489,7 @@ var onDocumentKeyDown = function(e) {
 
         // escape
         case 27:
-            window.location = '#_';
+            animateNav();
             break;
 
     }
