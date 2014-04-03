@@ -433,7 +433,7 @@ var setTimeOnSite = function(e) {
     var now = moment();
     var miliseconds = (now - begin);
 
-    var minutes = humanize.numberFormat(miliseconds/1000/60, decimals=0);
+    var minutes = humanize.numberFormat(Math.floor(miliseconds/1000/60), decimals=0);
     var seconds = humanize.numberFormat((miliseconds/1000) % 60, decimals=0);
 
     $('div.stats h3 span.minutes').html(minutes);
