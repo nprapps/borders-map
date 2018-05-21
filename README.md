@@ -80,6 +80,13 @@ pip install -r requirements.txt
 fab bootstrap
 ```
 
+You may hit a `boto` error when running the above, since we're using an AWS S3 bucket with periods in its name. If so, try one of the solutions in [this thread](https://github.com/boto/boto/issues/2836); simplest may be creating a `~/.boto` file with contents:
+
+```
+[s3]
+calling_format = boto.s3.connection.OrdinaryCallingFormat
+```
+
 Hide project secrets
 --------------------
 
