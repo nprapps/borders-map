@@ -134,8 +134,10 @@ def download_copy():
 def update_copy():
     """
     Fetches the latest Google Doc and updates local JSON.
+    5/23/18 - DISABLED GDOCS CONNECTION
     """
-    download_copy()
+    print 'The Google Spreadsheets connection has been disabled. See project README.'
+    # download_copy()
 
 @task
 def update_data():
@@ -364,7 +366,7 @@ def bootstrap():
     # Reimport app_config in case this is part of the app_template bootstrap
     import app_config
 
-    local('npm install less universal-jst -g --prefix node_modules')
+    local('npm install')
 
     assets.sync()
     update_copy()

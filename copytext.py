@@ -8,7 +8,7 @@ class CopyException(Exception):
 
 class Error(object):
     """
-    An error object that can mimic the structure of the COPY data, whether the error happens at the Copy, Sheet or Row level. Will print the error whenever it gets repr'ed. 
+    An error object that can mimic the structure of the COPY data, whether the error happens at the Copy, Sheet or Row level. Will print the error whenever it gets repr'ed.
     """
     _error = ''
 
@@ -17,7 +17,7 @@ class Error(object):
 
     def __getitem__(self, i):
         return self
-    
+
     def __iter__(self):
         return iter([self])
 
@@ -67,7 +67,7 @@ class Row(object):
         if 'value' in self._columns:
             return Markup(self._row[self._columns.index('value')])
 
-        return Error('COPY.%s.%s [no value column in sheet]' % (self._sheet.name, self._row[self._columns.index('key')])) 
+        return Error('COPY.%s.%s [no value column in sheet]' % (self._sheet.name, self._row[self._columns.index('key')]))
 
 class Sheet(object):
     """
@@ -97,7 +97,7 @@ class Sheet(object):
 
         for row in self._sheet:
             if row['key'] == i:
-                return row 
+                return row
 
         return Error('COPY.%s.%s [key does not exist in sheet]' % (self.name, i))
 
@@ -152,8 +152,8 @@ class Copy(object):
         """
         import json
 
-        obj = {}    
-    
+        obj = {}
+
         for name, sheet in self._copy.items():
             if 'key' in sheet._columns:
                 obj[name] = {}
@@ -162,8 +162,8 @@ class Copy(object):
                     obj[name][row['key']] = row['value']
             else:
                 obj[name] = []
-                
+
                 for row in sheet:
                     obj[name].append(row._row)
-            
+
         return json.dumps(obj)
